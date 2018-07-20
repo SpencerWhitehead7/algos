@@ -28,3 +28,9 @@
 // [output] integer
 
 // The desired length.
+
+function avoidObstacles(inputArray){
+  for(let jump = 2;; jump++){
+    if(inputArray.every(obstacle => obstacle%jump !==0)) return jump
+  }
+} 
