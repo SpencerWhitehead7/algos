@@ -22,3 +22,16 @@
 // [output] integer
 
 // The area of the n-interesting polygon.
+
+function shapeArea(n){
+  if(n===0 || n===1){
+    return n
+  }
+  let area = 1
+  let count = 2
+  while(count <= n){
+    area += 4*(1+(count-2))
+    count++
+  }
+  return area
+}
