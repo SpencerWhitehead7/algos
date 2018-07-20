@@ -25,3 +25,23 @@
 // [output] boolean
 
 // Return true if it is possible to remove one element from the array in order to get a strictly increasing sequence, otherwise return false.
+
+// Matt Contract helped
+
+function almostIncreasingSequence(arr){
+  let removed = false
+  for(let i = 1; i < arr.length; i++){
+    if(arr[i] <= arr[i-1]){
+      if(removed) return false
+      if(i === arr.length - 1) return true
+      if(arr[i-1] < arr[i+1]){
+        removed = true
+      }else if(!arr[i-2] || arr[i-2] < arr[i]){
+        removed = true
+      }else{
+        return false
+      }
+    }
+  }
+  return true
+}
