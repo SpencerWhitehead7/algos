@@ -12,3 +12,11 @@
 // areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) = true;
 // For yourLeft = 15, yourRight = 10, friendsLeft = 15, and friendsRight = 9, the output should be
 // areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) = false.
+
+function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight){
+  const yourStrong = yourLeft > yourRight ? yourLeft : yourRight
+  const yourWeak = yourLeft < yourRight ? yourLeft : yourRight
+  const friendsStrong = friendsLeft > friendsRight ? friendsLeft : friendsRight
+  const friendsWeak = friendsLeft < friendsRight ? friendsLeft : friendsRight
+  return (yourStrong === friendsStrong && yourWeak === friendsWeak)
+} 
