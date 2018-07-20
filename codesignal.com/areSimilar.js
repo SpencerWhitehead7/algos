@@ -42,3 +42,24 @@
 // [output] boolean
 
 // true if a and b are similar, false otherwise.
+
+function areSimilar(a, b){
+  let result = true
+  let unmatchedCount = 0
+  const aAti = []
+  const bAti = []
+  for(let i=0; i<a.length; i++){
+    if(a[i] !== b[i]){
+      unmatchedCount++
+      aAti.push(a[i])
+      bAti.push(b[i])
+    }
+  }
+  if(unmatchedCount > 2) return false
+  aAti.sort((a, b) => a - b)
+  bAti.sort((a, b) => a - b)
+  aAti.forEach((element, i) => {
+    if(element !== bAti[i]) result = false
+  })
+  return result
+}
