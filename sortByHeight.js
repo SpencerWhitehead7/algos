@@ -20,3 +20,10 @@
 // [output] array.integer
 
 // Sorted array a with all the trees untouched.
+
+function sortByHeight(a){
+  const finalArr = []
+  const filteredAndSorted = [...a].filter(ele => ele !== -1).sort((a,b)=> a - b)
+  a.forEach(ele => finalArr.push(ele === -1 ? ele : filteredAndSorted.shift()))
+  return finalArr
+} 
