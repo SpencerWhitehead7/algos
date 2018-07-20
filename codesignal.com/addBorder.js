@@ -27,3 +27,17 @@
 // [output] array.string
 
 // The same matrix of characters, framed with a border of asterisks of width 1.
+
+function addBorder(picture){
+  const framed = []
+  picture.forEach(row => {
+    framed.push(`*${row}*`)
+  })
+  let topAndBottomEdge = ``
+  for(let i=0; i<framed[0].length; i++){
+    topAndBottomEdge += `*`
+  }
+  framed.unshift(topAndBottomEdge)
+  framed.push(topAndBottomEdge)
+  return framed
+}
