@@ -26,3 +26,24 @@
 // 1 ≤ s2.length ≤ 15.
 
 // [output] integer
+
+function commonCharacterCount(s1, s2){
+  let total = 0
+  const sort1 = s1.split(``).sort()
+  const sort2 = s2.split(``).sort()
+  let p1 = 0
+  let p2 = 0
+  while(p1 < sort1.length && p2 < sort2.length){
+    if(sort1[p1] === sort2[p2]){
+      total++
+      p1++
+      p2++
+    }
+    if(sort1[p1] > sort2[p2]){
+      p2++
+    }else if(sort1[p1] < sort2[p2]){
+      p1++
+    }
+  }
+  return total
+}
