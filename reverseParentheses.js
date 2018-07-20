@@ -19,3 +19,22 @@
 // 5 ≤ s.length ≤ 55.
 
 // [output] string
+
+function reverseParentheses(s){
+  arr = s.split(``)
+  while(arr.includes(`(`)){
+    let opening = 0
+    let closing = arr.length - 1
+    for(let i=0; i<arr.length; i++){
+      if(arr[i] === `(`){
+        opening = i
+      }else if(arr[i] === `)`){
+        closing = i
+        break
+      }
+    }
+    const reversedSegment = arr.slice(opening + 1, closing).reverse()
+    arr.splice(opening, closing - opening + 1, ...reversedSegment)
+  }
+  return arr.join(``)
+} 
