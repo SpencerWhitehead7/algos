@@ -43,3 +43,26 @@
 // [output] array.array.integer
 
 // A blurred image represented as integers, obtained through the process in the description.
+
+function boxBlur(image){
+  const output = []
+  for(let row=1; row<image.length-1; row++){
+    const newRow = []
+    for(let col = 1; col< image[row].length-1; col++){
+      const newVal = Math.floor((
+        image[row-1][col-1] +
+        image[row-1][col] +
+        image[row-1][col+1] +
+        image[row][col-1] +
+        image[row][col] +
+        image[row][col+1] +
+        image[row+1][col-1] +
+        image[row+1][col] +
+        image[row+1][col+1]
+      ) / 9)
+      newRow.push(newVal)
+    }
+    output.push(newRow)
+  }
+  return output
+} 
