@@ -50,3 +50,18 @@
 // [output] integer
 
 // The total price of all the rooms that are suitable for the CodeBots to live in.
+
+function matrixElementsSum(matrix){
+  let total = 0
+  const hauntedCols = {}
+  for(let row = 0; row < matrix.length; row++){
+    for(let col = 0; col < matrix[row].length; col++){
+      if(matrix[row][col] !== 0 && !hauntedCols[col]){
+        total += matrix[row][col]
+      }else{
+        hauntedCols[col] = true
+      }
+    }
+  }
+  return total
+}
