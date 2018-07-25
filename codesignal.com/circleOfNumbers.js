@@ -26,3 +26,7 @@
 // 0 ≤ firstNumber ≤ n - 1.
 
 // [output] integer
+
+function circleOfNumbers(n, firstNumber){
+  return (firstNumber + (n/2))%n
+} 
