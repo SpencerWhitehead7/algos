@@ -26,3 +26,7 @@
 // 0 ≤ substitutionElem ≤ 10.
 
 // [output] array.integer
+
+function arrayReplace(inputArray, elemToReplace, substitutionElem){
+  return inputArray.map(ele => ele === elemToReplace ? substitutionElem : ele)
+} 
