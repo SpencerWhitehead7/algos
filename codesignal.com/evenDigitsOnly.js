@@ -18,3 +18,8 @@
 // [output] boolean
 
 // true if all digits of n are even, false otherwise.
+
+function evenDigitsOnly(n){
+  arr = n.toString().split(``)
+  return arr.every(digit => digit%2 ===0)
+} 
