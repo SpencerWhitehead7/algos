@@ -23,3 +23,11 @@
 // [output] boolean
 
 // true if both cells have the same color, false otherwise.
+
+function chessBoardCellColor(cell1, cell2){
+  return checkColor(cell1) === checkColor(cell2)
+}
+
+function checkColor(cell){
+  return (/[ACEG]+[1357]/.test(cell) || /[BDFH]+[2468]/.test(cell))
+}
