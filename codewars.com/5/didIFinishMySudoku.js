@@ -35,3 +35,39 @@
 
 
 // For those who don't know the game, here are some information about rules and how to play Sudoku: http://en.wikipedia.org/wiki/Sudoku and http://www.sudokuessentials.com/
+
+function doneOrNot(board){
+  const arr = board.reduce((acc, curr) => acc = acc.concat(curr))
+  for(let rowI = 0; rowI < 81; rowI += 9){ // rows
+    if(!val(arr.slice(rowI, rowI + 9))) return `Try again!`
+  }
+  for(let col = 0; col < 9; col++){ // columns
+    const tempCol = []
+    for(let colI = 0; colI < 81; colI += 9){
+      tempCol.push(arr[col + colI])
+    }
+    if(!val(tempCol)) return `Try again!`
+  }
+  for(let box = 0; box < 81; box += 27){ // boxes
+    const rows = arr.slice(box, box + 27)
+    for(let boxI = 0; boxI < 7; boxI += 3){
+      let tempBox = []
+      tempBox = tempBox.concat(rows.slice(boxI, boxI + 3))
+      tempBox = tempBox.concat(rows.slice(boxI + 9, boxI + 12))
+      tempBox = tempBox.concat(rows.slice(boxI + 18, boxI + 21))
+      if(!val(tempBox)) return `Try again!`
+    }
+  }
+  return `Finished!`
+}
+
+function val(arr){
+  const arrCopy = arr.slice(0)
+  arrCopy.sort()
+  for(let i=0; i < arrCopy.length; i++){
+    if(arrCopy[i] !== i + 1){
+      return false
+    }
+  }
+  return true
+}
