@@ -17,3 +17,20 @@ addMinutes(`12:30`, 40)    // 1:10
 addMinutes(`11:59`, 1)     // 12:00
 addMinutes(`1:59`, 240)    // 5:59
 addMinutes(`1:23`, 456789) // 6:32
+
+const addMinutes = (time, minutes) => {
+  const [hour, minute] = time.split(`:`).map(ele => Number(ele))
+  
+  const addedHours = Math.floor(minutes / 60)
+  const addedMinutes = minutes % 60
+  
+  let newHour = ((hour + addedHours - 1) % 12) + 1
+  let newMinutes = minute + addedMinutes
+
+  if(newMinutes >= 60){
+    newHour = (newHour % 12) + 1
+    newMinutes = newMinutes % 60
+  }
+
+  return newMinutes < 10 ? `${newHour}:0${newMinutes}` : `${newHour}:${newMinutes}`
+}
