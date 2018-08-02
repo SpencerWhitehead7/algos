@@ -58,9 +58,7 @@ const val = arr => {
 // my original solution
 
 const sudokuChecker = board => {
-  board.forEach(row => {
-    if(!val(row)) return false
-  })
+  if(!board.every(row => val(row))) return false
   for(let col = 0; col < 9; col++){
     const tempCol = []
     for(let row = 0; row < 9; row++){

@@ -21,7 +21,7 @@
 // [output] string
 
 function reverseParentheses(s){
-  arr = s.split(``)
+  const arr = s.split(``)
   while(arr.includes(`(`)){
     let opening = 0
     let closing = arr.length - 1
