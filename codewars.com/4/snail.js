@@ -18,3 +18,47 @@
 // NOTE: The idea is not sort the elements from the lowest value to the highest; the idea is to traverse the 2-d array in a clockwise snailshell pattern.
 
 // NOTE 2: The 0x0 (empty matrix) is represented as [[]]
+
+// Recursive (original version)
+
+function snailRec(array){
+  if(array.length===1){
+    return array[0]
+  }else if(array.length===0){
+    return []
+  }else{
+    const sorted = []
+    sorted.push(...array.shift())
+    for(let i=0; i<array.length; i++){
+      sorted.push(array[i].pop())
+    }
+    sorted.push(...array.pop().reverse())
+    for(let i=array.length-1; i>=0; i--){
+      sorted.push(array[i].shift())
+    }
+    sorted.push(...snailRec(array))
+    return sorted
+  }
+}
+
+// Iterative
+
+function snailIter(array){
+  const sorted = []
+  while(array.length){
+    sorted.push(...array.shift())
+    for(let i=0; i<array.length; i++){
+      sorted.push(array[i].pop())
+    }
+    sorted.push(...(array.pop() || []).reverse())
+    for(let i=array.length-1; i>=0; i--){
+      sorted.push(array[i].shift())
+    }
+  }
+  return sorted
+}
+
+module.exports = {
+  snailRec,
+  snailIter,
+}
