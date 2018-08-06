@@ -8,3 +8,20 @@
 
 // You must do this in-place without making a copy of the array.
 // Minimize the total number of operations.
+
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+const moveZeroes = function(nums){
+  let shiftCount = 0
+  let i = 0
+  while(i<nums.length - shiftCount){
+    if(nums[i]===0){
+      nums.push(...nums.splice(i, 1))
+      shiftCount++
+    }else{
+      i++
+    }
+  }
+}
