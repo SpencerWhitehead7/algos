@@ -13,3 +13,35 @@
 //   [-1, 0, 1],
 //   [-1, -1, 2]
 // ]
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+const threeSum = function(nums){
+  nums.sort((a, b) => a - b)
+  const res = []
+  for(let i=0; i<nums.length-2; i++){
+    if(i===0 || nums[i-1] !== nums[i]){
+      let start = i + 1
+      let end = nums.length - 1
+      while(start < end){
+        const sum = nums[i] + nums[start] + nums[end]
+        if(sum === 0){
+          res.push([nums[i], nums[start], nums[end]])
+          start++
+          end--
+          while(start < end && nums[start - 1] === nums[start]){
+            start++
+          }
+          while(start < end && nums[end] === nums[end + 1]){
+            end--
+          }
+        }else{
+          sum < 0 ? start++ : end--
+        }
+      }
+    }
+  }
+  return res
+}
