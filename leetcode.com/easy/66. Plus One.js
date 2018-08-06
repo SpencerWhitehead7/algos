@@ -14,3 +14,22 @@
 // Input: [4,3,2,1]
 // Output: [4,3,2,2]
 // Explanation: The array represents the integer 4321.
+
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+const plusOne = function(digits){
+  let carry = 1
+  for(let i=digits.length-1; i>=0; i--){
+    digits[i] += carry
+    if(digits[i] === 10){
+      digits[i] = 0
+    }else{
+      carry = 0
+      break
+    }
+  }
+  if(carry) digits.unshift(carry)
+  return digits
+}
