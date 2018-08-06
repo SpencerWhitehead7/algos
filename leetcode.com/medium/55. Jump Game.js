@@ -15,3 +15,24 @@
 // Output: false
 // Explanation: You will always arrive at index 3 no matter what. Its maximum
 //              jump length is 0, which makes it impossible to reach the last index.
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+const canJump = function(nums){
+  for(let i=nums.length-2; i>=0; i--){
+    if(nums[i]===0){
+      let skippable = false
+      for(let j=i-1; j>=0; j--){
+        if(nums[j]>i-j){
+          skippable = true
+          i -= i - j
+          break
+        }
+      }
+      if(!skippable) return skippable
+    }
+  }
+  return true
+}
