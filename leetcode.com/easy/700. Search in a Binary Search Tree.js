@@ -18,3 +18,27 @@
 // In the example above, if we want to search the value 5, since there is no node with value 5, we should return NULL.
 
 // Note that an empty tree is represented by NULL, therefore you would see the expected output (serialized tree format) as [], not null.
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} val
+ * @return {TreeNode}
+ */
+const searchBST = function(root, val){
+  if(root === null){
+    return []
+  }else if(root.val === val){
+    return root
+  }else if(root.val < val){
+    return searchBST(root.right, val)
+  }else if(root.val > val){
+    return searchBST(root.left, val)
+  }
+}
