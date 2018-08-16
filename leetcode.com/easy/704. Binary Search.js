@@ -19,3 +19,22 @@
 // You may assume that all elements in nums are unique.
 // n will be in the range [1, 10000].
 // The value of each element in nums will be in the range [-9999, 9999].
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+const search = function(nums, target){
+  let start = 0
+  let end = nums.length - 1
+  while(start < end){
+    const middle = Math.floor((start + end) / 2)
+    if(target > nums[middle]){
+      start = middle + 1
+    }else{
+      end = middle
+    }
+  }
+  return nums[end] === target ? end : -1
+}
