@@ -131,3 +131,6 @@ function sudokuValidator(solution){
   }
   return true
 }
+
+
+module.exports = sudokuValidator
