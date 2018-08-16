@@ -23,6 +23,10 @@
  * @param {character[][]} grid
  * @return {number}
  */
+/**
+ * @param {character[][]} grid
+ * @return {number}
+ */
 const numIslands = function(grid){
   if(grid.length === 0) return 0
   grid = addEdges(grid)
@@ -32,14 +36,15 @@ const numIslands = function(grid){
       if(grid[vert][hori] === `1`){
         islands++
         grid[vert][hori] = `2`
-        const queue = [{v : vert, h : hori}]
+        const queue = [[vert, hori]]
         while(queue.length > 0){
-          const loc = queue.shift()
-          const neighbors = [[loc.v-1, loc.h], [loc.v, loc.h+1], [loc.v+1, loc.h], [loc.v, loc.h-1]]
-          for(let i=0; i<neighbors.length; i++){
-            if(grid[neighbors[i][0]][neighbors[i][1]] === `1`){
-              grid[neighbors[i][0]][neighbors[i][1]] = `2`
-              queue.push({v : neighbors[i][0], h : neighbors[i][1]})
+          const [vert, hori] = queue.shift()
+          const neighbors = [[vert-1, hori], [vert, hori+1], [vert+1, hori], [vert, hori-1]]
+          while(neighbors.length > 0){
+            const [vert, hori] = neighbors.shift()
+            if(grid[vert][hori] === `1`){
+              grid[vert][hori] = `2`
+              queue.push([vert, hori])
             }
           }
         }
