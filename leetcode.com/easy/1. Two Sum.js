@@ -17,11 +17,11 @@
 const twoSum = function(nums, target){
   const hash = {}
   for(let i=0; i<nums.length; i++){
-    hash[nums[i]] ? hash[nums[i]].push(i) : hash[nums[i]] = [i]
     const complement = target - nums[i]
-    const hashComp = hash[complement]
-    if(hashComp && hashComp[0] !== i){
-      return [hashComp[0], i]
+    if(hash[complement]){
+      return [hash[complement][0], i]
+    }else{
+      hash[nums[i]] = [i]
     }
   }
 }
