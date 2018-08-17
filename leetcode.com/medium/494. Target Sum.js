@@ -18,3 +18,20 @@
 // The length of the given array is positive and will not exceed 20.
 // The sum of elements in the given array will not exceed 1000.
 // Your output answer is guaranteed to be fitted in a 32-bit integer.
+
+/**
+ * @param {number[]} nums
+ * @param {number} S
+ * @return {number}
+ */
+const findTargetSumWays = function(nums, S){
+  const allNums = [0]
+  for(let i=0; i<nums.length; i++){
+    const length = allNums.length
+    for(let j=0; j<length; j++){
+      allNums.push(allNums[j] + nums[i])
+      allNums[j] = allNums[j] - nums[i]
+    }
+  }
+  return allNums.filter(num => num === S).length
+}
