@@ -38,10 +38,12 @@
  * @return {number}
  */
 const removeDuplicates = function(nums){
-  for(let i=0; i<nums.length; i++){
+  let i=0
+  while(i < nums.length){
     if(nums[i]===nums[i-2]){
       nums.splice(i, 1)
-      i -= 2
+    }else{
+      i++
     }
   }
   return nums.length
