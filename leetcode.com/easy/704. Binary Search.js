@@ -28,13 +28,15 @@
 const search = function(nums, target){
   let start = 0
   let end = nums.length - 1
-  while(start < end){
+  while(start <= end){
     const middle = Math.floor((start + end) / 2)
-    if(target > nums[middle]){
+    if(nums[middle] === target){
+      return middle
+    }else if(nums[middle] < target){
       start = middle + 1
     }else{
-      end = middle
+      end = middle - 1
     }
   }
-  return nums[end] === target ? end : -1
+  return -1
 }
