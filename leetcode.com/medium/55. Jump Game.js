@@ -21,17 +21,16 @@
  * @return {boolean}
  */
 const canJump = function(nums){
+  if(nums[0] === 0 && nums.length > 1) return false
   for(let i=nums.length-2; i>=0; i--){
     if(nums[i]===0){
-      let skippable = false
       for(let j=i-1; j>=0; j--){
         if(nums[j]>i-j){
-          skippable = true
-          i -= i - j
+          i = j
           break
         }
+        if(j===0) return false
       }
-      if(!skippable) return skippable
     }
   }
   return true
