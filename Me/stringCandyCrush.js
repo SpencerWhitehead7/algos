@@ -1,0 +1,1 @@
+// The input is a string that contains capital letters. If there are three or more same letters in a row, you need to compress them. You need to compress until there are there are no three or more letters are next to each other.  
