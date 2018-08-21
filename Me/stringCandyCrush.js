@@ -1,20 +1,34 @@
 // The input is a string that contains capital letters. If there are three or more same letters in a row, you need to compress them. You need to compress until there are there are no three or more letters are next to each other.  
 
 const stringCandyCrush = str => {
-  const uncompressed = str.split(``)
-  const compressed = [uncompressed[0], uncompressed[1]]
+  const compressed = str.slice(0,2).split(``)
   let i = 2
-  while(i<uncompressed.length){
-    if(uncompressed[i] === compressed[compressed.length-1] &&
-    uncompressed[i] === compressed[compressed.length-2]
-    ){
-      compressed.pop()
-    }else{
-      compressed.push(uncompressed[i])
+  let crushing = ``
+  while(i < str.length){
+    if(!crushing){
+      if(str[i] === compressed[compressed.length-1] &&
+      str[i] === compressed[compressed.length-2]
+      ){
+        crushing = str[i]
+        while(compressed[compressed.length-1] === crushing){
+          compressed.pop()
+        }
+      }else{
+        compressed.push(str[i])
+      }
+    }else if(str[i] !== crushing){
+      if(compressed[compressed.length-1] === str[i] &&
+      compressed[compressed.length-2] === str[i]
+      ){
+        while(compressed[compressed.length-1] === str[i]){
+          compressed.pop()
+        }
+      }else{
+        compressed.push(str[i])
+      }
+      crushing = ``
     }
     i++
   }
-  console.log(uncompressed)
-  console.log(i)
   return compressed.join(``)
 }
