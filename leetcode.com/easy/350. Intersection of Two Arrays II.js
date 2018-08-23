@@ -17,3 +17,26 @@
 // What if the given array is already sorted? How would you optimize your algorithm?
 // What if nums1's size is small compared to nums2's size? Which algorithm is better?
 // What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+const intersect = function(nums1, nums2){
+  nums1.sort((a, b) => a - b)
+  nums2.sort((a, b) => a - b)
+  const res = []
+  let p1 = 0
+  let p2 = 0
+  while(nums1[p1]!==undefined && nums2[p2]!==undefined){
+    if(nums1[p1] === nums2[p2]){
+      res.push(nums1[p1])
+      p1++
+      p2++
+    }else{
+      nums1[p1] < nums2[p2] ? p1++ : p2++
+    }
+  }
+  return res
+}
