@@ -20,3 +20,29 @@
 //     0 --- 2
 //          / \
 //          \_/
+
+/**
+ * Definition for undirected graph.
+ * function UndirectedGraphNode(label) {
+ *     this.label = label;
+ *     this.neighbors = [];   // Array of UndirectedGraphNode
+ * }
+ */
+
+/**
+ * @param {UndirectedGraphNode} graph
+ * @return {UndirectedGraphNode}
+ */
+const cloneGraph = function(graph){
+  const map = {}
+  return traverse(graph, map)
+}
+
+const traverse = (node, map) => {
+  if(!node) return node
+  if(!map[node.label]){
+    map[node.label] = new UndirectedGraphNode(node.label)
+    map[node.label].neighbors = node.neighbors.map(neighbor => traverse(neighbor, map))
+  }
+  return map[node.label]
+}
