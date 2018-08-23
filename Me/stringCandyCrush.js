@@ -16,7 +16,7 @@ const stringCandyCrush = str => {
       }else{
         compressed.push(str[i])
       }
-    }else if(str[i] !== crushing){
+    }else if(str[i] !== crushing){ // creates problems if you have to simultaneously check to crush two different letters at once
       if(compressed[compressed.length-1] === str[i] &&
       compressed[compressed.length-2] === str[i]
       ){
