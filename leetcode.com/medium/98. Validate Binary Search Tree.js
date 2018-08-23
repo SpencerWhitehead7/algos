@@ -22,3 +22,31 @@
 // Output: false
 // Explanation: The input is: [5,1,4,null,null,3,6]. The root node's value
 //              is 5 but its right child's value is 4.
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+const isValidBST = function(root){
+  if(!root) return true
+  const res = depthFirstInOrder(root)
+  for(let i=1; i<res.length; i++){
+    if(res[i] <= res[i-1]) return false
+  }
+  return true
+}
+
+const depthFirstInOrder = root => {
+  const res = []
+  if(root.left) res.push(...depthFirstInOrder(root.left))
+  res.push(root.val)
+  if(root.right) res.push(...depthFirstInOrder(root.right))
+  return res
+}
