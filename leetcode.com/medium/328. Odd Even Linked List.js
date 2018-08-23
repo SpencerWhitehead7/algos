@@ -14,3 +14,29 @@
 
 // The relative order inside both the even and odd groups should remain as it was in the input.
 // The first node is considered odd, the second node even and so on ...
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const oddEvenList = function(head){
+  if(!head || !head.next || !head.next.next) return head
+  let odds = head
+  const evensHead = head.next
+  let evens = head.next
+  while(evens && evens.next){
+    odds.next = odds.next.next
+    evens.next = evens.next.next
+    odds = odds.next
+    evens = evens.next
+  }
+  odds.next = evensHead
+  return head
+}
