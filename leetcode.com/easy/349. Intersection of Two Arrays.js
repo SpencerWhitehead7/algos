@@ -12,3 +12,23 @@
 
 // Each element in the result must be unique.
 // The result can be in any order.
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+const intersection = function(nums1, nums2){
+  const res = []
+  const hash = {}
+  nums1.forEach(num => {
+    hash[num] = 1
+  })
+  nums2.forEach(num => {
+    if(hash[num]) hash[num]++
+  })
+  Object.keys(hash).forEach(key => {
+    if(hash[key] > 1) res.push(Number(key))
+  })
+  return res
+}
