@@ -18,6 +18,11 @@
 
 // Coud you solve it without converting the integer to a string?
 
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+
 const isPalindromeStr = x => {
   const str = x.toString()
   const backwards = str.split(``).reverse().join(``)
