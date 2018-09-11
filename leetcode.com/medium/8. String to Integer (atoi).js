@@ -39,3 +39,23 @@
 // Output: -2147483648
 // Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
 //              Thefore INT_MIN (−231) is returned.
+
+/**
+ * @param {string} str
+ * @return {number}
+ */
+const myAtoi = function(str){
+  str = str.trim()
+  let slicer = 0
+  if(str[slicer] === `+` || str[slicer] === `-`) slicer++
+  while(str[slicer] !== undefined &&
+    str[slicer] !== ` ` &&
+    [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`].includes(str[slicer])){
+    slicer++
+  }
+  const num = Number(str.slice(0, slicer))
+  if(isNaN(num)) return 0
+  if(num > (Math.pow(2, 31) - 1)) return Math.pow(2, 31) - 1
+  if(num < Math.pow(-2, 31)) return Math.pow(-2, 31)
+  return num
+}
