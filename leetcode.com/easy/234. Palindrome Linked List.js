@@ -49,3 +49,22 @@ const isPalindrome = function(head){
   }
   return true
 }
+
+const isPalindromeClever = head => {
+  let current = head
+  let result = true
+
+  const traverse = list => {
+    if(list){
+      traverse(list.next)
+      if(list.val != current.val){
+        result = false
+        return
+      }
+      current = current.next
+    }
+  }
+
+  traverse(head)
+  return result
+}
