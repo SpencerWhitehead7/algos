@@ -14,3 +14,31 @@
 // Note:
 
 // All given inputs are in lowercase letters a-z.
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+
+const haveCommonLetter = (arr, i) => {
+  const commonLetter = arr[0][i]
+  if(commonLetter === undefined) return false
+  for(let j = 0; j < arr.length; j++){
+    if(arr[j][i] !== commonLetter) return false
+  }
+  return true
+}
+
+const longestCommonPrefix = strs => {
+  if(strs.length === 0) return ``
+  if(strs.length === 1) return strs[0]
+  let prefix = ``
+  let i = 0
+  while(haveCommonLetter(strs, i)){
+    prefix += strs[0][i]
+    i++
+  }
+  return prefix
+}
+
+// The leetcode solutions section has some quite interesting ones too https://leetcode.com/problems/longest-common-prefix/solution/
