@@ -22,7 +22,6 @@
  * @param {number} x
  * @return {boolean}
  */
-
 const isPalindromeStr = x => {
   const str = x.toString()
   const backwards = str.split(``).reverse().join(``)
