@@ -11,3 +11,12 @@
 
 // Update (2015-02-10):
 // The signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button to reset your code definition.
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+const isNumber = function(s){
+  if(s === ` `) return false
+  return !isNaN(Number(s))
+}
