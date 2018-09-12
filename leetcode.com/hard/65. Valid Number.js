@@ -20,3 +20,5 @@ const isNumber = function(s){
   if(s === ` `) return false
   return !isNaN(Number(s))
 }
+
+// TBF this problem is a real copout if you use JavaScript
