@@ -2,7 +2,35 @@
 // Interviewer Prompt
 // Given an array of integers (array) and a number n, write an algorithm that determines whether or not there exists two elements in the array whose sum is n.
 
+const pairSumSort  = (arr, target) => {
+  arr.sort((a, b) => a - b)
+  let start = 0
+  let end = arr.length - 1
+  while(start < end){
+    const sum = arr[start] + arr[end]
+    if(sum > target){
+      end--
+    }else if(sum < target){
+      start++
+    }else{
+      return [arr[start], arr[end]]
+    }
+  }
+  return []
+}
 
+const pairSumHash = (arr, target) => {
+  const hash = {}
+  for(let i = 0; i < arr.length; i++){
+    const current = arr[i]
+    const complement = target - current
+    if(hash[complement]){
+      return [complement, current]
+    }
+    hash[current] = true
+  }
+  return []
+}
 
 // Example Output
 console.log(pairSumSort([1, 2, 3, 4, 5], 9), [4, 5]) // returns an array with the pair: [4, 5]
