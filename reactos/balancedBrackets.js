@@ -5,8 +5,31 @@
 
 // An empty input string or a string without brackets can also be considered "balanced".
 
+const bracketPattern = /[[\](){}]/g
+const bracketPairs = {
+  '[' : `]`,
+  '{' : `}`,
+  '(' : `)`,
+}
+
+const hasBalancedBrackets = str => {
+  const bracketStack = []
+  str = str.match(bracketPattern)
+  for(let i = 0; i < str.length; i++){
+    if(str[i] in bracketPairs){
+      bracketStack.unshift(str[i])
+    }else if(bracketPairs[bracketStack[0]] === str[i]){
+      bracketStack.shift()
+    }else{
+      return false
+    }
+  }
+  return !bracketStack.length
+}
+
 // Examples
 console.log(hasBalancedBrackets(`[][(){}`)) // false
 console.log(hasBalancedBrackets(`({)}`)) // false
+console.log(hasBalancedBrackets(`({[]}))`)) // false
 console.log(hasBalancedBrackets(`({[]})`)) // true
 console.log(hasBalancedBrackets(`text ( is allowed ){rwwrwrrww [] ()}`)) // true
