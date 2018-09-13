@@ -6,7 +6,7 @@
 // An empty input string or a string without brackets can also be considered "balanced".
 
 // Examples
-// hasBalancedBrackets('[][(){}'); // false
-// hasBalancedBrackets('({)}'); // false
-// hasBalancedBrackets('({[]})'); // true
-// hasBalancedBrackets('text ( is allowed ){rwwrwrrww [] ()}'); // true
+console.log(hasBalancedBrackets(`[][(){}`)) // false
+console.log(hasBalancedBrackets(`({)}`)) // false
+console.log(hasBalancedBrackets(`({[]})`)) // true
+console.log(hasBalancedBrackets(`text ( is allowed ){rwwrwrrww [] ()}`)) // true
