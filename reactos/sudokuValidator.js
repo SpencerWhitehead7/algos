@@ -47,7 +47,7 @@ console.log(sudokuValidator([
 const val = arr => {
   const arrCopy = arr.slice(0)
   arrCopy.sort()
-  for(let i=0; i < arrCopy.length; i++){
+  for(let i = 0; i < arrCopy.length; i++){
     if(arrCopy[i] !== i + 1){
       return false
     }
@@ -82,7 +82,7 @@ const sudokuChecker = board => {
 // solution based off Ian's single string idea
 
 const singleCheck = board => {
-  const arr = board.reduce((acc, curr) => acc = acc.concat(curr))
+  const arr = board.reduce((acc, curr) => acc.concat(curr))
   for(let rowI = 0; rowI < 81; rowI += 9){ // rows
     if(!val(arr.slice(rowI, rowI + 9))) return false
   }
@@ -108,23 +108,19 @@ const singleCheck = board => {
 
 // "offical" reacto solution
 
-function sudokuValidator(solution){
-  function check(arr){
-    return arr.sort()
-      .filter((val, index) => {
-        return val===index+1
-      })
-      .length===9
-  }
+const sudokuValidator = solution => {
+  const check = arr => arr.sort()
+    .filter((val, index) => val === index + 1)
+    .length === 9
 
-  for(let i=0;i<9;i++){
-    const col=[ ]
-    const row=[ ]
-    const square=[ ]
-    for(let j=0;j<9;j++){
+  for(let i = 0; i < 9; i++){
+    const col = []
+    const row = []
+    const square = []
+    for(let j = 0; j < 9; j++){
       col.push(solution[j][i])
       row.push(solution[i][j])
-      square.push(solution[Math.floor(j/3)+((i%3)*3)][j%3+(Math.floor(i/3)*3)])
+      square.push(solution[Math.floor(j / 3) + ((i % 3) * 3)][j % 3 + (Math.floor(i / 3) * 3)])
     }
 
     if(!check(col) || !check(row) || !check(square)) return false
