@@ -39,3 +39,33 @@
 // Input: "MCMXCIV"
 // Output: 1994
 // Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+
+const map = {
+  I : 1,
+  V : 5,
+  X : 10,
+  L : 50,
+  C : 100,
+  D : 500,
+  M : 1000,
+}
+
+const romanToInt = function(s){
+  const digits = s.split(``)
+  let res = 0
+  for(let i = digits.length - 1; i >= 0; i--){
+    const tuple = map[digits[i]] - map[digits[i - 1]]
+    if(tuple > 0){
+      res += tuple
+      i--
+    }else{
+      res += map[digits[i]]
+    }
+  }
+  return res
+}
