@@ -39,3 +39,60 @@
 // Input: 1994
 // Output: "MCMXCIV"
 // Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+
+/**
+ * @param {number} num
+ * @return {string}
+ */
+
+const digitToRoman = (place, digit) => {
+  let add = ``
+  let sub1 = ``
+  let sub2 = ``
+  if(place === 0){
+    add = `I`
+    sub1 = `V`
+    sub2 = `X`
+  }else if(place === 1){
+    add = `X`
+    sub1 = `L`
+    sub2 = `C`
+  }else if(place === 2){
+    add = `C`
+    sub1 = `D`
+    sub2 = `M`
+  }else if(place === 3){
+    add = `M`
+  }
+  switch (digit){
+    case `1`:
+      return add
+    case `2`:
+      return add + add
+    case `3`:
+      return add + add + add
+    case `4`:
+      return add + sub1
+    case `5`:
+      return sub1
+    case `6`:
+      return sub1 + add
+    case `7`:
+      return sub1 + add + add
+    case `8`:
+      return sub1 + add + add + add
+    case `9`:
+      return add + sub2
+    case `0`:
+      return ``
+    default:
+      return ``
+  }
+}
+
+const intToRoman = function(num){
+  const digits = num.toString().split(``).reverse()
+  let res = ``
+  digits.forEach((digit, i) => {res = digitToRoman(i, digit) + res})
+  return res
+}
