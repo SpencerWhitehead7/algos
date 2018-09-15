@@ -38,3 +38,21 @@ const myFindGrantsCap = (grantsArray, newBudget) => {
   cap += (newBudget - total) / grantsArray.filter(ele => ele > cap).length
   return cap
 }
+
+// Theirs
+
+const findGrantsCap = (grantsArray, newBudget) => {
+  grantsArray.sort((a, b) => b - a)
+  grantsArray.push(0)
+  let surplus = grantsArray.reduce((acc, curr) => acc + curr) - newBudget
+  if(surplus <= 0) return grantsArray[0]
+  let derivedI = 0
+  for(let i = 0; i < grantsArray.length; i++){
+    surplus -= (i + 1) * (grantsArray[i] - grantsArray[i + 1])
+    if(surplus <= 0){
+      derivedI = i
+      break
+    }
+  }
+  return grantsArray[derivedI + 1] + (-surplus / (derivedI + 1))
+}
