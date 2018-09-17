@@ -64,7 +64,7 @@ const digitToRoman = (place, digit) => {
   }else if(place === 3){
     add = `M`
   }
-  switch (digit){
+  switch(digit){
     case `1`:
       return add
     case `2`:
