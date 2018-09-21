@@ -91,3 +91,24 @@ const planeFloorplan1 = (numberOfRows, seatsStr) => {
 // time complexity: n + m, where n = numberOfRows and m = number of seats
 // space complexity: m, where m = number of rows
 // planeFloorplan(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
+
+const planeSort = (numberOfRows, seatsStr) => {
+  let res = 0
+  const seats = seatsStr.split(` `).sort()
+  for(let i = 0; i < seats.length - 2; i++){
+    const chunk = seats.slice(i, i + 3).join(``)
+    const row = chunk[0]
+    if(chunk === `${row}A${row}B${row}C` ||
+      chunk === `${row}H${row}J${row}K` ||
+      chunk === `${row}D${row}E${row}F` ||
+      chunk === `${row}E${row}F${row}G` && seats[i - 1] !== `${row}D`
+    ){
+      res++
+    }
+  }
+  return res
+}
+
+// time complexity: nlog(n), where n is number of seats
+// space complexity: constant
+// planeSort(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
