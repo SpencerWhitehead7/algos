@@ -112,3 +112,25 @@ const planeSort = (numberOfRows, seatsStr) => {
 // time complexity: nlog(n), where n is number of seats
 // space complexity: constant
 // planeSort(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
+
+const planeSet = (numberOfRows, seatsStr) => {
+  let res = 0
+  const set = new Set(seatsStr.split(` `))
+  for(let i = 1; i <= numberOfRows; i++){
+    if(set.has(`${i}A`) && set.has(`${i}B`) && set.has(`${i}C`)){
+      res++
+    }
+    if(set.has(`${i}D`) && set.has(`${i}E`) && set.has(`${i}F`) ||
+      set.has(`${i}E`) && set.has(`${i}F`) && set.has(`${i}G`)){
+      res++
+    }
+    if(set.has(`${i}H`) && set.has(`${i}J`) && set.has(`${i}K`)){
+      res++
+    }
+  }
+  return res
+}
+
+// time complexity: n, where n = numberOfRows (or maybe n + m, where n = numberOfRows and m = number of seats, depending on the time complexity of creating a set (I genuinely don't know))
+// space complexity: n, where n = number of seats
+// planeSet(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
