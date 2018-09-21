@@ -217,3 +217,5 @@ const planeFloorplan1v2 = (numberOfRows, seatsStr) => {
 // time complexity: n + m, where n = numberOfRows and m = number of seats
 // space complexity: m, where m = number of rows
 // planeFloorplan(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
+
+// Interestingly, there is no way to adapt the sorting function to solve Version 2
