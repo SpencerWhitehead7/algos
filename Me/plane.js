@@ -10,7 +10,7 @@
 // VERSION 2: the function should return the number of EMPTY 3-seat "blocks" on the plane. If DEFG are all empty, only count it as ONE empty block.
 // VERSION 1:
 
-const fillSeat0 = (seat, floorplan) => {
+const fillSeat0v1 = (seat, floorplan) => {
   const [row, letter] = seat.split(``)
   const map = {
     A : [0, 0],
@@ -29,7 +29,7 @@ const fillSeat0 = (seat, floorplan) => {
   floorplan[row][block][chair] = 1
 }
 
-const isFull0 = arr => {
+const isFull0v1 = arr => {
   const sum = arr => arr.reduce((acc, curr) => acc + curr)
   if(arr.length === 4){
     return sum(arr.slice(0, 3)) === 3 || sum(arr.slice(1)) === 3
@@ -38,37 +38,33 @@ const isFull0 = arr => {
   }
 }
 
-const planeFloorplan0 = (numberOfRows, seatsStr) => {
+const planeFloorplan0v1 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
   const arr = new Array(numberOfRows + 1).fill(0).map(ele => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
-  seats.forEach(seat => fillSeat0(seat, arr))
+  seats.forEach(seat => fillSeat0v1(seat, arr))
   for(let i = 1; i < arr.length; i++){
     for(let j = 0; j < arr[i].length; j++){
-      if(isFull0(arr[i][j])) res++
+      if(isFull0v1(arr[i][j])) res++
     }
   }
   return res
 }
 
-const fillSeat1 = (seat, floorplan) => {
-  const [row, letter] = seat.split(``)
-  const map = {
-    A : 0,
-    B : 1,
-    C : 2,
-    D : 3,
-    E : 4,
-    F : 5,
-    G : 6,
-    H : 7,
-    J : 8,
-    K : 9,
-  }
-  floorplan[row][map[letter]] = 1
+const seatMap1v1 = {
+  A : 0,
+  B : 1,
+  C : 2,
+  D : 3,
+  E : 4,
+  F : 5,
+  G : 6,
+  H : 7,
+  J : 8,
+  K : 9,
 }
 
-const fullBlocks = arr => {
+const fullBlocksv1 = arr => {
   let res = 0
   const sum = arr => arr.reduce((acc, curr) => acc + curr)
   if(sum(arr.slice(0, 3)) === 3) res++
@@ -77,13 +73,16 @@ const fullBlocks = arr => {
   return res
 }
 
-const planeFloorplan1 = (numberOfRows, seatsStr) => {
+const planeFloorplan1v1 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
   const arr = new Array(numberOfRows + 1).fill(0).map(ele => new Array(10).fill(0))
-  seats.forEach(seat => fillSeat1(seat, arr))
+  seats.forEach(seat => {
+    const [row, letter] = seat.split(``)
+    arr[row][seatMap1v1[letter]] = 1
+  })
   for(let i = 1; i < arr.length; i++){
-    res += fullBlocks(arr[i])
+    res += fullBlocksv1(arr[i])
   }
   return res
 }
@@ -92,7 +91,7 @@ const planeFloorplan1 = (numberOfRows, seatsStr) => {
 // space complexity: m, where m = number of rows
 // planeFloorplan(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
 
-const planeSort = (numberOfRows, seatsStr) => {
+const planeSortv1 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `).sort()
   for(let i = 0; i < seats.length - 2; i++){
@@ -113,7 +112,7 @@ const planeSort = (numberOfRows, seatsStr) => {
 // space complexity: constant
 // planeSort(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
 
-const planeSet = (numberOfRows, seatsStr) => {
+const planeSetv1 = (numberOfRows, seatsStr) => {
   let res = 0
   const set = new Set(seatsStr.split(` `))
   for(let i = 1; i <= numberOfRows; i++){
@@ -134,3 +133,5 @@ const planeSet = (numberOfRows, seatsStr) => {
 // time complexity: n, where n = numberOfRows (or maybe n + m, where n = numberOfRows and m = number of seats, depending on the time complexity of creating a set (I genuinely don't know))
 // space complexity: n, where n = number of seats
 // planeSet(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
+
+// VERSION 2
