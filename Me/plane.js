@@ -177,3 +177,43 @@ const planeFloorplan0v2 = (numberOfRows, seatsStr) => {
   }
   return res
 }
+
+const seatMap1v2 = {
+  A : 0,
+  B : 1,
+  C : 2,
+  D : 3,
+  E : 4,
+  F : 5,
+  G : 6,
+  H : 7,
+  J : 8,
+  K : 9,
+}
+
+const emptyBlocksv2 = arr => {
+  let res = 0
+  const sum = arr => arr.reduce((acc, curr) => acc + curr)
+  if(sum(arr.slice(0, 3)) === 3) res++
+  if(sum(arr.slice(3, 6)) === 3 || sum(arr.slice(4, 7)) === 3) res++
+  if(sum(arr.slice(7)) === 3) res++
+  return res
+}
+
+const planeFloorplan1v2 = (numberOfRows, seatsStr) => {
+  let res = 0
+  const seats = seatsStr.split(` `)
+  const arr = new Array(numberOfRows + 1).fill(0).map(ele => new Array(10).fill(0))
+  seats.forEach(seat => {
+    const [row, letter] = seat.split(``)
+    arr[row][seatMap1v1[letter]] = 1
+  })
+  for(let i = 1; i < arr.length; i++){
+    res += emptyBlocksv2(arr[i])
+  }
+  return res
+}
+
+// time complexity: n + m, where n = numberOfRows and m = number of seats
+// space complexity: m, where m = number of rows
+// planeFloorplan(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
