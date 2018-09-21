@@ -52,6 +52,10 @@ const planeFloorplan0v1 = (numberOfRows, seatsStr) => {
   return res
 }
 
+// time complexity: n + m, where n = numberOfRows and m = number of seats
+// space complexity: m, where m = number of rows
+planeFloorplan0v1(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
+
 const seatMap1v1 = {
   A : 0,
   B : 1,
@@ -90,7 +94,7 @@ const planeFloorplan1v1 = (numberOfRows, seatsStr) => {
 
 // time complexity: n + m, where n = numberOfRows and m = number of seats
 // space complexity: m, where m = number of rows
-// planeFloorplan(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
+planeFloorplan1v1(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
 
 const planeSortv1 = (numberOfRows, seatsStr) => {
   let res = 0
@@ -111,7 +115,7 @@ const planeSortv1 = (numberOfRows, seatsStr) => {
 
 // time complexity: nlog(n), where n is number of seats
 // space complexity: constant
-// planeSort(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
+planeSortv1(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
 
 const planeSetv1 = (numberOfRows, seatsStr) => {
   let res = 0
@@ -133,7 +137,7 @@ const planeSetv1 = (numberOfRows, seatsStr) => {
 
 // time complexity: n, where n = numberOfRows (or maybe n + m, where n = numberOfRows and m = number of seats, depending on the time complexity of creating a set (I genuinely don't know))
 // space complexity: n, where n = number of seats
-// planeSet(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
+planeSetv1(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
 
 // VERSION 2
 
@@ -178,6 +182,10 @@ const planeFloorplan0v2 = (numberOfRows, seatsStr) => {
   return res
 }
 
+// time complexity: n + m, where n = numberOfRows and m = number of seats
+// space complexity: m, where m = number of rows
+planeFloorplan0v2(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
+
 const seatMap1v2 = {
   A : 0,
   B : 1,
@@ -216,7 +224,7 @@ const planeFloorplan1v2 = (numberOfRows, seatsStr) => {
 
 // time complexity: n + m, where n = numberOfRows and m = number of seats
 // space complexity: m, where m = number of rows
-// planeFloorplan(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
+planeFloorplan1v2(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
 
 // Interestingly, there is no way to adapt the sorting function to solve Version 2
 
@@ -240,4 +248,4 @@ const planeSetv2 = (numberOfRows, seatsStr) => {
 
 // time complexity: n, where n = numberOfRows (or maybe n + m, where n = numberOfRows and m = number of seats, depending on the time complexity of creating a set (I genuinely don't know))
 // space complexity: n, where n = number of seats
-// planeSet(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
+planeSetv2(4, `3G 1A 1B 3E 2B 3D 1C 3F 4H 4J`)
