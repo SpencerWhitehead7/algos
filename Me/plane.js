@@ -8,6 +8,7 @@
 // VERSION 1: the function should return the number of FULL 3-seat "blocks" on the plane. If DEFG are all occupied, only count it as ONE full block.
 
 // VERSION 2: the function should return the number of EMPTY 3-seat "blocks" on the plane. If DEFG are all empty, only count it as ONE empty block.
+
 // VERSION 1:
 
 const fillSeat0v1 = (seat, floorplan) => {
@@ -135,3 +136,44 @@ const planeSetv1 = (numberOfRows, seatsStr) => {
 // planeSet(4, "3G 1A 1B 3E 2B 3D 1C 3F 4H 4J")
 
 // VERSION 2
+
+const fillSeat0v2 = (seat, floorplan) => {
+  const [row, letter] = seat.split(``)
+  const map = {
+    A : [0, 0],
+    B : [0, 1],
+    C : [0, 2],
+    D : [1, 0],
+    E : [1, 1],
+    F : [1, 2],
+    G : [1, 3],
+    H : [2, 0],
+    J : [2, 1],
+    K : [2, 2],
+  }
+  const block = map[letter][0]
+  const chair = map[letter][1]
+  floorplan[row][block][chair] = 1
+}
+
+const isEmpty0v2 = arr => {
+  const sum = arr => arr.reduce((acc, curr) => acc + curr)
+  if(arr.length === 4){
+    return sum(arr.slice(0, 3)) === 3 || sum(arr.slice(1)) === 0
+  }else{
+    return sum(arr) === 0
+  }
+}
+
+const planeFloorplan0v2 = (numberOfRows, seatsStr) => {
+  let res = 0
+  const seats = seatsStr.split(` `)
+  const arr = new Array(numberOfRows + 1).fill(0).map(ele => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
+  seats.forEach(seat => fillSeat0v2(seat, arr))
+  for(let i = 1; i < arr.length; i++){
+    for(let j = 0; j < arr[i].length; j++){
+      if(isEmpty0v2(arr[i][j])) res++
+    }
+  }
+  return res
+}
