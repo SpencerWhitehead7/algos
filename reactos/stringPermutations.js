@@ -77,7 +77,7 @@
 
 // finds all possible permutations *while* maintaining the order of the characters
 
-function stringPermutations (str){
+const stringPermutations = str => {
   if(str.length === 1) return [str]
   const all = []
   let i = 0
@@ -92,11 +92,11 @@ function stringPermutations (str){
       all.push(letter + submpermut)
     })
     // increment until we reach a new letter (to avoid duplicates in the result set)
-    while(str[i] === letter) i++
+    while(str[i] === letter){i++}
   }
   return all
 }
-function sortedStringPermutations (str){
+function sortedStringPermutations(str){
   // sort the characters in the string
   const sortedStr = str.split(``).sort().join(``)
   // then find the ordered permutations of that sorted string
