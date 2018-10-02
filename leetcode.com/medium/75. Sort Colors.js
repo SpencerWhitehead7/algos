@@ -13,6 +13,7 @@
 // A rather straight forward solution is a two-pass algorithm using counting sort.
 // First, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's.
 // Could you come up with a one-pass algorithm using only constant space?
+
 /**
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
@@ -38,4 +39,23 @@ const sortColorsTrivial = nums => {
       counter[2]--
     }
   })
+}
+
+const sortColors = nums => {
+  for(let i = 0; i < nums.length; i++){
+    const num = nums[i]
+    if(num === 0){
+      nums.unshift(nums.splice(i, 1)[0])
+    }else if(num === 2){
+      nums.push(nums.splice(i, 1)[0])
+      if(nums[i] === 0) nums.unshift(nums.splice(i, 1)[0])
+      let counter = 0
+      while(nums[i] === 2 && i + counter < nums.length){
+        nums.push(nums.splice(i, 1)[0])
+        counter++
+      }
+      if(i + counter >= nums.length) break
+      i--
+    }
+  }
 }
