@@ -20,3 +20,22 @@
 const sortColorsDisgustinglyTrivial = nums => {
   nums.sort((a, b) => a - b)
 }
+
+const sortColorsTrivial = nums => {
+  const counter = {0 : 0, 1 : 0, 2 : 0}
+  nums.forEach(num => {
+    counter[num]++
+  })
+  nums.forEach((num, i) => {
+    if(counter[0]){
+      nums[i] = 0
+      counter[0]--
+    }else if(counter[1]){
+      nums[i] = 1
+      counter[1]--
+    }else if(counter[2]){
+      nums[i] = 2
+      counter[2]--
+    }
+  })
+}
