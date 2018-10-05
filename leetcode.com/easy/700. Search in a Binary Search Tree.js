@@ -1,6 +1,6 @@
 // Given the root node of a binary search tree (BST) and a value. You need to find the node in the BST that the node's value equals the given value. Return the subtree rooted with that node. If such node doesn't exist, you should return NULL.
 
-// For example, 
+// For example,
 
 // Given the tree:
 //         4
@@ -12,8 +12,8 @@
 // And the value to search: 2
 // You should return this subtree:
 
-//       2     
-//      / \   
+//       2
+//      / \
 //     1   3
 // In the example above, if we want to search the value 5, since there is no node with value 5, we should return NULL.
 
@@ -31,14 +31,22 @@
  * @param {number} val
  * @return {TreeNode}
  */
-const searchBST = function(root, val){
-  if(root === null){
-    return []
-  }else if(root.val === val){
+
+const searchBSTRec = (root, val) => {
+  if(!root) return []
+  if(root.val === val){
     return root
-  }else if(root.val < val){
-    return searchBST(root.right, val)
-  }else if(root.val > val){
-    return searchBST(root.left, val)
   }
+  return root.val > val ? searchBSTRec(root.left, val) : searchBSTRec(root.right, val)
+}
+
+const searchBSTIter = (root, val) => {
+  while(root){
+    if(root.val === val){
+      return root
+    }else{
+      root = root.val > val ? root.left : root.right
+    }
+  }
+  return []
 }
