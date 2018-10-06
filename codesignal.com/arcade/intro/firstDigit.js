@@ -20,3 +20,12 @@
 // 3 ≤ inputString.length ≤ 10.
 
 // [output] char
+
+const firstDigitSet = inputString => {
+  const digits = new Set([`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`])
+  for(let i = 0; i < inputString.length; i++){
+    if(digits.has(inputString[i])) return inputString[i]
+  }
+}
+
+const firstDigitRegex = inputString => inputString.match(/\d/)[0]
