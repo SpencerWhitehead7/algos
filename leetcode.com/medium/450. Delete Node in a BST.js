@@ -81,3 +81,20 @@ const deleteNodeIter = function(root, key){
   }
   return root
 }
+
+const deleteNodeRec = function(root, key){
+  if(root === null) return null
+  if(root.val === key){
+    if(root.left === null) return root.right
+    if(root.right === null) return root.left
+    let next = root.right
+    while(next.left){
+      next = next.left
+    }
+    next.left = root.left
+    return root.right
+  }
+  if(root.val > key) root.left = deleteNodeRec(root.left, key)
+  else if(root.val < key) root.right = deleteNodeRec(root.right, key)
+  return root
+}
