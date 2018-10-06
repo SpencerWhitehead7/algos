@@ -34,3 +34,50 @@
 //   2   6
 //    \   \
 //     4   7
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} key
+ * @return {TreeNode}
+ */
+const deleteNodeIter = function(root, key){
+  let curr = root
+  let prev
+  let ref
+  while(curr){
+    if(curr.val > key){
+      prev = curr
+      curr = curr.left
+    }else if(curr.val < key){
+      prev = curr
+      curr = curr.right
+    }else{
+      if(!curr.left || !curr.right){
+        if(!prev){
+          return curr.left || curr.right
+        }else{
+          prev.val > key ? prev.left = curr.left || curr.right : prev.right = curr.left || curr.right
+          return root
+        }
+      }
+      ref = curr
+      prev = curr
+      curr = curr.right
+      while(curr.left){
+        prev = curr
+        curr = curr.left
+      }
+      ref.val = curr.val
+      prev.left === curr ? prev.left = null : prev.right = null
+      key = curr.val
+    }
+  }
+  return root
+}
