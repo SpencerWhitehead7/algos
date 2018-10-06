@@ -23,3 +23,16 @@
 // [output] array.integer
 
 // inputArray without elements k - 1, 2k - 1, 3k - 1 etc.
+
+const extractEachKth = (inputArray, k) => inputArray.filter((_, i) => (i + 1) % k !== 0)
+
+const extractEachKthPushShift = (inputArray, k) => {
+  const res = []
+  let i = 1
+  while(inputArray.length > 0){
+    const ele = inputArray.shift()
+    if(i % k !== 0) res.push(ele)
+    i++
+  }
+  return res
+}
