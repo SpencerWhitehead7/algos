@@ -30,3 +30,16 @@
 // [output] boolean
 
 // true if the bishop can capture the pawn, false otherwise.
+
+const bishopAndPawn = (bishop, pawn) => {
+  const [bishopX, bishopY] = bishop.split(``)
+  const [pawnX, pawnY] = pawn.split(``)
+  const distanceY = pawnY - bishopY
+  const letters = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`]
+  const startingPoint = letters.indexOf(bishopX)
+  if(`${letters[startingPoint + distanceY]}${pawnY}` === pawn || `${letters[startingPoint - distanceY]}${pawnY}` === pawn){
+    return true
+  }else{
+    return false
+  }
+}
