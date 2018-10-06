@@ -44,3 +44,8 @@ const growingPlantIneff = (upSpeed, downSpeed, desiredHeight) => {
     height -= downSpeed
   }
 }
+
+const growingPlant = (upSpeed, downSpeed, desiredHeight) => {
+  if(upSpeed > desiredHeight) return 1
+  return Math.ceil((desiredHeight - upSpeed) / (upSpeed - downSpeed)) + 1
+}
