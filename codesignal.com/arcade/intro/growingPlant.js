@@ -33,3 +33,14 @@
 // [output] integer
 
 // The number of days that it will take for the plant to reach/pass desiredHeight (including the last day in the total count).
+
+const growingPlantIneff = (upSpeed, downSpeed, desiredHeight) => {
+  let days = 0
+  let height = 0
+  while(true){
+    height += upSpeed
+    days++
+    if(height >= desiredHeight) return days
+    height -= downSpeed
+  }
+}
