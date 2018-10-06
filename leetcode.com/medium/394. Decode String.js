@@ -11,3 +11,35 @@
 // s = "3[a]2[bc]", return "aaabcbc".
 // s = "3[a2[c]]", return "accaccacc".
 // s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+const digits = new Set([`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`])
+
+const decodeString = str => {
+  const stack = []
+  for(let i = 0; i < str.length; i++){
+    if(str[i] === `]`){
+      let chunk = ``
+      let reps = ``
+      let expandedChunk = ``
+      while(stack[stack.length - 1] !== `[`){
+        chunk = stack.pop() + chunk
+      }
+      stack.pop()
+      while(digits.has(stack[stack.length - 1])){
+        reps = stack.pop() + reps
+      }
+      reps = Number(reps)
+      for(let i = 0; i < reps; i++){
+        expandedChunk += chunk
+      }
+      stack.push(expandedChunk)
+    }else{
+      stack.push(str[i])
+    }
+  }
+  return stack.join(``)
+}
