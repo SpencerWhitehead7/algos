@@ -19,3 +19,5 @@
 // 3 ≤ s.length ≤ 1000.
 
 // [output] integer
+
+const differentSymbolsNaive = s => new Set(s).size
