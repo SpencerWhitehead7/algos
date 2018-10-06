@@ -33,3 +33,13 @@
 // [output] integer
 
 // The maximal possible sum.
+
+const arrayMaxConsecutiveSumIneff = (inputArray, k) => {
+  const resArr = []
+  for(let i = 0; i <= inputArray.length - k; i++){
+    resArr.push(sum(inputArray.slice(i, i + k)))
+  }
+  return resArr.reduce((acc, curr) => acc > curr ? acc : curr)
+}
+
+const sum = arr => arr.reduce((acc, curr) => acc + curr)
