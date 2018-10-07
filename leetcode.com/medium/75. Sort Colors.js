@@ -48,7 +48,6 @@ const sortColors = nums => {
       nums.unshift(nums.splice(i, 1)[0])
     }else if(num === 2){
       nums.push(nums.splice(i, 1)[0])
-      if(nums[i] === 0) nums.unshift(nums.splice(i, 1)[0])
       let counter = 0
       while(nums[i] === 2 && i + counter < nums.length){
         nums.push(nums.splice(i, 1)[0])
