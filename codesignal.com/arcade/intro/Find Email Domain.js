@@ -20,3 +20,5 @@
 // 10 ≤ address.length ≤ 50.
 
 // [output] string
+
+const findEmailDomainTriv = address => address.slice(address.lastIndexOf(`@`) + 1)
