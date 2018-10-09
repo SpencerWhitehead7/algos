@@ -22,3 +22,13 @@
 // [output] string
 
 const findEmailDomainTriv = address => address.slice(address.lastIndexOf(`@`) + 1)
+
+const findEmailDomain = address => {
+  let atIndex = 0
+  for(let i = 0; i < address.length; i++){
+    if(address[i] === `@`){
+      atIndex = i
+    }
+  }
+  return address.slice(atIndex + 1)
+}
