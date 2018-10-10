@@ -17,3 +17,12 @@
 // 3 ≤ st.length ≤ 10.
 
 // [output] string
+
+const buildPalindrome = str => {
+  let palindromeIndex = 0
+  while(str.slice(palindromeIndex) !== str.slice(palindromeIndex).split(``).reverse().join(``)){
+    palindromeIndex++
+  }
+  const chunkToReverse = str.slice(0, palindromeIndex).split(``).reverse().join(``)
+  return str + chunkToReverse
+}
