@@ -17,3 +17,5 @@
 // [output] boolean
 
 // true if symbol is a digit, false otherwise.
+
+const isDigit = char => !isNaN(Number(char))
