@@ -17,3 +17,5 @@
 // 6 ≤ inputString.length ≤ 60.
 
 // [output] integer
+
+const sumUpNumbers = str => str.replace(/[^0-9\s]/g, ` `).replace(/\s\s+/g, ` `).split(` `).map(number => Number(number)).reduce((acc, curr) => acc + curr)
