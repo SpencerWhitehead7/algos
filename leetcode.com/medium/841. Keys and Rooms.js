@@ -27,3 +27,22 @@
 // 1 <= rooms.length <= 1000
 // 0 <= rooms[i].length <= 1000
 // The number of keys in all rooms combined is at most 3000.
+
+/**
+ * @param {number[][]} rooms
+ * @return {boolean}
+ */
+const canVisitAllRooms = rooms => {
+  const stack = [...rooms[0]]
+  rooms[0] = []
+  while(stack.length > 0){
+    const currRoom = stack.pop()
+    while(rooms[currRoom].length > 0){
+      stack.push(rooms[currRoom].pop())
+    }
+  }
+  for(let i = 0; i < rooms.length; i++){
+    if(rooms[i].length > 0) return false
+  }
+  return true
+}
