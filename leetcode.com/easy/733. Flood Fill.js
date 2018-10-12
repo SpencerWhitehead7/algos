@@ -21,3 +21,38 @@
 // The length of image and image[0] will be in the range [1, 50].
 // The given starting pixel will satisfy 0 <= sr < image.length and 0 <= sc < image[0].length.
 // The value of each color in image[i][j] and newColor will be an integer in [0, 65535].
+
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} newColor
+ * @return {number[][]}
+ */
+const floodFill = function(image, sr, sc, newColor){
+  const color = image[sr][sc]
+  if(color === newColor) return image
+  const queue = [[sr, sc]]
+  while(queue.length > 0){
+    const [sr, sc] = queue.pop()
+    image[sr][sc] = newColor
+    const neighboringCoords = generateNeighboringCoords([sr, sc])
+    neighboringCoords.forEach(neighboringCoord => {
+      const [sr, sc] = neighboringCoord
+      if(image[sr] && image[sr][sc] === color){
+        queue.push(neighboringCoord)
+      }
+    })
+  }
+  return image
+}
+
+const generateNeighboringCoords = coords => {
+  const [sr, sc] = coords
+  return [
+    [sr - 1, sc],
+    [sr, sc + 1],
+    [sr + 1, sc],
+    [sr, sc - 1],
+  ]
+}
