@@ -30,3 +30,27 @@
 // [output] linkedlist.integer
 
 // Return l with all the values equal to k removed.
+
+// Definition for singly-linked list:
+// function ListNode(x) {
+//   this.value = x;
+//   this.next = null;
+// }
+//
+
+const removeKFromList = (l, k) => {
+  while(l && l.value === k){
+    l = l.next
+  }
+  let curr = l
+  let prev = l
+  while(curr){
+    if(curr.value === k){
+      prev.next = curr.next
+    }else{
+      prev = curr
+    }
+    curr = curr.next
+  }
+  return l
+}
