@@ -59,3 +59,21 @@ const canCompleteCircuit = (gas, cost) => {
 }
 
 // O(n^2)
+
+// from https://leetcode.com/problems/gas-station/discuss/184342/The-returned-index-should-be-the-index-after-the-minimum-sum-value-if-answer-exists!-(C++-O(n))
+
+const canCompleteCircuit2 = (gas, cost) => {
+  let minVal = 0
+  let minIndex = 0
+  let sum = 0
+  for(let i = 0; i < gas.length; i++){
+    sum += gas[i] - cost[i]
+    if(sum <= minVal){
+      minVal = sum
+      minIndex = i
+    }
+  }
+  return sum < 0 ? -1 : (minIndex + 1) % gas.length
+}
+
+// O(n) goddamn this was insightful
