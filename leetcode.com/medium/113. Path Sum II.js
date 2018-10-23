@@ -81,3 +81,28 @@ const pathSumIter = (root, sum) => {
 
   return result
 }
+
+// from https://leetcode.com/problems/path-sum-ii/discuss/36775/Javascript-solution
+
+const pathSumRec2 = (root, sum) => {
+  const result = []
+
+  // amountLeft is technically extraneous (you could sum the array every step), but does make things clearer/less computationally intensive
+  const explore = (root, amountLeft, arr) => {
+    if(!root) return
+
+    amountLeft -= root.val
+    arr.push(root.val)
+
+    if(!root.left && !root.rigth && amountLeft === 0){
+      result.push(arr)
+    }else{
+      explore(root.left, amountLeft, arr.map(a => a))
+      explore(root.right, amountLeft, arr.map(a => a))
+    }
+  }
+
+  explore(root, sum, [])
+
+  return result
+}
