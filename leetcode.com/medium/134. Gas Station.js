@@ -40,3 +40,22 @@
 // Travel to station 1. Your tank = 3 - 3 + 3 = 3
 // You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
 // Therefore, you can't travel around the circuit once no matter where you start.
+
+/**
+ * @param {number[]} gas
+ * @param {number[]} cost
+ * @return {number}
+ */
+const canCompleteCircuit = (gas, cost) => {
+  for(let i = 0; i < gas.length; i++){
+    let change = 0
+    for(let j = i; j < gas.length + i; j++){
+      change += gas[j % gas.length] - cost[j % gas.length]
+      if(change < 0) break
+    }
+    if(change >= 0) return i
+  }
+  return -1
+}
+
+// O(n^2)
