@@ -1,3 +1,5 @@
+// RENDERED OBSOLETE BY BY MUCH BETTER SOLUTION TO LEETCODE/EASY/118. Pascal's Triangle.JS
+
 // Here you will create the classic pascal's triangle. Your function will be passed the depth of the triangle and you code has to return the corresponding pascal triangle upto that depth
 
 // The triangle should be returned as a nested array.
