@@ -44,3 +44,40 @@ const pathSumRec = (root, sum, memo = [], res = []) => {
   }
   return res
 }
+
+// from https://leetcode.com/problems/path-sum-ii/discuss/132072/Iterative-DFS-in-JavaScript-Easy-to-follow!
+
+const pathSumIter = (root, sum) => {
+  const result = []
+  if(!root){
+    return result
+  }
+
+  // Init stack with root, array of its val, and sum of its root.val
+  const stack = [root, [root.val], root.val]
+  while(stack.length > 0){
+    // Extract currSum, currPath, currNode from stack
+    const currSum = stack.pop()
+    const currPath = stack.pop()
+    const currNode = stack.pop()
+
+    // If we're at a leaf and currSum equals sum
+    if(!currNode.left && !currNode.right && currSum === sum){
+      result.push(currPath.slice())
+    }
+
+    if(currNode.left){
+      stack.push(currNode.left)
+      stack.push(currPath.concat(currNode.left.val))
+      stack.push(currSum + currNode.left.val)
+    }
+
+    if(currNode.right){
+      stack.push(currNode.right)
+      stack.push(currPath.concat(currNode.right.val))
+      stack.push(currSum + currNode.right.val)
+    }
+  }
+
+  return result
+}
