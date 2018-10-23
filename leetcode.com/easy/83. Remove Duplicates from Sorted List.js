@@ -8,3 +8,29 @@
 
 // Input: 1->1->2->3->3
 // Output: 1->2->3
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const deleteDuplicates = head => {
+  if(!head) return head
+  let follower = head
+  let leader = head.next
+  while(leader){
+    if(leader.val === follower.val){
+      follower.next = follower.next.next
+    }else{
+      follower = follower.next
+    }
+    leader = leader.next
+  }
+  return head
+}
