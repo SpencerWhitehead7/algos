@@ -12,3 +12,22 @@
 // Follow up:
 
 // Could you optimize your algorithm to use only O(k) extra space?
+
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+const getRow = rowIndex => {
+  let currRow = [0, 1, 0]
+  for(let i = 0; i < rowIndex; i++){
+    const nextRow = [0]
+    for(let j = 0; j < currRow.length - 1; j++){
+      nextRow.push(currRow[j] + currRow[j + 1])
+    }
+    nextRow.push(0)
+    currRow = nextRow
+  }
+  currRow.pop()
+  currRow.shift()
+  return currRow
+}
