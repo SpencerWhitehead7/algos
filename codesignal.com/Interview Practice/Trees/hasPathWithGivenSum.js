@@ -134,3 +134,20 @@
 // [output] boolean
 
 // Return true if there is a path from root to leaf in t such that the sum of node values in it is equal to s, otherwise return false.
+
+//
+// Definition for binary tree:
+// function Tree(x) {
+//   this.value = x;
+//   this.left = null;
+//   this.right = null;
+// }
+const hasPathWithGivenSum = (t, s, memo = 0) => {
+  if(!t) return false
+  memo += t.value
+  if(!t.left && !t.right){
+    return s === memo
+  }else{
+    return hasPathWithGivenSum(t.left, s, memo) || hasPathWithGivenSum(t.right, s, memo)
+  }
+}
