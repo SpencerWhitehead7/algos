@@ -41,7 +41,7 @@
 
 // The number of different 2 × 2 squares in matrix.
 
-const differentSquares = matrix => {
+const differentSquaresSlow = matrix => {
   const res = []
   for(let i = 0; i < matrix.length - 1; i++){
     for(let j = 0; j < matrix[i].length - 1; j++){
@@ -68,3 +68,20 @@ const differentSquares = matrix => {
 }
 
 // O(nlog(n))
+
+const differentSquares = matrix => {
+  const res = new Set()
+  for(let i = 0; i < matrix.length - 1; i++){
+    for(let j = 0; j < matrix[i].length - 1; j++){
+      let square = ``
+      square += matrix[i][j]
+      square += matrix[i][j + 1]
+      square += matrix[i + 1][j]
+      square += matrix[i + 1][j + 1]
+      res.add(square)
+    }
+  }
+  return res.size
+}
+
+// O(n)
