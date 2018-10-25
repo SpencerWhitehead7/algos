@@ -26,4 +26,11 @@ const isHappy = n => {
   return hare === 1
 }
 
+const isHappyMath = n => {
+  while(n !== 1 && n !== 4){
+    n = takeStep(n)
+  }
+  return n === 1
+}
+
 const takeStep = n => n.toString().split(``).map(a => Number(a) * Number(a)).reduce((acc, curr) => acc + curr)
