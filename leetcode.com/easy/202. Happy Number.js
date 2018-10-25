@@ -11,3 +11,19 @@
 // 82 + 22 = 68
 // 62 + 82 = 100
 // 12 + 02 + 02 = 1
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+const isHappy = n => {
+  let tortoise = n
+  let hare = takeStep(n)
+  while(tortoise !== hare && hare !== 1){
+    tortoise = takeStep(tortoise)
+    hare = takeStep(takeStep(hare))
+  }
+  return hare === 1
+}
+
+const takeStep = n => n.toString().split(``).map(a => Number(a) * Number(a)).reduce((acc, curr) => acc + curr)
