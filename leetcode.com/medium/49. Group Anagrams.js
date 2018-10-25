@@ -18,7 +18,7 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
-const groupAnagrams = strs => {
+const groupAnagramsSlow = strs => {
   const res = []
   strs.forEach((str, i) => {
     strs[i] = {str, sorted : str.split(``).sort().join(``)}
@@ -43,7 +43,7 @@ const groupAnagrams = strs => {
   const baseHash = new Array(26).fill(0)
   strs.forEach((str, i) => {
     const hash = baseHash.map(a => a)
-    str.forEach(letter => {
+    str.split(``).forEach(letter => {
       hash[letter.charCodeAt(0) - 97]++
     })
     strs[i] = {str, hash : hash.join(``)}
