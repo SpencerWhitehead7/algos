@@ -18,3 +18,11 @@ const addDigits = num => {
     num = num.toString().split(``).map(a => Number(a)).reduce((acc, curr) => acc + curr)
   } return num
 }
+
+const addDigitsMath = num => {
+  if(num === 0){
+    return 0
+  }else{
+    return num % 9 === 0 ? 9 : num % 9
+  }
+}
