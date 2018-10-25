@@ -8,3 +8,13 @@
 //              Since 2 has only one digit, return it.
 // Follow up:
 // Could you do it without any loop/recursion in O(1) runtime?
+
+/**
+ * @param {number} num
+ * @return {number}
+ */
+const addDigits = num => {
+  while(num > 9){
+    num = num.toString().split(``).map(a => Number(a)).reduce((acc, curr) => acc + curr)
+  } return num
+}
