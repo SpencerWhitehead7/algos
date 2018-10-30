@@ -22,3 +22,20 @@
 
 // Input: m = 7, n = 3
 // Output: 28
+
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+const uniquePaths = (m, n) => {
+  if(m === 0 || n === 0) return 0
+  if(m === 1 || n === 1) return 1
+  const row = new Array(m).fill(1)
+  for(let i = 1; i < n; i++){
+    for(let j = 1; j < m; j++){
+      row[j] = row[j - 1] + row[j]
+    }
+  }
+  return row[row.length - 1]
+}
