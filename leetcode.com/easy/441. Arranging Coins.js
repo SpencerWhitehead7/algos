@@ -38,3 +38,22 @@ const arrangeCoinsSlow = n => {
   }
   return i - 1
 }
+
+const arrangeCoinsFast = n => {
+  if(n === 0) return 0
+  if(n === 1) return 1
+  let start = 0
+  let end = n
+  while(start < end){
+    const middle = Math.floor((start + end) / 2)
+    const sum = (middle + 1) * (middle / 2)
+    if(sum > n){
+      end = middle
+    }else if(sum < n){
+      start = middle + 1
+    }else{
+      return middle
+    }
+  }
+  return start - 1
+}
