@@ -25,3 +25,16 @@
 // ¤ ¤
 
 // Because the 4th row is incomplete, we return 3.
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+const arrangeCoinsSlow = n => {
+  let count = 0
+  let i
+  for(i = 0; count <= n; i++){
+    count += i + 1
+  }
+  return i - 1
+}
