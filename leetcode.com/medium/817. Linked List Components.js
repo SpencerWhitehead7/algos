@@ -44,3 +44,32 @@
 // 5->
 // 7->
 // Thus, 4 components... you're welcome.
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number[]} G
+ * @return {number}
+ */
+const numComponents = (head, G) => {
+  const testSet = new Set(G)
+  let res = 0
+  let pointer = head
+  while(pointer){
+    if(testSet.has(pointer.val)){
+      res++
+      while(pointer && testSet.has(pointer.val)){
+        pointer = pointer.next
+      }
+    }else{
+      pointer = pointer.next
+    }
+  }
+  return res
+}
