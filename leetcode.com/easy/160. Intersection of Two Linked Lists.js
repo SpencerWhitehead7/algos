@@ -19,3 +19,47 @@
 // Your code should preferably run in O(n) time and use only O(1) memory.
 // Credits:
 // Special thanks to @stellari for adding this problem and creating all test cases.
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+const getIntersectionNode = function(headA, headB){
+  let pointerA = headA
+  let pointerB = headB
+  let lengthA = 0
+  let lengthB = 0
+  while(pointerA || pointerB){
+    if(pointerA){
+      pointerA = pointerA.next
+      lengthA++
+    }
+    if(pointerB){
+      pointerB = pointerB.next
+      lengthB++
+    }
+  }
+  pointerA = headA
+  pointerB = headB
+  const aIsLarger = lengthA > lengthB
+  let difference = aIsLarger ? lengthA - lengthB : lengthB - lengthA
+  while(difference > 0){
+    difference--
+    aIsLarger ? pointerA = pointerA.next : pointerB = pointerB.next
+  }
+  while(pointerA && pointerB){
+    if(pointerA === pointerB) return pointerA
+    pointerA = pointerA.next
+    pointerB = pointerB.next
+  }
+  return null
+}
