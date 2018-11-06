@@ -19,3 +19,29 @@
 // The length of strings in both lists will be in the range of [1, 30].
 // The index is starting from 0 to the list length minus 1.
 // No duplicates in both lists.
+
+/**
+ * @param {string[]} list1
+ * @param {string[]} list2
+ * @return {string[]}
+ */
+const findRestaurant = function(list1, list2){
+  const tracker = {}
+  let res = []
+  let smallest = Infinity
+  list1.forEach((restaurant, i) => {
+    tracker[restaurant] = i + 1
+  })
+  list2.forEach((restaurant, i) => {
+    if(tracker[restaurant]){
+      const sum = tracker[restaurant] + i
+      if(sum < smallest){
+        smallest = sum
+        res = [restaurant]
+      }else if(sum ===  smallest){
+        res.push(restaurant)
+      }
+    }
+  })
+  return res
+}
