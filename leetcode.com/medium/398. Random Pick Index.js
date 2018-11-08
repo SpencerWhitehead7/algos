@@ -13,3 +13,28 @@
 
 // // pick(1) should return 0. Since in the array only nums[0] is equal to 1.
 // solution.pick(1);
+
+/**
+ * @param {number[]} nums
+ */
+const Solution = function(nums){
+  this.nums = nums
+}
+
+/**
+* @param {number} target
+* @return {number}
+*/
+Solution.prototype.pick = function(target){
+  const indices = []
+  this.nums.forEach((num, i) => {
+    if(num === target) indices.push(i)
+  })
+  return indices[Math.floor(Math.random() * indices.length)]
+}
+
+/**
+* Your Solution object will be instantiated and called as such:
+* var obj = Object.create(Solution).createNew(nums)
+* var param_1 = obj.pick(target)
+*/
