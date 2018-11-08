@@ -34,3 +34,45 @@
 //   Explanation of Input Syntax:
 
 //   The input is two lists: the subroutines called and their arguments. Solution's constructor has two arguments, N and the blacklist B. pick has no arguments. Arguments are always wrapped with a list, even if there aren't any.
+
+/**
+ * @param {number} N
+ * @param {number[]} blacklist
+ */
+const Solution = function(N, blacklist){
+  const possibleNumbers = []
+  const blacklistSet = new Set(blacklist)
+  if(N < 1000000000){
+    for(let i = 0; i < N; i++){
+      if(!blacklistSet.has(i)){
+        possibleNumbers.push(i)
+      }
+    }
+  }
+  this.N = N
+  this.possibleNumbers = possibleNumbers
+  this.blacklistSet = blacklistSet
+  this.useWhitelist = N < 1000000000
+}
+
+/**
+ * @return {number}
+ */
+Solution.prototype.pick = function(){
+  if(this.useWhitelist){
+    return this.possibleNumbers[Math.floor(Math.random() * this.possibleNumbers.length)]
+  }else{
+    while(true){
+      const possibleRes = Math.floor(Math.random() * this.N)
+      if(!this.blacklistSet.has(possibleRes)){
+        return possibleRes
+      }
+    }
+  }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * var obj = Object.create(Solution).createNew(N, blacklist)
+ * var param_1 = obj.pick()
+ */
