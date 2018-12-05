@@ -15,3 +15,37 @@
 // it may happen that the input string have leading, trailing whitespaces and more than a unique whitespace between two consecutive numbers
 // Don't modify the input
 // For C: The result is freed.
+
+const orderWeight = str => {
+  const sum = (a, b) => a + b
+
+  const res = []
+  const weights = str.split(` `)
+    .filter(a => a)
+    .map(a => a.split(``).map(a => Number(a)))
+    .sort((a, b) => a.reduce(sum) - b.reduce(sum))
+  if(!weights.length) return ``
+  let currWeight = weights[0].reduce(sum)
+  let last = 0
+  for(let i = 1; i < weights.length; i++){
+    const weightAti = weights[i].reduce(sum)
+    if(weightAti !== currWeight){
+      const chunk = weights.slice(last, i)
+        .map(weight => weight.join(``))
+        .sort()
+      res.push(...chunk)
+      if(i !== weights.length - 1){
+        currWeight = weightAti
+        last = i
+      }else{
+        res.push(weights.pop().join(``))
+      }
+    }else if(i === weights.length - 1){
+      const chunk = weights.slice(last)
+        .map(weight => weight.join(``))
+        .sort()
+      res.push(...chunk)
+    }
+  }
+  return res.join(` `)
+}
