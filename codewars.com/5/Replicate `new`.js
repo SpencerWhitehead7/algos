@@ -46,3 +46,10 @@
 
 // var john = nouveau(Person, 'John', 30); // same result as above
 // Good luck!
+
+const nouveau = (Constructor, ...args) => {
+  // Don't forget, unnamed arguments after Constructor may be passed in!
+  const instance = Object.create(Constructor.prototype)
+  const res = Constructor.apply(instance, args)
+  return (typeof res === `object` || typeof res === `function`) && res ? res : instance
+}
