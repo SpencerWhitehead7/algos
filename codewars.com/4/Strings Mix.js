@@ -35,3 +35,49 @@
 // s1 = "mmmmm m nnnnn y&friend&Paul has heavy hats! &"
 // s2 = "my frie n d Joh n has ma n y ma n y frie n ds n&"
 // mix(s1, s2) --> "1:mmmmmm/=:nnnnnn/1:aaaa/1:hhh/2:yyy/2:dd/2:ff/2:ii/2:rr/E:ee/E:ss"
+
+const LETTERS = new Set(`abcdefghijklmnopqrstuvwxyz`.split(``))
+
+const count = str => {
+  const res = {}
+  for(const letter of LETTERS){
+    res[letter] = 0
+  }
+  str.split(``).forEach(letter => {
+    if(LETTERS.has(letter)){
+      res[letter]++
+    }
+  })
+  return res
+}
+
+const mix = (s1, s2) => {
+  // your code
+  const res = []
+  const chunks = []
+  const s1Count = count(s1)
+  const s2Count = count(s2)
+  for(const letter of LETTERS){
+    const s1Letter = s1Count[letter]
+    const s2Letter = s2Count[letter]
+    if(s1Letter > s2Letter && s1Letter > 1){
+      chunks.push(`1:${letter.repeat(s1Letter)}`)
+    }else if(s1Letter < s2Letter && s2Letter > 1){
+      chunks.push(`2:${letter.repeat(s2Letter)}`)
+    }else if(s1Letter === s2Letter && s1Letter > 1){
+      chunks.push(`=:${letter.repeat(s1Letter)}`)
+    }
+  }
+  chunks.sort((a, b) => b.length - a.length)
+  let last = 0
+  for(let i = 1; i < chunks.length; i++){
+    if(chunks[i].length !== chunks[i - 1].length){
+      res.push(...chunks.slice(last, i).sort())
+      last = i
+    }else if(i === chunks.length - 1){
+      res.push(...chunks.slice(last).sort())
+    }
+  }
+  if(chunks.length !== res.length) res.push(chunks[chunks.length - 1])
+  return res.join(`/`)
+}
