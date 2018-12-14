@@ -23,3 +23,5 @@
 // isSquare(4) returns   true
 // isSquare(25) returns  true
 // isSquare(26) returns  false
+
+const isSquare = n => !(n < 0 || Math.sqrt(n) !== Math.floor(Math.sqrt(n)))
