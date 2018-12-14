@@ -26,3 +26,5 @@
 // 0 ≤ firstNumber ≤ n - 1.
 
 // [output] integer
+
+const circleOfNumbers = (n, firstNumber) => (firstNumber + (n / 2)) % n
