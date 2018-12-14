@@ -17,3 +17,5 @@
 // [output] integer
 
 // The largest integer of length n.
+
+const largestNumber = n => (10 ** n) - 1
