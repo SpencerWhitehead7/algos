@@ -8,3 +8,23 @@
 
 // Note: for this kata y isn't considered a vowel.
 
+// Spirit of the question way
+
+const disemvowel = str => {
+  let res = ``
+  str.split(``).forEach(letter => {
+    const LETTER = letter.toUpperCase()
+    if(LETTER !== `A` &&
+    LETTER !== `E` &&
+    LETTER !== `I` &&
+    LETTER !== `O` &&
+    LETTER !== `U`){
+      res += letter
+    }
+  })
+  return res
+}
+
+// best practices way
+
+const disemvowelAlt = str => str.replace(/[aeiou]/gi, ``)
