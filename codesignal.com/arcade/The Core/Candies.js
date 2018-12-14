@@ -28,3 +28,9 @@
 // [output] integer
 
 // The total number of pieces of candy the children will eat provided they eat as much as they can and all children eat the same amount.
+
+const candies = (n, m) => Math.floor(m / n) * n
+
+// or
+
+const candiesAlt = (n, m) => m - (m % n)
