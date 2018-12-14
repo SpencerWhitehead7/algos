@@ -14,3 +14,12 @@
 
 // Example Output
 // ["Open", "Open", "Senior", "Open", "Open", "Senior"]
+
+const openOrSenior = data => {
+  const res = []
+  data.forEach(person => {
+    const [age, handicap] = person
+    res.push(age >= 55 && handicap > 7 ? `Senior` : `Open`)
+  })
+  return res
+}
