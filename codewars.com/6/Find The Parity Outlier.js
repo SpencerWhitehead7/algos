@@ -22,3 +22,7 @@ const findOutlier = integers => {
     }
   }
 }
+
+// dank 1 liner solution from codewars
+
+const findOutlierAlt = integers => integers.slice(0, 3).filter(num => num % 2 === 0).length >= 2 ? integers.find(num => num % 2 === 0) : integers.find(num => num % 2 !== 0)
