@@ -6,3 +6,19 @@
 
 // [160, 3, 1719, 19, 11, 13, -21]
 // Should return: 160 (the only even number)
+
+const findOutlier = integers => {
+  // your code here
+  let counter = 0
+  for(let i = 0; i < 3; i++){
+    integers[i] % 2 === 0 ? counter++ : counter--
+  }
+  const lookingForEven = counter < 0
+  for(let i = 0; i < integers.length; i++){
+    if(lookingForEven && integers[i] % 2 === 0){
+      return integers[i]
+    }else if(!lookingForEven && integers[i] % 2 !== 0){
+      return integers[i]
+    }
+  }
+}
