@@ -29,3 +29,5 @@
 // [output] integer
 
 // The largest integer not greater than bound that is divisible by divisor.
+
+const maxMultiple = (divisor, bound) => bound - (bound % divisor)
