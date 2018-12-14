@@ -42,3 +42,18 @@
 // 2 ≤ s ≤ 60.
 
 // [output] integer
+
+const phoneCall = (min1, min2_10, min11, s) => {
+  let minutes = 0
+  while(s > 0){
+    if(minutes === 0){
+      s -= min1
+    }else if(minutes < 10){
+      s -= min2_10
+    }else{
+      s -= min11
+    }
+    minutes++
+  }
+  return s < 0 ? minutes - 1 : minutes
+}
