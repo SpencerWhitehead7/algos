@@ -30,3 +30,7 @@
 // [output] integer
 
 // The sum of the digits the digital timer would show.
+
+// shameful one-liner
+
+const lateRide = n => String(Math.floor(n / 60)).split(``).map(digit => Number(digit)).reduce((acc, curr) => acc + curr) + String(Math.floor(n % 60)).split(``).map(digit => Number(digit)).reduce((acc, curr) => acc + curr)
