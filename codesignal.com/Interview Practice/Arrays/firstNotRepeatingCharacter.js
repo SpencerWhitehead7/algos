@@ -28,3 +28,20 @@
 // [output] char
 
 // The first non-repeating character in s, or '_' if there are no characters that do not repeat.
+
+const firstNotRepeatingCharacter = s => {
+  const tracker = {}
+  for(let i = 0; i < s.length; i++){
+    if(tracker[s[i]]){
+      tracker[s[i]]++
+    }else{
+      tracker[s[i]] = 1
+    }
+  }
+  for(const property in tracker){
+    if(tracker[property] === 1){
+      return property
+    }
+  }
+  return `_`
+}
