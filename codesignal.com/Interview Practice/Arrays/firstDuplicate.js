@@ -23,3 +23,15 @@
 // [output] integer
 
 // The element in a that occurs in the array more than once and has the minimal index for its second occurrence. If there are no such elements, return -1.
+
+const firstDuplicate = a => {
+  const tracker = {}
+  for(let i = 0; i < a.length; i++){
+    if(tracker[a[i]]){
+      return a[i]
+    }else{
+      tracker[a[i]] = 1
+    }
+  }
+  return -1
+}
