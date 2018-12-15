@@ -21,3 +21,36 @@
 // true if the given grid represents a correct solution to Sudoku, false otherwise.
 
 // Man, I have done this so many times
+
+const sudoku = grid => {
+  if(!grid.every(row => val(row))) return false
+  for(let col = 0; col < 9; col++){
+    const tempCol = []
+    for(let row = 0; row < 9; row++){
+      tempCol.push(grid[row][col])
+    }
+    if(!val(tempCol)) return false
+  }
+  for(let boxRow = 0; boxRow < 7; boxRow += 3){
+    const rows = grid.slice(boxRow, boxRow + 3)
+    for(let boxCol = 0; boxCol < 7; boxCol += 3){
+      let tempBox = []
+      rows.forEach(row => {
+        tempBox = tempBox.concat(row.slice(boxCol, boxCol + 3))
+      })
+      if(!val(tempBox)) return false
+    }
+  }
+  return true
+}
+
+const val = arr => {
+  const arrCopy = arr.slice(0)
+  arrCopy.sort()
+  for(let i = 0; i < arrCopy.length; i++){
+    if(arrCopy[i] !== i + 1){
+      return false
+    }
+  }
+  return true
+}
