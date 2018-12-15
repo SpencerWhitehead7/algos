@@ -32,3 +32,18 @@
 // [output] integer
 
 // An integer that is the sum of all of the sums gotten from querying nums, taken modulo 109 + 7.a
+
+const sumInRange = (nums, queries) => {
+  let sum = 0
+  const sums = [0]
+  for(let i = 0; i < nums.length; i++){
+    sums.push(nums[i] + sums[sums.length - 1])
+  }
+  queries.forEach(query => {
+    sum += sums[query[1] + 1] - sums[query[0]]
+  })
+  while(sum < 0){
+    sum += 1000000007
+  }
+  return Math.abs(sum % 1000000007)
+}
