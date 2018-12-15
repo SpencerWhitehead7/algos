@@ -23,3 +23,12 @@
 // -2 · 109 ≤ a[i] ≤ 2 · 109.
 
 // [output] boolean
+
+const containsDuplicates = a => {
+  const tracker = {}
+  for(let i = 0; i < a.length; i++){
+    if(tracker[a[i]]) return true
+    tracker[a[i]] = 1
+  }
+  return false
+}
