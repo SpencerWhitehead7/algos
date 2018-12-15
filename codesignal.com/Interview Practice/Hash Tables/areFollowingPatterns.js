@@ -29,3 +29,21 @@
 // [output] boolean
 
 // Return true if strings follows patterns and false otherwise.
+
+const areFollowingPatterns = (strings, patterns) => {
+  const strsHash = {}
+  const patsHash = {}
+  for(let i = 0; i < strings.length; i++){
+    if(strsHash[strings[i]]){
+      if(strsHash[strings[i]] !== patterns[i]) return false
+    }else{
+      strsHash[strings[i]] = patterns[i]
+    }
+    if(patsHash[patterns[i]]){
+      if(patsHash[patterns[i]] !== strings[i]) return false
+    }else{
+      patsHash[patterns[i]] = strings[i]
+    }
+  }
+  return true
+}
