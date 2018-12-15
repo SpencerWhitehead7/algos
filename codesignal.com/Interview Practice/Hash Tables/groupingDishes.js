@@ -42,3 +42,33 @@
 // [output] array.array.string
 
 // The array containing the grouped dishes.
+
+const groupingDishes = dishes => {
+  const hash = {}
+  dishes.forEach((dish, i) => {
+    for(let j = 1; j < dishes[i].length; j++){
+      if(hash[dish[j]]){
+        hash[dish[j]].push(dish[0])
+      }else{
+        hash[dish[j]] = [dish[0]]
+      }
+    }
+  })
+  const res = []
+  Object.keys(hash).forEach(ingred => {
+    if(hash[ingred].length > 1){
+      hash[ingred].sort()
+      res.push([ingred, ...hash[ingred]])
+    }
+  })
+  res.sort((a, b) => {
+    if(a[0] > b[0]){
+      return 1
+    }else if(a[0] < b[0]){
+      return -1
+    }else{
+      return 0
+    }
+  })
+  return res
+}
