@@ -18,3 +18,15 @@
 // 1 ≤ names[i].length ≤ 15.
 
 // [output] array.string
+
+const fileNaming = names => {
+  const tracker = {}
+  return names.map(name => {
+    let newName = name
+    while(tracker[newName]){
+      newName = `${name}(${tracker[name]++})`
+    }
+    tracker[newName] = 1
+    return newName
+  })
+}
