@@ -33,3 +33,16 @@
 // [output] boolean
 
 // true if there are two elements from a and b which add up to v, and false otherwise.
+
+const sumOfTwo = (a, b, v) => {
+  const larger = a.length > b.length ? a : b
+  const smaller = a.length > b.length ? b : a
+  const tracker = {}
+  smaller.forEach(num => {
+    tracker[num] = 1
+  })
+  for(let i = 0; i < larger.length; i++){
+    if(tracker[v - larger[i]]) return true
+  }
+  return false
+}
