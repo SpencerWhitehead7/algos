@@ -108,7 +108,6 @@ const knightDialerMatrix = N => {
   return baseMatrix.reduce((acc, curr) => acc + (curr.reduce((acc, curr) => acc + curr) % MOD), 0) % MOD
 }
 
-
 const multiplyMatrices = (matrix1, matrix2) => {
   const res = []
   for(let row = 0; row < matrix1.length; row++){
@@ -123,4 +122,23 @@ const multiplyMatrices = (matrix1, matrix2) => {
     res.push(newRow)
   }
   return res
+}
+
+/**
+ * @param {number} N
+ * @return {number}
+ */
+const knightDialer = N => {
+  let dp = new Array(moves.length).fill(1)
+  for(let i = 1; i < N; i++){
+    const newDp = new Array(moves.length).fill(0)
+    for(let j = 0; j < moves.length; j++){
+      moves[j].forEach(move => {
+        newDp[move] += dp[j]
+        newDp[move] %= MOD
+      })
+    }
+    dp = newDp
+  }
+  return dp.reduce((acc, curr) => acc + curr) % MOD
 }
