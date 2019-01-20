@@ -34,3 +34,35 @@
 
 // Slow queue version
 
+/**
+ * @param {number} N
+ * @return {number}
+ */
+
+const knightDialer = n => {
+  const moves = [
+    [`4`, `6`],
+    [`6`, `8`],
+    [`7`, `9`],
+    [`4`, `8`],
+    [`0`, `3`, `9`],
+    [],
+    [`0`, `1`, `7`],
+    [`2`, `6`],
+    [`1`, `3`],
+    [`2`, `4`],
+  ]
+  const queue = [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`]
+  let count = 0
+  while(queue.length > 0){
+    const curr = queue.pop()
+    if(curr.length === n){
+      count = (count + 1) % (Math.pow(10, 9) + 7)
+    }else{
+      moves[curr[curr.length - 1]].forEach(possibleHop => {
+        queue.push(curr + possibleHop)
+      })
+    }
+  }
+  return count
+}
