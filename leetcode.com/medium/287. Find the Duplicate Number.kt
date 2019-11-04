@@ -14,3 +14,22 @@
 // You must use only constant, O(1) extra space.
 // Your runtime complexity should be less than O(n2).
 // There is only one duplicate number in the array, but it could be repeated more than once.
+
+class Solution {
+  fun findDuplicate(nums: IntArray): Int {
+    var slow = nums[0]
+    var fast = nums[0]
+    while(true){
+      fast = nums[fast]
+      fast = nums[fast]
+      slow = nums[slow]
+      if (fast === slow) break
+    }
+    slow = nums[0]
+    while(fast !== slow){
+      fast = nums[fast]
+      slow = nums[slow]
+    }
+    return slow
+  }
+}
