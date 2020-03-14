@@ -11,7 +11,7 @@
     "mocha": "^7.1.0"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha **/*.spec.js",
+    "test": "./node_modules/mocha/bin/mocha **/*.spec.js"
   },
   "repository": {
     "type": "git",
