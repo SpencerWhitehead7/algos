@@ -47,8 +47,8 @@ console.log(sudokuValidator([
 const val = arr => {
   const arrCopy = arr.slice(0)
   arrCopy.sort()
-  for(let i = 0; i < arrCopy.length; i++){
-    if(arrCopy[i] !== i + 1){
+  for (let i = 0; i < arrCopy.length; i++) {
+    if (arrCopy[i] !== i + 1) {
       return false
     }
   }
@@ -58,22 +58,22 @@ const val = arr => {
 // my original solution
 
 const sudokuChecker = board => {
-  if(!board.every(row => val(row))) return false
-  for(let col = 0; col < 9; col++){
+  if (!board.every(row => val(row))) return false
+  for (let col = 0; col < 9; col++) {
     const tempCol = []
-    for(let row = 0; row < 9; row++){
+    for (let row = 0; row < 9; row++) {
       tempCol.push(board[row][col])
     }
-    if(!val(tempCol)) return false
+    if (!val(tempCol)) return false
   }
-  for(let boxRow = 0; boxRow < 7; boxRow += 3){
+  for (let boxRow = 0; boxRow < 7; boxRow += 3) {
     const rows = board.slice(boxRow, boxRow + 3)
-    for(let boxCol = 0; boxCol < 7; boxCol += 3){
+    for (let boxCol = 0; boxCol < 7; boxCol += 3) {
       let tempBox = []
       rows.forEach(row => {
         tempBox = tempBox.concat(row.slice(boxCol, boxCol + 3))
       })
-      if(!val(tempBox)) return false
+      if (!val(tempBox)) return false
     }
   }
   return true
@@ -83,24 +83,24 @@ const sudokuChecker = board => {
 
 const singleCheck = board => {
   const arr = board.reduce((acc, curr) => acc.concat(curr))
-  for(let rowI = 0; rowI < 81; rowI += 9){ // rows
-    if(!val(arr.slice(rowI, rowI + 9))) return false
+  for (let rowI = 0; rowI < 81; rowI += 9) { // rows
+    if (!val(arr.slice(rowI, rowI + 9))) return false
   }
-  for(let col = 0; col < 9; col++){ // columns
+  for (let col = 0; col < 9; col++) { // columns
     const tempCol = []
-    for(let colI = 0; colI < 81; colI += 9){
+    for (let colI = 0; colI < 81; colI += 9) {
       tempCol.push(arr[col + colI])
     }
-    if(!val(tempCol)) return false
+    if (!val(tempCol)) return false
   }
-  for(let box = 0; box < 81; box += 27){ // boxes
+  for (let box = 0; box < 81; box += 27) { // boxes
     const rows = arr.slice(box, box + 27)
-    for(let boxI = 0; boxI < 7; boxI += 3){
+    for (let boxI = 0; boxI < 7; boxI += 3) {
       let tempBox = []
       tempBox = tempBox.concat(rows.slice(boxI, boxI + 3))
       tempBox = tempBox.concat(rows.slice(boxI + 9, boxI + 12))
       tempBox = tempBox.concat(rows.slice(boxI + 18, boxI + 21))
-      if(!val(tempBox)) return false
+      if (!val(tempBox)) return false
     }
   }
   return true
@@ -113,17 +113,17 @@ const sudokuValidator = solution => {
     .filter((val, index) => val === index + 1)
     .length === 9
 
-  for(let i = 0; i < 9; i++){
+  for (let i = 0; i < 9; i++) {
     const col = []
     const row = []
     const square = []
-    for(let j = 0; j < 9; j++){
+    for (let j = 0; j < 9; j++) {
       col.push(solution[j][i])
       row.push(solution[i][j])
       square.push(solution[Math.floor(j / 3) + ((i % 3) * 3)][j % 3 + (Math.floor(i / 3) * 3)])
     }
 
-    if(!check(col) || !check(row) || !check(square)) return false
+    if (!check(col) || !check(row) || !check(square)) return false
   }
   return true
 }

@@ -15,14 +15,14 @@
 const rainCollector = arr => {
   const rightMaxes = []
   let rightMax = 0
-  for(let i = arr.length - 1; i >= 0; i--){
+  for (let i = arr.length - 1; i >= 0; i--) {
     rightMax = Math.max(rightMax, arr[i])
     rightMaxes[i] = rightMax
   }
 
   const leftMaxes = []
   let leftMax = 0
-  for(let i = 0; i < arr.length; i++){
+  for (let i = 0; i < arr.length; i++) {
     leftMax = Math.max(leftMax, arr[i])
     leftMaxes[i] = leftMax
   }

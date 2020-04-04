@@ -29,7 +29,7 @@
 const myFindGrantsCap = (grantsArray, newBudget) => {
   let cap = 0
   let total = grantsArray.map(ele => ele > cap ? cap : ele).reduce((acc, curr) => acc + curr)
-  while(total < newBudget){
+  while (total < newBudget) {
     cap++
     total = grantsArray.map(ele => ele > cap ? cap : ele).reduce((acc, curr) => acc + curr)
   }
@@ -45,11 +45,11 @@ const findGrantsCap = (grantsArray, newBudget) => {
   grantsArray.sort((a, b) => b - a)
   grantsArray.push(0)
   let surplus = grantsArray.reduce((acc, curr) => acc + curr) - newBudget
-  if(surplus <= 0) return grantsArray[0]
+  if (surplus <= 0) return grantsArray[0]
   let derivedI = 0
-  for(let i = 0; i < grantsArray.length; i++){
+  for (let i = 0; i < grantsArray.length; i++) {
     surplus -= (i + 1) * (grantsArray[i] - grantsArray[i + 1])
-    if(surplus <= 0){
+    if (surplus <= 0) {
       derivedI = i
       break
     }

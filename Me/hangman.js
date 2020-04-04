@@ -21,25 +21,25 @@
     }
 
     const correctGuess = guess => {
-      for(let i = 0; i < targetWord.length; i++){
-        if(guess === targetWord[i].toLowerCase()){
+      for (let i = 0; i < targetWord.length; i++) {
+        if (guess === targetWord[i].toLowerCase()) {
           wordAttempt[i] = targetWord[i]
           $(`#guessedWord`).text(`Guessed Word: ${wordAttempt.join(` `)}`)
         }
       }
-      if(wordAttempt.join(``) === targetWord){
+      if (wordAttempt.join(``) === targetWord) {
         wins++
         restart()
       }
     }
 
     const incorrectGuess = guess => {
-      if(!incorrectGuesses.includes(guess)){
+      if (!incorrectGuesses.includes(guess)) {
         incorrectGuesses.push(guess)
         guessesRemaining--
         $(`#incorrectGuesses`).text(`Incorrect Guesses: ${incorrectGuesses.join(`, `)}`)
         $(`#guessesRemaining`).text(`Guesses Remaining: ${guessesRemaining}`)
-        if(guessesRemaining <= 0){
+        if (guessesRemaining <= 0) {
           losses++
           restart()
         }
@@ -48,10 +48,10 @@
 
     $(document).keyup(event => {
       const guess = event.key.toLowerCase()
-      if(guess.charCodeAt(0) >= 97 && guess.charCodeAt(0) <= 122){
-        if(targetWord.toLowerCase().includes(guess)){
+      if (guess.charCodeAt(0) >= 97 && guess.charCodeAt(0) <= 122) {
+        if (targetWord.toLowerCase().includes(guess)) {
           correctGuess(guess)
-        }else{
+        } else {
           incorrectGuess(guess)
         }
       }

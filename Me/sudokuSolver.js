@@ -3,26 +3,26 @@
 const sudokuValidator = require(`../reactos/sudokuValidator`)
 
 const sudokuSolver = board => {
-  if(sudokuValidator(board)) return `Board Complete! ${board}`
+  if (sudokuValidator(board)) return `Board Complete! ${board}`
   const cols = []
   const boxes = []
   const boxRows = []
   const boxCols = []
-  for(let i=0;i<9;i++){
-    const col=[ ]
-    const box=[ ]
-    for(let j=0;j<9;j++){
+  for (let i = 0; i < 9; i++) {
+    const col = []
+    const box = []
+    for (let j = 0; j < 9; j++) {
       col.push(board[j][i])
-      box.push(board[Math.floor(j/3)+((i%3)*3)][j%3+(Math.floor(i/3)*3)])
+      box.push(board[Math.floor(j / 3) + ((i % 3) * 3)][j % 3 + (Math.floor(i / 3) * 3)])
     }
     cols.push(col)
     boxes.push(box)
   }
-  for(let i=0; i<9; i+=3){
-    boxRows.push(boxes.slice(i, i+3))
+  for (let i = 0; i < 9; i += 3) {
+    boxRows.push(boxes.slice(i, i + 3))
   }
-  for(let i=0; i<3; i++){
-    boxCols.push([boxes[i], boxes[i+3], boxes[i+6]])
+  for (let i = 0; i < 3; i++) {
+    boxCols.push([boxes[i], boxes[i + 3], boxes[i + 6]])
   }
   board.forEach(row => {
     row = missingOne(row)
@@ -47,10 +47,10 @@ const missingOne = unit => {
 }
 
 const sudokuSolver2 = board => {
-  if(sudokuValidator(board)) return `Board Complete! ${board}`
+  if (sudokuValidator(board)) return `Board Complete! ${board}`
   const cells = {}
-  for(let i=0; i<9; i++){
-    for(let j=0; j<9; j++){
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       cells[`${j},${i}`] = board[j][i]
     }
   }

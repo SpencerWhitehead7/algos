@@ -20,15 +20,15 @@
 // [output] array.integer
 
 const arrayOfArrayProducts = arr => {
-  if(arr.length === 0 || arr.length === 1) return []
+  if (arr.length === 0 || arr.length === 1) return []
   const res = []
   let product = 1
-  for(let i = 0; i < arr.length; i++){
+  for (let i = 0; i < arr.length; i++) {
     res[i] = product
     product *= arr[i]
   }
   product = 1
-  for(let i = arr.length - 1; i >= 0; i--){
+  for (let i = arr.length - 1; i >= 0; i--) {
     res[i] *= product
     product *= arr[i]
   }

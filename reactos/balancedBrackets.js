@@ -7,20 +7,20 @@
 
 const bracketPattern = /[[\](){}]/g
 const bracketPairs = {
-  '[' : `]`,
-  '{' : `}`,
-  '(' : `)`,
+  '[': `]`,
+  '{': `}`,
+  '(': `)`,
 }
 
 const hasBalancedBrackets = str => {
   const bracketStack = []
   str = str.match(bracketPattern)
-  for(let i = 0; i < str.length; i++){
-    if(str[i] in bracketPairs){
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] in bracketPairs) {
       bracketStack.unshift(str[i])
-    }else if(bracketPairs[bracketStack[0]] === str[i]){
+    } else if (bracketPairs[bracketStack[0]] === str[i]) {
       bracketStack.shift()
-    }else{
+    } else {
       return false
     }
   }

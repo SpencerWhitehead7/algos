@@ -11,10 +11,10 @@
 
 const magicNum = (num, arr) => {
   let allNums = [0]
-  for(let i=0; i<arr.length; i++){
+  for (let i = 0; i < arr.length; i++) {
     const temp = [...allNums]
     allNums = []
-    for(let j=0; j<temp.length; j++){
+    for (let j = 0; j < temp.length; j++) {
       allNums.push(temp[j] + arr[i], temp[j] - arr[i])
     }
   }

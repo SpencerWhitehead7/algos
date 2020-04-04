@@ -5,11 +5,11 @@
 // The problem — given the number of people, starting point, direction, and number to be skipped — is to choose the position in the initial circle to avoid execution.
 
 const josephus = (numPlayers, skipped) => {
-  const positions = new Array(numPlayers).fill(1).map((ele, i) => ele+i)
+  const positions = new Array(numPlayers).fill(1).map((ele, i) => ele + i)
   let i = 0
-  while(positions.length>1){
-    i = (i + skipped)%positions.length
-    positions.splice(i-1, 1)
+  while (positions.length > 1) {
+    i = (i + skipped) % positions.length
+    positions.splice(i - 1, 1)
   }
   return positions[0]
 }
