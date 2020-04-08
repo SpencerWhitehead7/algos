@@ -22,19 +22,19 @@
 
 const haveCommonLetter = (arr, i) => {
   const commonLetter = arr[0][i]
-  if(commonLetter === undefined) return false
-  for(let j = 0; j < arr.length; j++){
-    if(arr[j][i] !== commonLetter) return false
+  if (commonLetter === undefined) return false
+  for (let j = 0; j < arr.length; j++) {
+    if (arr[j][i] !== commonLetter) return false
   }
   return true
 }
 
 const longestCommonPrefix = strs => {
-  if(strs.length === 0) return ``
-  if(strs.length === 1) return strs[0]
+  if (strs.length === 0) return ``
+  if (strs.length === 1) return strs[0]
   let prefix = ``
   let i = 0
-  while(haveCommonLetter(strs, i)){
+  while (haveCommonLetter(strs, i)) {
     prefix += strs[0][i]
     i++
   }

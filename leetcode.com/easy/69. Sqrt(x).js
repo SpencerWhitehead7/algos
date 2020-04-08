@@ -22,21 +22,21 @@
 const mySqrtTrivial = x => Math.floor(Math.sqrt(x))
 
 const mySqrt = x => {
-  if(x === 1 || x === 2) return 1
+  if (x === 1 || x === 2) return 1
   let start = 0
   let end = x
-  while(start < end){
+  while (start < end) {
     const middle = Math.floor((start + end) / 2)
     const prev = middle - 1
     const middleSqrd = middle * middle
     const prevSqrd = prev * prev
-    if(middleSqrd === x){
+    if (middleSqrd === x) {
       return middle
-    }else if(prevSqrd <= x && middleSqrd > x){
+    } else if (prevSqrd <= x && middleSqrd > x) {
       return prev
-    }else if(middleSqrd > x){
+    } else if (middleSqrd > x) {
       end = middle
-    }else if(middleSqrd < x){
+    } else if (middleSqrd < x) {
       start = middle
     }
   }

@@ -16,10 +16,10 @@
 const lengthOfLastWord = s => {
   let length = 0
   let i = s.length - 1
-  while(s[i] === ` `){
+  while (s[i] === ` `) {
     i--
   }
-  while(s[i] !== ` ` && s[i] !== undefined){
+  while (s[i] !== ` ` && s[i] !== undefined) {
     length++
     i--
   }

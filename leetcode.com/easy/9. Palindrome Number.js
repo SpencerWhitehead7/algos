@@ -29,9 +29,9 @@ const isPalindromeStr = x => {
 }
 
 const isPalindromeNoStr = x => {
-  if(x < 0 || (x % 10 === 0 && x !== 0)) return false
+  if (x < 0 || (x % 10 === 0 && x !== 0)) return false
   let comparison = 0
-  while(comparison < x){
+  while (comparison < x) {
     comparison = (comparison * 10) + (x % 10)
     x = Math.floor(x / 10)
   }

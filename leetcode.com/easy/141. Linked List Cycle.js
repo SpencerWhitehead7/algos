@@ -16,10 +16,10 @@
  * @return {boolean}
  */
 const hasCycle = head => {
-  if(!head) return false
+  if (!head) return false
   let tortoise = head
   let hare = head.next
-  while(hare && hare.next && hare !== tortoise){
+  while (hare && hare.next && hare !== tortoise) {
     hare = hare.next.next
     tortoise = tortoise.next
   }

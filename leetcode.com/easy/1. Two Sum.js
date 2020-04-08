@@ -14,14 +14,15 @@
  * @param {number} target
  * @return {number[]}
  */
-const twoSum = function(nums, target){
+const twoSum = (nums, target) => {
   const hash = {}
-  for(let i=0; i<nums.length; i++){
-    const complement = target - nums[i]
-    if(hash[complement]){
+  for (let i = 0; i < nums.length; i++) {
+    const current = nums[i]
+    const complement = target - current
+    if (hash[complement]) {
       return [hash[complement][0], i]
-    }else{
-      hash[nums[i]] = [i]
+    } else {
+      hash[current] = [i]
     }
   }
 }

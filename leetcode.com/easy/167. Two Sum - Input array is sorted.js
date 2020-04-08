@@ -17,14 +17,14 @@
  * @param {number} target
  * @return {number[]}
  */
-const twoSum = function(numbers, target){
+const twoSum = function(numbers, target) {
   let start = 0
   let end = numbers.length - 1
-  while(start < end){
+  while (start < end) {
     const sum = numbers[start] + numbers[end]
-    if(sum === target){
-      return [start+1, end+1]
-    }else{
+    if (sum === target) {
+      return [start + 1, end + 1]
+    } else {
       sum < target ? start++ : end--
     }
   }

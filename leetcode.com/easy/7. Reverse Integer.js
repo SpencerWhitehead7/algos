@@ -19,9 +19,10 @@
  * @param {number} x
  * @return {number}
  */
-const reverse = function(x){
-  if(x > Math.pow(2, 31) - 1 || x < Math.pow(-2, 31)) return 0
-  const numAsRevStr = x.toString().split(``).reverse().join(``)
-  const revInt = numAsRevStr[numAsRevStr.length - 1] === `-` ? Number(numAsRevStr.slice(0, -1))*-1 : Number(numAsRevStr)
-  return (revInt > Math.pow(2, 31) - 1 || revInt < Math.pow(-2, 31)) ? 0 : revInt
+const reverse = x => {
+  if (x > 2 ** 31 - 1 || x < (-2) ** 31) return 0
+  const numAsRevStr = x.toString().split(``).reverse()
+    .join(``)
+  const revInt = numAsRevStr[numAsRevStr.length - 1] === `-` ? Number(numAsRevStr.slice(0, -1)) * -1 : Number(numAsRevStr)
+  return revInt > 2 ** 31 - 1 || revInt < (-2) ** 31 ? 0 : revInt
 }
