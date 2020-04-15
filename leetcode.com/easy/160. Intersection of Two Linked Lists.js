@@ -33,17 +33,17 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */
-const getIntersectionNode = function(headA, headB){
+const getIntersectionNode = (headA, headB) => {
   let pointerA = headA
   let pointerB = headB
   let lengthA = 0
   let lengthB = 0
-  while(pointerA || pointerB){
-    if(pointerA){
+  while (pointerA || pointerB) {
+    if (pointerA) {
       pointerA = pointerA.next
       lengthA++
     }
-    if(pointerB){
+    if (pointerB) {
       pointerB = pointerB.next
       lengthB++
     }
@@ -52,12 +52,12 @@ const getIntersectionNode = function(headA, headB){
   pointerB = headB
   const aIsLarger = lengthA > lengthB
   let difference = aIsLarger ? lengthA - lengthB : lengthB - lengthA
-  while(difference > 0){
+  while (difference > 0) {
     difference--
     aIsLarger ? pointerA = pointerA.next : pointerB = pointerB.next
   }
-  while(pointerA && pointerB){
-    if(pointerA === pointerB) return pointerA
+  while (pointerA && pointerB) {
+    if (pointerA === pointerB) return pointerA
     pointerA = pointerA.next
     pointerB = pointerB.next
   }

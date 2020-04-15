@@ -27,22 +27,22 @@
  * @param {character[][]} grid
  * @return {number}
  */
-const numIslands = function(grid){
-  if(grid.length === 0) return 0
+const numIslands = function(grid) {
+  if (grid.length === 0) return 0
   grid = addEdges(grid)
   let islands = 0
-  for(let vert=1; vert<grid.length-1; vert++){
-    for(let hori=1; hori<grid[vert].length-1; hori++){
-      if(grid[vert][hori] === `1`){
+  for (let vert = 1; vert < grid.length - 1; vert++) {
+    for (let hori = 1; hori < grid[vert].length - 1; hori++) {
+      if (grid[vert][hori] === `1`) {
         islands++
         grid[vert][hori] = `2`
         const queue = [[vert, hori]]
-        while(queue.length > 0){
+        while (queue.length > 0) {
           const [vert, hori] = queue.shift()
-          const neighbors = [[vert-1, hori], [vert, hori+1], [vert+1, hori], [vert, hori-1]]
-          while(neighbors.length > 0){
+          const neighbors = [[vert - 1, hori], [vert, hori + 1], [vert + 1, hori], [vert, hori - 1]]
+          while (neighbors.length > 0) {
             const [vert, hori] = neighbors.shift()
-            if(grid[vert][hori] === `1`){
+            if (grid[vert][hori] === `1`) {
               grid[vert][hori] = `2`
               queue.push([vert, hori])
             }
@@ -56,8 +56,8 @@ const numIslands = function(grid){
 
 const addEdges = grid => {
   grid.forEach(row => {
-	  row.push(`0`)
-	  row.unshift(`0`)
+    row.unshift(`0`)
+    row.push(`0`)
   })
   const caps = new Array(grid[0].length).fill(`0`)
   grid.unshift(caps)

@@ -18,28 +18,28 @@
  * @return {ListNode}
  */
 const detectCycle = head => {
-  if(!head) return null
+  if (!head) return null
   let tortoise = head
   let hare = head.next
-  while(hare && hare.next && hare !== tortoise){
+  while (hare && hare.next && hare !== tortoise) {
     tortoise = tortoise.next
     hare = hare.next.next
   }
-  if(!hare || !hare.next) return null
+  if (!hare || !hare.next) return null
   let counter = 1
   hare = hare.next
-  while(hare !== tortoise){
+  while (hare !== tortoise) {
     hare = hare.next
     counter++
   }
   hare = head
   tortoise = head
   let counter2 = 0
-  while(counter2 < counter){
+  while (counter2 < counter) {
     hare = hare.next
     counter2++
   }
-  while(tortoise !== hare){
+  while (tortoise !== hare) {
     hare = hare.next
     tortoise = tortoise.next
   }
