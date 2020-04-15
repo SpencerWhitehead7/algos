@@ -19,22 +19,33 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const reverseListIter = function(head){
+const reverseListIter = function(head) {
   let curr = head
   let prev = null
-  let next = null
-  while(curr){
-    next = curr.next
+  while (curr) {
+    const next = curr.next
     curr.next = prev
     prev = curr
     curr = next
   }
   return prev
 }
-const reverseListRec = function(head){
-  if(!head || !head.next) return head
+const reverseListRec = function(head) {
+  if (!head || !head.next) return head
   const rest = reverseListRec(head.next)
   head.next.next = head
   head.next = null
   return rest
+}
+const reverseListRec2 = (head, prev = null) => {
+  if (!head) return head
+  if (!head.next) {
+    head.next = prev
+    return head
+  }
+
+  const nextNode = head.next
+  head.next = prev
+
+  return reverseListRec2(nextNode, head)
 }
