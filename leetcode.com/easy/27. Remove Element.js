@@ -42,14 +42,30 @@
  * @param {number} val
  * @return {number}
  */
-const removeElement = function(nums, val){
+// n ^ 2
+const removeElementSlow = (nums, val) => {
   let i = 0
-  while(i < nums.length){
-    if(nums[i] === val){
+  while (i < nums.length) {
+    if (nums[i] === val) {
       nums.splice(i, 1)
-    }else{
+    } else {
       i++
     }
   }
   return nums.length
+}
+
+// n
+const removeElement = (nums, val) => {
+  let i = 0
+  let end = nums.length
+  while (i < end) {
+    if (nums[i] === val) {
+      nums[i] = nums[end - 1]
+      end--
+    } else {
+      i++
+    }
+  }
+  return end
 }

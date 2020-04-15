@@ -18,44 +18,40 @@
  * @return {ListNode}
  */
 // Pushing into new list
-const mergeTwoLists = function(l1, l2){
-  const res = new ListNode(0)
-  let curr = res
-  while(l1 && l2){
-    let smallest = Infinity
-    if(l1.val < l2.val){
-      smallest = l1.val
-      l1 = l1.next
-    }else{
-      smallest = l2.val
-      l2 = l2.next
-    }
-    curr.next = new ListNode(smallest)
-    curr = curr.next
-  }
-  curr.next = l1 ? l1 : l2
-  return res.next
-}
+// const mergeTwoLists = (l1, l2) => {
+//   const res = new ListNode(0)
+//   let curr = res
+//   while (l1 && l2) {
+//     let smaller
+//     if (l1.val < l2.val) {
+//       smaller = l1
+//       l1 = l1.next
+//     } else {
+//       smaller = l2
+//       l2 = l2.next
+//     }
+//     curr.next = smaller
+//     curr = curr.next
+//   }
+//   curr.next = l1 ? l1 : l2
+//   return res.next
+// }
 
 // Merging in place
-const mergeTwoLists = function(l1, l2){
-  if(!l1){
-    return l2
-  }else if(!l2){
-    return l1
-  }else if(!l1 && !l2){
-    return null
-  }
+const mergeTwoLists = (l1, l2) => {
+  if (!l1) return l2
+  if (!l2) return l1
+
   const res = l1.val < l2.val ? l1 : l2
   let base = l1.val < l2.val ? l1 : l2
   let merge = l1.val < l2.val ? l2 : l1
-  while(merge){
-    if(!base.next){
+  while (merge) {
+    if (!base.next) {
       base.next = merge
       break
-    }else if(base.next.val < merge.val){
+    } else if (base.next.val < merge.val) {
       base = base.next
-    }else{
+    } else {
       const mergeNode = merge
       merge = merge.next
       mergeNode.next = base.next

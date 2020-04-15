@@ -37,14 +37,27 @@
  * @param {number[]} nums
  * @return {number}
  */
-const removeDuplicates = function(nums){
+// n ^ 2
+const removeDuplicatesSlow = nums => {
   let i = 0
-  while(i < nums.length){
-    if(nums[i] === nums[i-1]){
+  while (i < nums.length) {
+    if (nums[i] === nums[i - 1]) {
       nums.splice(i, 1)
-    }else{
+    } else {
       i++
     }
   }
   return nums.length
+}
+
+// n
+const removeDuplicates = nums => {
+  let slow = 0
+  for (let fast = 1; fast < nums.length; fast++) {
+    if (nums[slow] !== nums[fast]) {
+      slow++
+      nums[slow] = nums[fast]
+    }
+  }
+  return slow + 1
 }
