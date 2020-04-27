@@ -24,13 +24,13 @@ class Solution {
   fun search(nums: IntArray, target: Int): Int {
       var start = 0
       var end = nums.size - 1
-      while(start <= end){
-          val middle = (start + end) / 2
-          if(nums[middle] < target ){
+      while (start <= end) {
+          val middle = start + ((end - start) / 2)
+          if (nums[middle] < target ) {
               start = middle + 1
-          }else if(nums[middle] > target){
+          } else if (nums[middle] > target) {
               end = middle - 1
-          }else{
+          } else {
               return middle
           }
       }

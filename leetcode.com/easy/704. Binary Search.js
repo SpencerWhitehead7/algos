@@ -12,7 +12,7 @@
 // Input: nums = [-1,0,3,5,9,12], target = 2
 // Output: -1
 // Explanation: 2 does not exist in nums so return -1
- 
+
 
 // Note:
 
@@ -25,16 +25,16 @@
  * @param {number} target
  * @return {number}
  */
-const search = function(nums, target){
+const search = (nums, target) => {
   let start = 0
   let end = nums.length - 1
-  while(start <= end){
-    const middle = Math.floor((start + end) / 2)
-    if(nums[middle] === target){
+  while (start <= end) {
+    const middle = Math.floor(start + ((end - start) / 2))
+    if (nums[middle] === target) {
       return middle
-    }else if(nums[middle] < target){
+    } else if (nums[middle] < target) {
       start = middle + 1
-    }else{
+    } else {
       end = middle - 1
     }
   }
