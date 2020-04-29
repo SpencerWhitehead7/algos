@@ -26,12 +26,13 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const oddEvenList = function(head){
-  if(!head || !head.next || !head.next.next) return head
+const oddEvenList = head => {
+  if (!head || !head.next || !head.next.next) return head
+
   let odds = head
   const evensHead = head.next
   let evens = head.next
-  while(evens && evens.next){
+  while (evens && evens.next) {
     odds.next = odds.next.next
     evens.next = evens.next.next
     odds = odds.next
