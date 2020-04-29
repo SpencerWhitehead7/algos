@@ -10,9 +10,9 @@
 
 /**
  * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
  * }
  */
 /**
@@ -20,18 +20,19 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-const addTwoNumbers = function(l1, l2){
-  const start = new ListNode(0)
-  let currentNode = start
+const addTwoNumbers = (l1, l2) => {
+  const base = new ListNode()
+  let pointer = base
   let carry = 0
-  while(l1 || l2 || carry){
-    const dSum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry
-    const nextNode = new ListNode(dSum%10)
-    carry = Math.floor(dSum/10) !== 0 ? 1 : 0
-    currentNode.next = nextNode
-    currentNode = nextNode
-    if(l1) l1 = l1.next
-    if(l2) l2 = l2.next
+  while (l1 || l2 || carry) {
+    const sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry
+    pointer.next = new ListNode(sum % 10)
+
+    carry = sum >= 10 ? 1 : 0
+    pointer = pointer.next
+    l1 = l1 ? l1.next : l1
+    l2 = l2 ? l2.next : l2
   }
-  return start.next
+
+  return base.next
 }
