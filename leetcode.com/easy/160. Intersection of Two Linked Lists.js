@@ -63,3 +63,36 @@ const getIntersectionNode = (headA, headB) => {
   }
   return null
 }
+
+const getIntersectionNode2 = (headA, headB) => {
+  if (!headA || !headB) return null
+
+  let lastNode = null
+  let pointerA = headA
+  let pointerB = headB
+  while (true) {
+    if (pointerA === pointerB) return pointerA
+
+    if (pointerA.next) {
+      pointerA = pointerA.next
+    } else {
+      if (lastNode && pointerA !== lastNode) {
+        return null
+      } else {
+        lastNode = pointerA
+      }
+      pointerA = headB
+    }
+
+    if (pointerB.next) {
+      pointerB = pointerB.next
+    } else {
+      if (lastNode && pointerB !== lastNode) {
+        return null
+      } else {
+        lastNode = pointerB
+      }
+      pointerB = headA
+    }
+  }
+}
