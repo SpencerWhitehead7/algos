@@ -23,44 +23,37 @@
  * @param {character[][]} grid
  * @return {number}
  */
-/**
- * @param {character[][]} grid
- * @return {number}
- */
-const numIslands = function(grid) {
-  if (grid.length === 0) return 0
-  grid = addEdges(grid)
-  let islands = 0
-  for (let vert = 1; vert < grid.length - 1; vert++) {
-    for (let hori = 1; hori < grid[vert].length - 1; hori++) {
-      if (grid[vert][hori] === `1`) {
-        islands++
-        grid[vert][hori] = `2`
-        const queue = [[vert, hori]]
-        while (queue.length > 0) {
-          const [vert, hori] = queue.shift()
-          const neighbors = [[vert - 1, hori], [vert, hori + 1], [vert + 1, hori], [vert, hori - 1]]
-          while (neighbors.length > 0) {
-            const [vert, hori] = neighbors.shift()
-            if (grid[vert][hori] === `1`) {
-              grid[vert][hori] = `2`
-              queue.push([vert, hori])
-            }
+const numIslands = grid => {
+  if (!grid.length) return 0
+
+  const rowsLength = grid.length
+  const colsLength = grid[0].length
+
+  const getLandNeighbors = (row, col) => [
+    { row: row - 1, col },
+    { row, col: col + 1 },
+    { row: row + 1, col },
+    { row, col: col - 1 },
+  ]
+    .filter(({ row, col }) => row >= 0 && row < rowsLength && col >= 0 && col < colsLength)
+    .filter(({ row, col }) => grid[row][col] === `1`)
+
+  let countIslands = 0
+  for (let row = 0; row < rowsLength; row++) {
+    for (let col = 0; col < colsLength; col++) {
+      if (grid[row][col] === `1`) {
+        countIslands++
+        const cellsToExplore = [{ row, col }]
+        while (cellsToExplore.length) {
+          const { row, col } = cellsToExplore.pop()
+          if (grid[row][col] === `1`) {
+            cellsToExplore.push(...getLandNeighbors(row, col, rowsLength, colsLength))
           }
+          grid[row][col] = `2`
         }
       }
     }
   }
-  return islands
-}
 
-const addEdges = grid => {
-  grid.forEach(row => {
-    row.unshift(`0`)
-    row.push(`0`)
-  })
-  const caps = new Array(grid[0].length).fill(`0`)
-  grid.unshift(caps)
-  grid.push(caps)
-  return grid
+  return countIslands
 }
