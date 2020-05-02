@@ -17,18 +17,15 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-const permute = nums => {
-  if(nums.length === 1) return [nums]
-  const all = []
-  let i = 0
-  while(i < nums.length){
-    const num = nums[i]
-    const otherNums = [...nums.slice(0, i), ...nums.slice(i + 1)]
-    permute(otherNums).forEach(submpermut => {
-      submpermut.unshift(num)
-      all.push(submpermut)
-    })
-    i++
+const permute = (nums, base = []) => {
+  if (!nums.length) return [base]
+  const permutations = []
+
+  for (let i = 0; i < nums.length; i++) {
+    const splicedNums = [...nums]
+    const num = splicedNums.splice(i, 1)
+    permutations.push(...permute(splicedNums, [...base, num]))
   }
-  return all
+
+  return permutations
 }
