@@ -31,17 +31,17 @@ const letterCombinations = digits => {
     9: [`w`, `x`, `y`, `z`],
   }
 
-  const constructStrings = (baseString, digits, i = 0) => {
+  const constructStrings = (baseString = ``, i = 0) => {
     if (i === digits.length) {
       strings.push(baseString)
     } else {
       for (const letter of digitMapping[digits[i]]) {
-        constructStrings(baseString + letter, digits, i + 1)
+        constructStrings(baseString + letter, i + 1)
       }
     }
   }
 
-  constructStrings(``, digits)
+  constructStrings()
 
   return strings
 }
