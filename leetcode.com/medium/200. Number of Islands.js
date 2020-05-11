@@ -29,27 +29,27 @@ const numIslands = grid => {
   const rowsLength = grid.length
   const colsLength = grid[0].length
 
-  const getLandNeighbors = (row, col) => [
-    { row: row - 1, col },
-    { row, col: col + 1 },
-    { row: row + 1, col },
-    { row, col: col - 1 },
-  ]
-    .filter(({ row, col }) => row >= 0 && row < rowsLength && col >= 0 && col < colsLength)
-    .filter(({ row, col }) => grid[row][col] === `1`)
-
   let countIslands = 0
   for (let row = 0; row < rowsLength; row++) {
     for (let col = 0; col < colsLength; col++) {
       if (grid[row][col] === `1`) {
         countIslands++
+        grid[row][col] = `2`
         const cellsToExplore = [{ row, col }]
         while (cellsToExplore.length) {
           const { row, col } = cellsToExplore.pop()
-          if (grid[row][col] === `1`) {
-            cellsToExplore.push(...getLandNeighbors(row, col, rowsLength, colsLength))
-          }
-          grid[row][col] = `2`
+          const landNeighbors = [
+            { row: row - 1, col },
+            { row, col: col + 1 },
+            { row: row + 1, col },
+            { row, col: col - 1 },
+          ]
+            .filter(({ row, col }) => row >= 0 && row < rowsLength && col >= 0 && col < colsLength)
+            .filter(({ row, col }) => grid[row][col] === `1`)
+
+          landNeighbors.forEach(({ row, col }) => { grid[row][col] = `2` })
+
+          cellsToExplore.push(...landNeighbors)
         }
       }
     }
