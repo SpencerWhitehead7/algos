@@ -20,21 +20,13 @@
  * @return {number[]}
  */
 const constructRectangle = area => {
-  let width = Math.sqrt(area)
+  let width = Math.ceil(Math.sqrt(area))
 
-  if (Number.isInteger(width)) return [width, width]
-
-  width = Math.ceil(width)
-
-  while (true) {
-    const length = area / width
-
-    if (Number.isInteger(length)) {
-      return [width, length]
-    } else {
-      width++
-    }
+  while (area % width !== 0) {
+    width++
   }
+
+  return [width, area / width]
 }
 
 // maybe also binary searches for a number that works; you won't find the best one on the first pass
