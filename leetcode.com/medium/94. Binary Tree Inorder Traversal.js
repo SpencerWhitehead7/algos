@@ -25,31 +25,31 @@
  */
 
 // Rec
-const inorderTraversalRec = function(root){
+const inorderTraversalRec = function(root) {
   const res = []
-  if(!root) return res
-  if(root.left) res.push(...inorderTraversal(root.left))
+  if (!root) return res
+  if (root.left) res.push(...inorderTraversalRec(root.left))
   res.push(root.val)
-  if(root.right) res.push(...inorderTraversal(root.right))
+  if (root.right) res.push(...inorderTraversalRec(root.right))
   return res
 }
 
 // Iter
-const inorderTraversalIter = function(root){
+const inorderTraversalIter = function(root) {
   const res = []
-  if(!root) return res
+  if (!root) return res
   const stack = [root]
-  while(stack.length > 0){
+  while (stack.length > 0) {
     const curr = stack.pop()
-    if(curr.flag){
+    if (curr.flag) {
       res.push(curr.val)
-    }else{
+    } else {
       curr.flag = 1
-      if(curr.right){
+      if (curr.right) {
         stack.push(curr.right)
       }
       stack.push(curr)
-      if(curr.left){
+      if (curr.left) {
         stack.push(curr.left)
       }
     }

@@ -13,7 +13,7 @@ const sudokuSolver = board => {
     const box = []
     for (let j = 0; j < 9; j++) {
       col.push(board[j][i])
-      box.push(board[Math.floor(j / 3) + ((i % 3) * 3)][j % 3 + (Math.floor(i / 3) * 3)])
+      box.push(board[Math.floor(j / 3) + i % 3 * 3][j % 3 + Math.floor(i / 3) * 3])
     }
     cols.push(col)
     boxes.push(box)

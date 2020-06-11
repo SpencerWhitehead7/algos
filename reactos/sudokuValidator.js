@@ -120,7 +120,7 @@ const sudokuValidator = solution => {
     for (let j = 0; j < 9; j++) {
       col.push(solution[j][i])
       row.push(solution[i][j])
-      square.push(solution[Math.floor(j / 3) + ((i % 3) * 3)][j % 3 + (Math.floor(i / 3) * 3)])
+      square.push(solution[Math.floor(j / 3) + i % 3 * 3][j % 3 + Math.floor(i / 3) * 3])
     }
 
     if (!check(col) || !check(row) || !check(square)) return false

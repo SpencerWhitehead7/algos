@@ -24,11 +24,11 @@ const addMinutes = (time, minutes) => {
   const addedHours = Math.floor(minutes / 60)
   const addedMinutes = minutes % 60
 
-  let newHour = ((hour + addedHours - 1) % 12) + 1
+  let newHour = (hour + addedHours - 1) % 12 + 1
   let newMinutes = minute + addedMinutes
 
   if (newMinutes >= 60) {
-    newHour = (newHour % 12) + 1
+    newHour = newHour % 12 + 1
     newMinutes %= 60
   }
 
