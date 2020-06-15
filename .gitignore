@@ -2,3 +2,5 @@ node_modules
 
 # don't worry future employers I aint spreading 'em all over the internet, I just wanna be able to look back on them to study what went well (or didn't)
 interviews/*
+# bit worried they'll get pissy if I spread all their algos over the web, although I'd say the explainers are the real value on that site
+interviewcake.com/*
