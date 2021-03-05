@@ -19,16 +19,22 @@
  * @param {number} n
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
-const merge = function(nums1, m, nums2, n) {
-  let counter = 0
-  while (counter < n) {
-    nums1.pop()
-    counter++
-  }
-  for (let i = 0; i < nums1.length; i++) {
-    if (nums2[0] < nums1[i]) {
-      nums1.splice(i, 0, nums2.shift())
+const merge = (nums1, m, nums2, n) => {
+  let sortedCount = 0
+  let mCount = m - 1
+  let nCount = n - 1
+
+  while (nCount >= 0) {
+    const mNext = nums1[mCount]
+    const nNext = nums2[nCount]
+
+    if (mNext >= nNext) {
+      nums1[nums1.length - 1 - sortedCount] = mNext
+      mCount--
+    } else {
+      nums1[nums1.length - 1 - sortedCount] = nNext
+      nCount--
     }
+    sortedCount++
   }
-  nums1.push(...nums2)
 }
