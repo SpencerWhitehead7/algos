@@ -22,15 +22,16 @@
  */
 const deleteDuplicates = head => {
   if (!head) return head
+
   let follower = head
   let leader = head.next
   while (leader) {
-    if (leader.val === follower.val) {
-      follower.next = follower.next.next
-    } else {
-      follower = follower.next
+    while (leader && leader.val === follower.val) {
+      leader = leader.next
     }
-    leader = leader.next
+    follower.next = leader
+    follower = follower.next
+    if (leader) leader = leader.next
   }
   return head
 }
