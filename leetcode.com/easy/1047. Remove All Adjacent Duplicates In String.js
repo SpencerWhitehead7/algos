@@ -36,3 +36,16 @@ const removeDuplicates = s => {
 
   return dedupedChars.join(``)
 }
+
+// bask in the power of this almost-fp
+const removeDuplicatesChain = s => s
+  .split(``)
+  .reduce((dedupedChars, char) => {
+    if (dedupedChars[dedupedChars.length - 1] === char) {
+      dedupedChars.pop()
+    } else {
+      dedupedChars.push(char)
+    }
+    return dedupedChars
+  }, [])
+  .join(``)
