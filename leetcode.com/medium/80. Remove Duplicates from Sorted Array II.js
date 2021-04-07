@@ -64,3 +64,16 @@ const removeDuplicatesFast = nums => {
 
   return nums.length - skips
 }
+
+const removeDuplicatesSimple = nums => {
+  let write = 2
+  let read = 2
+  while (read < nums.length) {
+    if (nums[write - 2] !== nums[read]) {
+      nums[write] = nums[read]
+      write++
+    }
+    read++
+  }
+  return write
+}
