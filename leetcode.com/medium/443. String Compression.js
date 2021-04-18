@@ -58,24 +58,26 @@
  * @return {number}
  */
 const compress = chars => {
-  let write = 0
-  let read = 0
-  let anchor = read
-  while (read < chars.length) {
-    while (chars[read] === chars[read + 1]) {
-      read++
-    }
-    chars[write] = chars[anchor]
-    write++
-    if (read > anchor) {
-      for (const digit of String(read - anchor + 1)) {
-        chars[write] = digit
-        write++
+  let readI = 0
+  let writeI = 0
+  while (readI < chars.length) {
+    const repeatedSubStrStart = readI
+    const char = chars[readI]
+
+    while (char === chars[readI + 1]) { readI++ }
+
+    chars[writeI] = char
+    writeI++
+
+    if (readI > repeatedSubStrStart) {
+      for (const digit of String(readI - repeatedSubStrStart + 1)) {
+        chars[writeI] = digit
+        writeI++
       }
     }
-    read++
-    anchor = read
+
+    readI++
   }
 
-  return write
+  return writeI
 }
