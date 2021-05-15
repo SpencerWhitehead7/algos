@@ -53,3 +53,41 @@ const minWindow = (s, t) => {
 
   return res
 }
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+const minWindowOptimized = (s, t) => {
+  const winCharCounts = {}
+  const tCharCounts = t
+    .split(``)
+    .reduce((counts, char) => {
+      counts[char] = (counts[char] ?? 0) + 1
+      return counts
+    }, {})
+
+  const necessaryCharsLength = Object.entries(tCharCounts).length
+
+  let res = ``
+  let completedCharsLength = 0
+  let left = 0
+  let right = 0
+  while (right < s.length) {
+    const rChar = s[right]
+    winCharCounts[rChar] = (winCharCounts[rChar] ?? 0) + 1
+    if (tCharCounts[rChar] === winCharCounts[rChar]) completedCharsLength++
+
+    while (completedCharsLength === necessaryCharsLength) {
+      if (right - left < res.length || res === ``) res = s.slice(left, right + 1)
+      const lChar = s[left]
+      winCharCounts[lChar]--
+      if (tCharCounts[lChar] && winCharCounts[lChar] < tCharCounts[lChar]) completedCharsLength--
+      left++
+    }
+    right++
+  }
+
+  return res
+}
