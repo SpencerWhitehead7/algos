@@ -36,35 +36,27 @@
  * @param {string} target
  * @return {number}
  */
-const openLock = function(deadends, target){
-  if(deadends.includes(`0000`)) return -1
+const openLock = (deadends, target) => {
   const tried = new Set(deadends)
-  const steps = [0]
-  const queue = [target]
-  while(queue.length > 0){
-    const base = queue.shift()
-    const step = steps.shift() + 1
-    const permutations = generatePermutations(base)
-    if(permutations.includes(`0000`)) return step
-    permutations.forEach(permutation => {
-      if(!tried.has(permutation)){
-        tried.add(permutation)
-        queue.push(permutation)
-        steps.push(step)
-      }
-    })
-  }
-  return -1
-}
+  const queue = [[target, 0]]
+  while (queue.length > 0) {
+    const [base, stepCount] = queue.shift()
 
-const generatePermutations = numStr => {
-  const res = []
-  for(let i=0; i<numStr.length; i++){
-    for(let inc=1; inc>-2; inc-=2){
-      const newDigit = (Number(numStr[i]) + 10 + inc) % 10
-      const permutation = numStr.slice(0, i) + newDigit + numStr.slice(i+1)
-      res.push(permutation)
-    }    
+    if (base === `0000`) return stepCount
+
+    for (let i = 0; i < base.length; i++) {
+      const numToModify = Number(base[i])
+      const start = base.slice(0, i)
+      const end = base.slice(i + 1);
+      [1, 9].forEach(adder => {
+        const newVal = `${start}${(numToModify + adder) % 10}${end}`
+        if (!tried.has(newVal)) {
+          tried.add(newVal)
+          queue.push([newVal, stepCount + 1])
+        }
+      })
+    }
   }
-  return res
+
+  return -1
 }
