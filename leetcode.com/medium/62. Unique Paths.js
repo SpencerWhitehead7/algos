@@ -5,37 +5,60 @@
 // How many possible unique paths are there?
 
 
-// Above is a 7 x 3 grid. How many possible unique paths are there?
-
-// Note: m and n will be at most 100.
 
 // Example 1:
+
+
+// Input: m = 3, n = 7
+// Output: 28
+// Example 2:
 
 // Input: m = 3, n = 2
 // Output: 3
 // Explanation:
 // From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
-// 1. Right -> Right -> Down
-// 2. Right -> Down -> Right
-// 3. Down -> Right -> Right
-// Example 2:
+// 1. Right -> Down -> Down
+// 2. Down -> Down -> Right
+// 3. Down -> Right -> Down
+// Example 3:
 
 // Input: m = 7, n = 3
 // Output: 28
+// Example 4:
+
+// Input: m = 3, n = 3
+// Output: 6
+
+
+// Constraints:
+
+// 1 <= m, n <= 100
+// It's guaranteed that the answer will be less than or equal to 2 * 109.
 
 /**
- * @param {number} m
- * @param {number} n
+ * @param {number} h
+ * @param {number} w
  * @return {number}
  */
-const uniquePaths = (m, n) => {
-  if(m === 0 || n === 0) return 0
-  if(m === 1 || n === 1) return 1
-  const row = new Array(m).fill(1)
-  for(let i = 1; i < n; i++){
-    for(let j = 1; j < m; j++){
-      row[j] = row[j - 1] + row[j]
+const uniquePathsIter = (w, h) => {
+  const row = new Array(w).fill(1)
+  for (let rowI = 1; rowI < h; rowI++) {
+    for (let colI = 1; colI < w; colI++) {
+      row[colI] = row[colI - 1] + row[colI]
     }
   }
   return row[row.length - 1]
+}
+
+const uniquePathsRec = (w, h, memo = {}) => {
+  const key = `${w}-${h}`
+
+  if (memo[key]) return memo[key]
+
+  if (w === 1 || h === 1) return 1
+
+  memo[key] =
+    uniquePathsRec(w - 1, h, memo) + uniquePathsRec(w, h - 1, memo)
+
+  return memo[key]
 }
