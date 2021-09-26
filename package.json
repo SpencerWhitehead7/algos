@@ -3,13 +3,15 @@
   "description": "algorithm problems from around the web, organized by site",
   "author": "Spencer Whitehead",
   "license": "Unlicense",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "mocha": "^8.0.1"
+    "mocha": "^9.1.2"
   },
   "scripts": {
     "test": "npx mocha **/*.spec.js",

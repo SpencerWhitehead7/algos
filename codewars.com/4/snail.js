@@ -19,21 +19,19 @@
 
 // NOTE 2: The 0x0 (empty matrix) is represented as [[]]
 
-// Recursive (original version)
-
-function snailRec(array){
-  if(array.length===1){
+const snailRec = array => {
+  if (array.length === 1) {
     return array[0]
-  }else if(array.length===0){
+  } else if (array.length === 0) {
     return []
-  }else{
+  } else {
     const sorted = []
     sorted.push(...array.shift())
-    for(let i=0; i<array.length; i++){
+    for (let i = 0; i < array.length; i++) {
       sorted.push(array[i].pop())
     }
     sorted.push(...array.pop().reverse())
-    for(let i=array.length-1; i>=0; i--){
+    for (let i = array.length - 1; i >= 0; i--) {
       sorted.push(array[i].shift())
     }
     sorted.push(...snailRec(array))
@@ -41,24 +39,75 @@ function snailRec(array){
   }
 }
 
-// Iterative
-
-function snailIter(array){
+const snailIter = array => {
   const sorted = []
-  while(array.length){
+  while (array.length) {
     sorted.push(...array.shift())
-    for(let i=0; i<array.length; i++){
+    for (let i = 0; i < array.length; i++) {
       sorted.push(array[i].pop())
     }
     sorted.push(...(array.pop() || []).reverse())
-    for(let i=array.length-1; i>=0; i--){
+    for (let i = array.length - 1; i >= 0; i--) {
       sorted.push(array[i].shift())
     }
   }
   return sorted
 }
 
+const spiralOrder = matrix => {
+  const sorted = []
+  while (matrix.length) {
+    sorted.push(...matrix.shift())
+    for (let i = 0; i < matrix.length; i++) {
+      const next = matrix[i].pop()
+      if (next !== undefined) sorted.push(next)
+    }
+    sorted.push(...(matrix.pop() || []).reverse())
+    for (let i = matrix.length - 1; i >= 0; i--) {
+      const next = matrix[i].shift()
+      if (next !== undefined) sorted.push(next)
+    }
+  }
+  return sorted
+}
+
+const spiralOrderNonMutating = matrix => {
+  const res = []
+
+  const length = matrix.length
+  const width = matrix[0].length
+  const seen = new Array(length).fill(null).map(_ => new Array(width).fill(false))
+  const layerConstraint = Math.ceil(Math.min(length, width) / 2)
+
+  for (let layer = 0; layer < layerConstraint; layer++) {
+    for (let topI = layer; topI < width - layer - 1; topI++) {
+      seen[layer][topI] = true
+      res.push(matrix[layer][topI])
+    }
+    for (let rightI = layer; rightI < length - 1 - layer; rightI++) {
+      seen[rightI][width - 1 - layer] = true
+      res.push(matrix[rightI][width - 1 - layer])
+    }
+    for (let bottomI = width - 1 - layer; bottomI >= layer; bottomI--) {
+      if (!seen[length - 1 - layer][bottomI]) {
+        seen[length - 1 - layer][bottomI] = true
+        res.push(matrix[length - 1 - layer][bottomI])
+      }
+    }
+    for (let leftI = length - 1 - 1 - layer; leftI >= layer + 1; leftI--) {
+      if (!seen[leftI][layer]) {
+        seen[leftI][layer] = true
+        res.push(matrix[leftI][layer])
+      }
+    }
+  }
+
+  return res
+}
+
 module.exports = {
   snailRec,
   snailIter,
+  spiralOrder,
+  spiralOrderNonMutating,
 }
