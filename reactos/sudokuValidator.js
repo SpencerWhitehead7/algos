@@ -42,67 +42,67 @@ console.log(sudokuValidator([
   [9, 7, 8, 3, 1, 2, 6, 4, 5],
 ])) // false
 
-// Used across both my solutions
+// Used across my solutions
 
-const val = arr => {
-  const arrCopy = arr.slice(0)
-  arrCopy.sort()
-  for (let i = 0; i < arrCopy.length; i++) {
-    if (arrCopy[i] !== i + 1) {
-      return false
-    }
-  }
-  return true
-}
+const isValidUnit = items => items.sort()
+  .filter((val, index) => val === index + 1)
+  .length === 9
 
 // my original solution
 
 const sudokuChecker = board => {
-  if (!board.every(row => val(row))) return false
-  for (let col = 0; col < 9; col++) {
-    const tempCol = []
-    for (let row = 0; row < 9; row++) {
-      tempCol.push(board[row][col])
+  if (!board.every(row => isValidUnit([...row]))) return false
+
+  for (let colI = 0; colI < 9; colI++) {
+    const col = []
+    for (let rowI = 0; rowI < 9; rowI++) {
+      col.push(board[rowI][colI])
     }
-    if (!val(tempCol)) return false
+    if (!isValidUnit(col)) return false
   }
-  for (let boxRow = 0; boxRow < 7; boxRow += 3) {
-    const rows = board.slice(boxRow, boxRow + 3)
-    for (let boxCol = 0; boxCol < 7; boxCol += 3) {
-      let tempBox = []
-      rows.forEach(row => {
-        tempBox = tempBox.concat(row.slice(boxCol, boxCol + 3))
-      })
-      if (!val(tempBox)) return false
+
+  for (let boxVI = 0; boxVI < 9; boxVI += 3) {
+    for (let boxHI = 0; boxHI < 9; boxHI += 3) {
+      const box = []
+      for (let boxRow = boxVI; boxRow < boxVI + 3; boxRow++) {
+        box.push(...board[boxRow].slice(boxHI, boxHI + 3))
+      }
+      if (!isValidUnit(box)) return false
     }
   }
+
   return true
 }
 
 // solution based off Ian's single string idea
 
 const singleCheck = board => {
-  const arr = board.reduce((acc, curr) => acc.concat(curr))
-  for (let rowI = 0; rowI < 81; rowI += 9) { // rows
-    if (!val(arr.slice(rowI, rowI + 9))) return false
+  const flatBoard = board.reduce((acc, curr) => acc.concat(curr))
+
+  for (let rowOffset = 0; rowOffset < 81; rowOffset += 9) {
+    if (!isValidUnit(flatBoard.slice(rowOffset, rowOffset + 9))) return false
   }
-  for (let col = 0; col < 9; col++) { // columns
-    const tempCol = []
+
+  for (let colOffset = 0; colOffset < 9; colOffset++) {
+    const col = []
     for (let colI = 0; colI < 81; colI += 9) {
-      tempCol.push(arr[col + colI])
+      col.push(flatBoard[colOffset + colI])
     }
-    if (!val(tempCol)) return false
+    if (!isValidUnit(col)) return false
   }
-  for (let box = 0; box < 81; box += 27) { // boxes
-    const rows = arr.slice(box, box + 27)
-    for (let boxI = 0; boxI < 7; boxI += 3) {
-      let tempBox = []
-      tempBox = tempBox.concat(rows.slice(boxI, boxI + 3))
-      tempBox = tempBox.concat(rows.slice(boxI + 9, boxI + 12))
-      tempBox = tempBox.concat(rows.slice(boxI + 18, boxI + 21))
-      if (!val(tempBox)) return false
+
+  for (let boxVOffset = 0; boxVOffset < 81; boxVOffset += 27) {
+    for (let boxHOffset = 0; boxHOffset < 9; boxHOffset += 3) {
+      const box = []
+      for (let boxColI = 0; boxColI < 27; boxColI += 9) {
+        for (let boxRowI = 0; boxRowI < 3; boxRowI++) {
+          box.push(flatBoard[boxVOffset + boxHOffset + boxColI + boxRowI])
+        }
+      }
+      if (!isValidUnit(box)) return false
     }
   }
+
   return true
 }
 
@@ -127,6 +127,5 @@ const sudokuValidator = solution => {
   }
   return true
 }
-
 
 module.exports = sudokuValidator
