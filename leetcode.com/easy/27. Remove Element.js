@@ -56,16 +56,33 @@ const removeElementSlow = (nums, val) => {
 }
 
 // n
-const removeElement = (nums, val) => {
-  let i = 0
-  let end = nums.length
-  while (i < end) {
-    if (nums[i] === val) {
-      nums[i] = nums[end - 1]
-      end--
+const removeElement = (nums, val) => { // basically copies "actual value swapping" technique from 905
+  let lPtr = 0
+  let rPtr = nums.length
+  while (lPtr < rPtr) {
+    if (nums[lPtr] === val) {
+      rPtr--
+      nums[lPtr] = nums[rPtr]
     } else {
-      i++
+      lPtr++
     }
   }
-  return end
+
+  return rPtr
+}
+
+// n
+const removeElement2 = (nums, val) => { // basically copies "shuffle to end" technique from 283
+  let writePtr = 0
+  for (let readPtr = 0; readPtr < nums.length; readPtr++) {
+    const rVal = nums[readPtr]
+    if (rVal !== val) {
+      const wVal = nums[writePtr]
+      nums[writePtr] = rVal
+      nums[readPtr] = wVal
+      writePtr++
+    }
+  }
+
+  return writePtr
 }

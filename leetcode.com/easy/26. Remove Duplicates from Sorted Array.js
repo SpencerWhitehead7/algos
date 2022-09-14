@@ -52,12 +52,12 @@ const removeDuplicatesSlow = nums => {
 
 // n
 const removeDuplicates = nums => {
-  let slow = 0
-  for (let fast = 1; fast < nums.length; fast++) {
-    if (nums[slow] !== nums[fast]) {
-      slow++
-      nums[slow] = nums[fast]
+  let writePtr = 0
+  for (let readPtr = 1; readPtr < nums.length; readPtr++) {
+    if (nums[writePtr] !== nums[readPtr]) {
+      writePtr++
+      nums[writePtr] = nums[readPtr]
     }
   }
-  return slow + 1
+  return writePtr + 1
 }

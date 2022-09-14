@@ -29,12 +29,13 @@
  */
 const duplicateZeros = arr => {
   const originalLength = arr.length
-  const holderArr = []
+  const holderArr = new Array(originalLength)
   while (arr.length) {
     holderArr.push(arr.pop())
   }
   while (arr.length < originalLength) {
-    arr.push(holderArr.pop())
-    if (arr[arr.length - 1] === 0 && arr.length < originalLength) arr.push(0)
+    const nextNum = holderArr.pop()
+    arr.push(nextNum)
+    if (nextNum === 0 && arr.length < originalLength) arr.push(0)
   }
 }

@@ -13,15 +13,30 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-const moveZeroes = function(nums){
+// n^2
+const moveZeroesSlow = nums => {
   let shiftCount = 0
   let i = 0
-  while(i<nums.length - shiftCount){
-    if(nums[i]===0){
+  while (i < nums.length - shiftCount) {
+    if (nums[i] === 0) {
       nums.push(...nums.splice(i, 1))
       shiftCount++
-    }else{
+    } else {
       i++
+    }
+  }
+}
+
+// n
+const moveZeroes = nums => {
+  let writePtr = 0
+  for (let readPtr = 0; readPtr < nums.length; readPtr++) {
+    const rVal = nums[readPtr]
+    if (rVal !== 0) {
+      const wVal = nums[writePtr]
+      nums[writePtr] = rVal
+      nums[readPtr] = wVal
+      writePtr++
     }
   }
 }
