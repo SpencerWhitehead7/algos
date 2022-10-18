@@ -17,11 +17,13 @@
  */
 const hasCycle = head => {
   if (!head) return false
-  let tortoise = head
-  let hare = head.next
-  while (hare && hare.next && hare !== tortoise) {
-    hare = hare.next.next
-    tortoise = tortoise.next
+
+  let slow = head
+  let fast = head.next
+  while (fast?.next && fast !== slow) {
+    slow = slow.next
+    fast = fast.next.next
   }
-  return hare === tortoise
+
+  return fast === slow
 }
