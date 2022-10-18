@@ -25,18 +25,21 @@
  * @param {number} n
  * @return {ListNode}
  */
-const removeNthFromEnd = function(head, n){
-  const placeHolder = new ListNode(0)
-  placeHolder.next = head
-  let lead = placeHolder
-  let follow = placeHolder
-  for(let i=0; i<n; i++){
-    lead = lead.next
+const removeNthFromEnd = (head, n) => {
+  let fast = head
+  let slow = head
+
+  for (let i = 0; i < n; i++) {
+    fast = fast.next
   }
-  while(lead.next){
-    lead = lead.next
-    follow = follow.next
+
+  if (fast === null) return head.next
+
+  while (fast.next) {
+    fast = fast.next
+    slow = slow.next
   }
-  follow.next = follow.next.next
-  return placeHolder.next
+  slow.next = slow.next.next
+
+  return head
 }
