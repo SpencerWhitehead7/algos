@@ -2,42 +2,41 @@
 
 // If there is no common prefix, return an empty string "".
 
+
+
 // Example 1:
 
-// Input: ["flower","flow","flight"]
+// Input: strs = ["flower","flow","flight"]
 // Output: "fl"
 // Example 2:
 
-// Input: ["dog","racecar","car"]
+// Input: strs = ["dog","racecar","car"]
 // Output: ""
 // Explanation: There is no common prefix among the input strings.
-// Note:
 
-// All given inputs are in lowercase letters a-z.
+
+// Constraints:
+
+// 1 <= strs.length <= 200
+// 0 <= strs[i].length <= 200
+// strs[i] consists of only lowercase English letters.
+
+/* eslint-disable no-loop-func */
 
 /**
  * @param {string[]} strs
  * @return {string}
  */
-
-const haveCommonLetter = (arr, i) => {
-  const commonLetter = arr[0][i]
-  if (commonLetter === undefined) return false
-  for (let j = 0; j < arr.length; j++) {
-    if (arr[j][i] !== commonLetter) return false
-  }
-  return true
-}
-
 const longestCommonPrefix = strs => {
-  if (strs.length === 0) return ``
-  if (strs.length === 1) return strs[0]
   let prefix = ``
-  let i = 0
-  while (haveCommonLetter(strs, i)) {
-    prefix += strs[0][i]
+  let candidatePrefix = strs[0][0]
+  let i = 1
+  while (strs.every(str => str.startsWith(candidatePrefix))) {
+    prefix = candidatePrefix
+    candidatePrefix += strs[0][i]
     i++
   }
+
   return prefix
 }
 

@@ -40,22 +40,56 @@
 // Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
 //              Thefore INT_MIN (−231) is returned.
 
+/* eslint-disable no-extra-parens */
+
 /**
  * @param {string} str
  * @return {number}
  */
-const myAtoi = function(str){
+const myAtoi = str => {
+  const digits = new Set([`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`])
+
+  let ptr = 0
+
+  while (str[ptr] === ` `) {
+    ptr++
+  }
+
+  if (str[ptr] !== `+` && str[ptr] !== `-` && !digits.has(str[ptr])) {
+    return 0
+  }
+
+  const isNegative = str[ptr] === `-`
+  const modifier = isNegative ? -1 : 1
+  const MAX = isNegative ? 2 ** 31 : (2 ** 31) - 1
+
+  let int = 0
+
+  if (str[ptr] === `+` || str[ptr] === `-`) ptr++
+  while (digits.has(str[ptr])) {
+    if (MAX / 10 <= int) return MAX * modifier
+    int *= 10
+    if (MAX - Number(str[ptr]) <= int) return MAX * modifier
+    int += Number(str[ptr])
+    ptr++
+  }
+
+  return int * modifier
+}
+
+// leetcode has accepted this in the past, but I think it shouldn't have; it's also kinda against the spirit of the question
+const myAtoiViaNumber = str => {
   str = str.trim()
   let slicer = 0
-  if(str[slicer] === `+` || str[slicer] === `-`) slicer++
-  while(str[slicer] !== undefined &&
+  if (str[slicer] === `+` || str[slicer] === `-`) slicer++
+  while (str[slicer] !== undefined &&
     str[slicer] !== ` ` &&
-    [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`].includes(str[slicer])){
+    [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`].includes(str[slicer])) {
     slicer++
   }
   const num = Number(str.slice(0, slicer))
-  if(isNaN(num)) return 0
-  if(num > (Math.pow(2, 31) - 1)) return Math.pow(2, 31) - 1
-  if(num < Math.pow(-2, 31)) return Math.pow(-2, 31)
+  if (isNaN(num)) return 0
+  if (num > 2 ** 31 - 1) return 2 ** 31 - 1
+  if (num < (-2) ** 31) return (-2) ** 31
   return num
 }

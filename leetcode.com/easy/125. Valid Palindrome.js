@@ -15,10 +15,10 @@
  * @param {string} s
  * @return {boolean}
  */
-const isPalindrome = function(s){
-  s = s.replace(/[^a-z0-9]/gmi, ``).toLowerCase()
-  for(let i = 0, j = s.length - 1; i < j; i++, j--){
-    if(s[i] !== s[j]) return false
+const isPalindrome = s => {
+  const cleaned = s.replace(/[^a-z0-9]/gi, ``).toLowerCase()
+  for (let lPtr = 0, rPtr = cleaned.length - 1; lPtr < rPtr; lPtr++, rPtr--) {
+    if (cleaned[lPtr] !== cleaned[rPtr]) return false
   }
   return true
 }

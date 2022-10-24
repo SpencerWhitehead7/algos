@@ -29,7 +29,7 @@ const firstUniqChar = s => {
   const counts = {} // you can also do [] and it'll still work, and skip the cost of hashing the char. However, it is confusing af.
 
   for (let i = 0; i < s.length; i++) {
-    counts[s[i]] = (counts[s[i]] || 0) + 1
+    counts[s[i]] = (counts[s[i]] ?? 0) + 1
   }
 
   for (let i = 0; i < s.length; i++) {
