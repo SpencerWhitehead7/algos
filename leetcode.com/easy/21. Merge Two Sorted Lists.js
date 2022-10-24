@@ -1,44 +1,45 @@
-// Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+// You are given the heads of two sorted linked lists list1 and list2.
 
-// Example:
+// Merge the two lists in a one sorted list.The list should be made by splicing together the nodes of the first two lists.
 
-// Input: 1->2->4, 1->3->4
-// Output: 1->1->2->3->4->4
+// Return the head of the merged linked list.
+
+
+
+//   Example 1:
+
+
+// Input: list1 = [1, 2, 4], list2 = [1, 3, 4]
+// Output: [1, 1, 2, 3, 4, 4]
+// Example 2:
+
+// Input: list1 = [], list2 = []
+// Output: []
+// Example 3:
+
+// Input: list1 = [], list2 = [0]
+// Output: [0]
+
+
+// Constraints:
+
+// The number of nodes in both lists is in the range[0, 50].
+// - 100 <= Node.val <= 100
+// Both list1 and list2 are sorted in non - decreasing order.
 
 /**
  * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
  * }
  */
 /**
- * @param {ListNode} l1
- * @param {ListNode} l2
+ * @param {ListNode} list1
+ * @param {ListNode} list2
  * @return {ListNode}
  */
-// Pushing into new list
-// const mergeTwoLists = (l1, l2) => {
-//   const res = new ListNode(0)
-//   let curr = res
-//   while (l1 && l2) {
-//     let smaller
-//     if (l1.val < l2.val) {
-//       smaller = l1
-//       l1 = l1.next
-//     } else {
-//       smaller = l2
-//       l2 = l2.next
-//     }
-//     curr.next = smaller
-//     curr = curr.next
-//   }
-//   curr.next = l1 ? l1 : l2
-//   return res.next
-// }
-
-// Merging in place
-const mergeTwoLists = (l1, l2) => {
+const mergeTwoLists = (l1, l2) => { // see .go version for a recursive implementation
   if (!l1) return l2
   if (!l2) return l1
 
@@ -60,4 +61,24 @@ const mergeTwoLists = (l1, l2) => {
     }
   }
   return res
+}
+
+// Pushing into new list
+const mergeTwoListsImmutable = (l1, l2) => {
+  const res = new ListNode(0)
+  let curr = res
+  while (l1 && l2) {
+    let smaller
+    if (l1.val < l2.val) {
+      smaller = l1
+      l1 = l1.next
+    } else {
+      smaller = l2
+      l2 = l2.next
+    }
+    curr.next = smaller
+    curr = curr.next
+  }
+  curr.next = l1 ? l1 : l2
+  return res.next
 }
