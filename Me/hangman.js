@@ -1,3 +1,5 @@
+/* eslint-env browser, jquery */
+
 {
   const words = [`Word`, `OTHERword`]
   $(document).ready(() => {

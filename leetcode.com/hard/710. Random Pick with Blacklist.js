@@ -62,6 +62,7 @@ Solution.prototype.pick = function(){
   if(this.useWhitelist){
     return this.possibleNumbers[Math.floor(Math.random() * this.possibleNumbers.length)]
   }else{
+    // eslint-disable-next-line no-constant-condition
     while(true){
       const possibleRes = Math.floor(Math.random() * this.N)
       if(!this.blacklistSet.has(possibleRes)){

@@ -33,7 +33,7 @@ const checkInclusion = (s1, s2) => {
 
   for (let i = 0; i < s1.length; i++) {
     const letter = s2[i]
-    if (s1Letters.hasOwnProperty(letter)) {
+    if (s1Letters[letter] !== undefined) {
       s1Letters[letter]--
     }
   }
@@ -41,11 +41,11 @@ const checkInclusion = (s1, s2) => {
 
   for (let i = s1.length; i < s2.length; i++) {
     const nextLetterIn = s2[i]
-    if (s1Letters.hasOwnProperty(nextLetterIn)) {
+    if (s1Letters[nextLetterIn] !== undefined) {
       s1Letters[nextLetterIn]--
     }
     const lastLetterOut = s2[i - s1.length]
-    if (s1Letters.hasOwnProperty(lastLetterOut)) {
+    if (s1Letters[lastLetterOut] !== undefined) {
       s1Letters[lastLetterOut]++
     }
 

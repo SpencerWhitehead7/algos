@@ -21,8 +21,6 @@
 // 0 <= strs[i].length <= 200
 // strs[i] consists of only lowercase English letters.
 
-/* eslint-disable no-loop-func */
-
 /**
  * @param {string[]} strs
  * @return {string}

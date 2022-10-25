@@ -22,8 +22,6 @@
 
 // -231 <= x <= 231 - 1
 
-/* eslint-disable no-extra-parens */
-
 /**
  * @param {number} x
  * @return {number}

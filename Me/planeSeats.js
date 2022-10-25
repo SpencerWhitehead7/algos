@@ -42,7 +42,7 @@ const isFull0v1 = arr => {
 const planeFloorplan0v1 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(ele => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
+  const arr = new Array(numberOfRows + 1).fill(0).map(_ => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
   seats.forEach(seat => fillSeat0v1(seat, arr))
   for (let i = 1; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
@@ -81,7 +81,7 @@ const fullBlocksv1 = arr => {
 const planeFloorplan1v1 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(ele => new Array(10).fill(0))
+  const arr = new Array(numberOfRows + 1).fill(0).map(_ => new Array(10).fill(0))
   seats.forEach(seat => {
     const [row, letter] = seat.split(``)
     arr[row][seatMap1v1[letter]] = 1
@@ -172,7 +172,7 @@ const isEmpty0v2 = arr => {
 const planeFloorplan0v2 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(ele => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
+  const arr = new Array(numberOfRows + 1).fill(0).map(_ => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
   seats.forEach(seat => fillSeat0v2(seat, arr))
   for (let i = 1; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
@@ -211,7 +211,7 @@ const emptyBlocksv2 = arr => {
 const planeFloorplan1v2 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(ele => new Array(10).fill(0))
+  const arr = new Array(numberOfRows + 1).fill(0).map(_ => new Array(10).fill(0))
   seats.forEach(seat => {
     const [row, letter] = seat.split(``)
     arr[row][seatMap1v1[letter]] = 1

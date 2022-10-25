@@ -58,7 +58,6 @@ const isValidSudoku = board => {
     for (let j = 0; j < 9; j++) {
       row[j] = board[i][j]
       col[j] = board[j][i]
-      // eslint-disable-next-line no-extra-parens
       box[j] = board[(i - (i % 3)) + Math.floor(j / 3)][(3 * (i % 3)) + (j % 3)]
     }
 

@@ -17,8 +17,6 @@
 
 // Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
 
-/* eslint-disable no-extra-parens, no-confusing-arrow */
-
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {

@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
+  
+  "env": {
+    "es2022": true,
+    "node": true,
+    "mocha": true
+  },
+
+  "globals": {
+    "ListNode": "readonly",
+    "TreeNode": "readonly",
+    "UndirectedGraphNode": "readonly"
+  },
+  
+  "reportUnusedDisableDirectives": true,
+
+  "rules": {
+    "no-unused-vars": [0, {
+      "vars": "local",
+      "varsIgnorePattern": "_",
+      "args": "all",
+      "ignoreRestSiblings": true,
+      "argsIgnorePattern": "_",
+      "destructuredArrayIgnorePattern": "^_",
+      "caughtErrors": "all",
+      "caughtErrorsIgnorePattern": "^_"
+      }], // tragically, this rule doesn't really work in node with local setting, because individual files have their own scopes in node, so nothing is really "global" anyway and everything gets checked
+      "prefer-const": 2
+  }
+}

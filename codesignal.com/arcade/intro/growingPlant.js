@@ -37,6 +37,7 @@
 const growingPlantIneff = (upSpeed, downSpeed, desiredHeight) => {
   let days = 0
   let height = 0
+  // eslint-disable-next-line no-constant-condition
   while(true){
     height += upSpeed
     days++
