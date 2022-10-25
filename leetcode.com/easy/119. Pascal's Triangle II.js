@@ -2,7 +2,6 @@
 
 // Note that the row index starts from 0.
 
-
 // In Pascal's triangle, each number is the sum of the two numbers directly above it.
 
 // Example:
@@ -17,11 +16,11 @@
  * @param {number} rowIndex
  * @return {number[]}
  */
-const getRow = rowIndex => {
+const getRow = (rowIndex) => {
   let currRow = [0, 1, 0]
-  for(let i = 0; i < rowIndex; i++){
+  for (let i = 0; i < rowIndex; i++) {
     const nextRow = [0]
-    for(let j = 0; j < currRow.length - 1; j++){
+    for (let j = 0; j < currRow.length - 1; j++) {
       nextRow.push(currRow[j] + currRow[j + 1])
     }
     nextRow.push(0)

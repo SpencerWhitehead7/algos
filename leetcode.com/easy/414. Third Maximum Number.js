@@ -1,7 +1,5 @@
 // Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
 
-
-
 // Example 1:
 
 // Input: nums = [3,2,1]
@@ -27,23 +25,22 @@
 // The second distinct maximum is 2 (both 2's are counted together since they have the same value).
 // The third distinct maximum is 1.
 
-
 // Constraints:
 
 // 1 <= nums.length <= 104
 // -231 <= nums[i] <= 231 - 1
 
-
 // Follow up: Can you find an O(n) solution?
 
-const thirdMax = nums => { // super aesthetic js one-liner multivalue reassign:: faster, more memory (according to leetcode's none too reliable runner)
+const thirdMax = (nums) => {
+  // super aesthetic js one-liner multivalue reassign:: faster, more memory (according to leetcode's none too reliable runner)
   let [first, second, third] = Array(3).fill(-Infinity)
   for (const n of nums) {
     if (![first, second, third].includes(n)) {
       if (n > first) {
-        [first, second, third] = [n, first, second]
+        ;[first, second, third] = [n, first, second]
       } else if (n > second) {
-        [second, third] = [n, second]
+        ;[second, third] = [n, second]
       } else if (n > third) {
         third = n
       }
@@ -53,7 +50,8 @@ const thirdMax = nums => { // super aesthetic js one-liner multivalue reassign::
   return third === -Infinity ? first : third
 }
 
-const thirdMax2 = nums => { // ugly by hand version :: slower, less memory (according to leetcode's none too reliable runner)
+const thirdMax2 = (nums) => {
+  // ugly by hand version :: slower, less memory (according to leetcode's none too reliable runner)
   const maxes = Array(3).fill(-Infinity)
   for (const n of nums) {
     if (!maxes.includes(n)) {

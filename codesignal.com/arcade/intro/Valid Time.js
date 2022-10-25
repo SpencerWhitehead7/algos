@@ -20,7 +20,7 @@
 
 // true if the given representation is correct, false otherwise.
 
-const validTime = time => {
-  const [hour, minute] = time.split(`:`).map(ele => Number(ele))
-  return ((hour >= 0) && (hour < 24)) && ((minute >= 0) && (minute < 60))
+const validTime = (time) => {
+  const [hour, minute] = time.split(`:`).map((ele) => Number(ele))
+  return hour >= 0 && hour < 24 && minute >= 0 && minute < 60
 }

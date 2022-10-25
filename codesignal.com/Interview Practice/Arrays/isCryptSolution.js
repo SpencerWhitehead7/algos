@@ -64,11 +64,21 @@
 
 const isCryptSolution = (crypt, solution) => {
   const hash = {}
-  solution.forEach(subArr => {hash[subArr[0]] = subArr[1]})
-  const nums = crypt.map(word => word.split(``).map(letter => hash[letter]).join(``))
-  if(nums.some(num => num[0] === `0` && num.length !== 1) || Number(nums[0]) + Number(nums[1]) !== Number(nums[2])){
+  solution.forEach((subArr) => {
+    hash[subArr[0]] = subArr[1]
+  })
+  const nums = crypt.map((word) =>
+    word
+      .split(``)
+      .map((letter) => hash[letter])
+      .join(``)
+  )
+  if (
+    nums.some((num) => num[0] === `0` && num.length !== 1) ||
+    Number(nums[0]) + Number(nums[1]) !== Number(nums[2])
+  ) {
     return false
-  }else{
+  } else {
     return true
   }
 }

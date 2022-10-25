@@ -2,19 +2,14 @@
 
 // The length of the path between two nodes is represented by the number of edges between them.
 
-
-
 // Example 1:
-
 
 // Input: root = [5,4,5,1,1,5]
 // Output: 2
 // Example 2:
 
-
 // Input: root = [1,4,5,4,4,5]
 // Output: 2
-
 
 // Constraints:
 
@@ -34,10 +29,10 @@
  * @param {TreeNode} root
  * @return {number}
  */
-const longestUnivaluePath = root => {
+const longestUnivaluePath = (root) => {
   let res = 0
 
-  const longestPath = node => {
+  const longestPath = (node) => {
     if (!node) return 0
 
     const longestLPath = longestPath(node.left)

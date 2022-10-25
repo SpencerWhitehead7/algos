@@ -21,6 +21,6 @@
 
 // The number of the century the year is in.
 
-function centuryFromYear(year){
-  return Math.ceil(year/100)
+function centuryFromYear(year) {
+  return Math.ceil(year / 100)
 }

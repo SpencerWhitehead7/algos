@@ -15,7 +15,7 @@
  * @param {string} s
  * @return {boolean}
  */
-const isPalindrome = s => {
+const isPalindrome = (s) => {
   const cleaned = s.replace(/[^a-z0-9]/gi, ``).toLowerCase()
   for (let lPtr = 0, rPtr = cleaned.length - 1; lPtr < rPtr; lPtr++, rPtr--) {
     if (cleaned[lPtr] !== cleaned[rPtr]) return false

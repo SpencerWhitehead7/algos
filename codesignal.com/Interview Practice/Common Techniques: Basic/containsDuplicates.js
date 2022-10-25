@@ -24,10 +24,10 @@
 
 // [output] boolean
 
-const containsDuplicates = a => {
+const containsDuplicates = (a) => {
   const tracker = {}
-  for(let i = 0; i < a.length; i++){
-    if(tracker[a[i]]) return true
+  for (let i = 0; i < a.length; i++) {
+    if (tracker[a[i]]) return true
     tracker[a[i]] = 1
   }
   return false

@@ -2,8 +2,6 @@
 
 //  .
 
-
-
 // This time, we place our chess knight on any numbered key of a phone pad (indicated above), and the knight makes N-1 hops.  Each hop must be from one key to another numbered key.
 
 // Each time it lands on a key (including the initial placement of the knight), it presses the number of that key, pressing N digits total.
@@ -11,8 +9,6 @@
 // How many distinct numbers can you dial in this manner?
 
 // Since the answer may be large, output the answer modulo 10^9 + 7.
-
-
 
 // Example 1:
 
@@ -26,7 +22,6 @@
 
 // Input: 3
 // Output: 46
-
 
 // Note:
 
@@ -54,12 +49,12 @@ const possibleMoves = [
   [2, 4],
 ]
 
-const knightDialerStack = n => {
+const knightDialerStack = (N) => {
   const stack = [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`]
   let count = 0
   while (stack.length > 0) {
     const curr = stack.pop()
-    if (curr.length === n) {
+    if (curr.length === N) {
       count = (count + 1) % MOD
     } else {
       for (const nextPos of possibleMoves[curr[curr.length - 1]]) {
@@ -74,10 +69,10 @@ const knightDialerStack = n => {
  * @param {number} N
  * @return {number}
  */
-const knightDialerMatrix = N => {
+const knightDialerMatrix = (N) => {
   if (N === 1) return 10
   let baseMatrix = [
-  // 0,1,2,3,4,5,6,7,8,9
+    // 0,1,2,3,4,5,6,7,8,9
     [0, 0, 0, 0, 1, 0, 1, 0, 0, 0], // 0
     [0, 0, 0, 0, 0, 0, 1, 0, 1, 0], // 1
     [0, 0, 0, 0, 0, 0, 0, 1, 0, 1], // 2
@@ -90,7 +85,7 @@ const knightDialerMatrix = N => {
     [0, 0, 1, 0, 1, 0, 0, 0, 0, 0], // 9
   ]
   const multMatrix = [
-  // 0,1,2,3,4,5,6,7,8,9
+    // 0,1,2,3,4,5,6,7,8,9
     [0, 0, 0, 0, 1, 0, 1, 0, 0, 0], // 0
     [0, 0, 0, 0, 0, 0, 1, 0, 1, 0], // 1
     [0, 0, 0, 0, 0, 0, 0, 1, 0, 1], // 2
@@ -106,7 +101,12 @@ const knightDialerMatrix = N => {
     baseMatrix = multiplyMatrices(baseMatrix, multMatrix)
   }
 
-  return baseMatrix.reduce((acc, curr) => acc + curr.reduce((acc, curr) => acc + curr) % MOD, 0) % MOD
+  return (
+    baseMatrix.reduce(
+      (acc, curr) => acc + (curr.reduce((acc, curr) => acc + curr) % MOD),
+      0
+    ) % MOD
+  )
 }
 
 const multiplyMatrices = (matrix1, matrix2) => {
@@ -116,7 +116,7 @@ const multiplyMatrices = (matrix1, matrix2) => {
     for (let col = 0; col < matrix1[0].length; col++) {
       const allVals = []
       matrix1[row].forEach((rowVal, i) => {
-        allVals.push(rowVal * matrix2[i][col] % MOD)
+        allVals.push((rowVal * matrix2[i][col]) % MOD)
       })
       newRow.push(allVals.reduce((acc, curr) => acc + curr) % MOD)
     }
@@ -130,7 +130,7 @@ const multiplyMatrices = (matrix1, matrix2) => {
  * @param {number} n
  * @return {number}
  */
-const knightDialer = n => {
+const knightDialer = (n) => {
   let sums = new Array(possibleMoves.length).fill(1)
   for (let i = 1; i < n; i++) {
     const nextSums = new Array(possibleMoves.length).fill(0)

@@ -14,10 +14,10 @@
  * @param {number[]} nums
  * @return {number}
  */
-const findMaxConsecutiveOnes = nums => {
+const findMaxConsecutiveOnes = (nums) => {
   let maxOnes = 0
   let currentOnesCount = 0
-  nums.forEach(num => {
+  nums.forEach((num) => {
     if (num === 1) {
       currentOnesCount++
     } else {

@@ -2,8 +2,6 @@
 
 // If there are two middle nodes, return the second middle node.
 
-
-
 // Example 1:
 
 // Input: [1,2,3,4,5]
@@ -16,7 +14,6 @@
 // Input: [1,2,3,4,5,6]
 // Output: Node 4 from this list (Serialization: [4,5,6])
 // Since the list has two middle nodes with values 3 and 4, we return the second one.
-
 
 // Note:
 
@@ -33,7 +30,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const middleNode = head => {
+const middleNode = (head) => {
   let slow = head
   let fast = head
   while (fast?.next) {

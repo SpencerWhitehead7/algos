@@ -34,7 +34,7 @@
 /**
  * Initialize your data structure here.
  */
-const Twitter = function(){
+const Twitter = function () {
   this.users = {}
   this.tweets = []
 }
@@ -45,7 +45,7 @@ const Twitter = function(){
  * @param {number} tweetId
  * @return {void}
  */
-Twitter.prototype.postTweet = function(userId, tweetId){
+Twitter.prototype.postTweet = function (userId, tweetId) {
   this.addUserIfNotListed(userId)
   this.tweets.push({
     userId,
@@ -58,11 +58,16 @@ Twitter.prototype.postTweet = function(userId, tweetId){
  * @param {number} userId
  * @return {number[]}
  */
-Twitter.prototype.getNewsFeed = function(userId){
+Twitter.prototype.getNewsFeed = function (userId) {
   const user = this.addUserIfNotListed(userId)
   const newsFeedTweets = []
-  for(let i = this.tweets.length - 1; i >= 0 && newsFeedTweets.length < 10; i--){
-    if(user.has(this.tweets[i].userId)) newsFeedTweets.push(this.tweets[i].tweetId)
+  for (
+    let i = this.tweets.length - 1;
+    i >= 0 && newsFeedTweets.length < 10;
+    i--
+  ) {
+    if (user.has(this.tweets[i].userId))
+      newsFeedTweets.push(this.tweets[i].tweetId)
   }
   return newsFeedTweets
 }
@@ -73,7 +78,7 @@ Twitter.prototype.getNewsFeed = function(userId){
  * @param {number} followeeId
  * @return {void}
  */
-Twitter.prototype.follow = function(followerId, followeeId){
+Twitter.prototype.follow = function (followerId, followeeId) {
   this.addUserIfNotListed(followerId)
   this.addUserIfNotListed(followeeId)
   this.users[followerId].add(followeeId)
@@ -85,8 +90,8 @@ Twitter.prototype.follow = function(followerId, followeeId){
  * @param {number} followeeId
  * @return {void}
  */
-Twitter.prototype.unfollow = function(followerId, followeeId){
-  if(followerId === followeeId) return
+Twitter.prototype.unfollow = function (followerId, followeeId) {
+  if (followerId === followeeId) return
   this.addUserIfNotListed(followerId)
   this.addUserIfNotListed(followeeId)
   this.users[followerId].delete(followeeId)
@@ -101,7 +106,7 @@ Twitter.prototype.unfollow = function(followerId, followeeId){
  * obj.unfollow(followerId,followeeId)
  */
 
-Twitter.prototype.addUserIfNotListed = function(userId){
-  if(!this.users[userId]) this.users[userId] = new Set([userId])
+Twitter.prototype.addUserIfNotListed = function (userId) {
+  if (!this.users[userId]) this.users[userId] = new Set([userId])
   return this.users[userId]
 }

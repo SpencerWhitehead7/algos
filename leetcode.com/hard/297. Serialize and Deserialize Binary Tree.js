@@ -31,9 +31,8 @@
  * @param {TreeNode} root
  * @return {string}
  */
-const serialize = root => root
-  ? [root.val, ...serialize(root.left), ...serialize(root.right)]
-  : ``
+const serialize = (root) =>
+  root ? [root.val, ...serialize(root.left), ...serialize(root.right)] : ``
 
 /**
  * Decodes your encoded data to tree.
@@ -41,7 +40,7 @@ const serialize = root => root
  * @param {string} data
  * @return {TreeNode}
  */
-const deserialize = data => {
+const deserialize = (data) => {
   const nodeValues = data.reverse()
 
   const traverse = () => {
@@ -64,14 +63,14 @@ const deserialize = data => {
 
 // this (appears to?) work in that it passes 31/32 test cases, but it times out
 
-const serializeSlow = root => {
+const serializeSlow = (root) => {
   const res = [root]
   let ptr = 0
   while (ptr < res.length) {
     const curr = res[ptr]
     if (curr) {
-      res[(ptr * 2) + 1] = curr.left
-      res[(ptr * 2) + 2] = curr.right
+      res[ptr * 2 + 1] = curr.left
+      res[ptr * 2 + 2] = curr.right
       res[ptr] = curr.val
     }
     ptr++
@@ -82,8 +81,8 @@ const serializeSlow = root => {
 const deserializeSlow = (data, i = 0) => {
   if (!data[i]) return null
 
-  const left = (i * 2) + 1
-  const right = (i * 2) + 2
+  const left = i * 2 + 1
+  const right = i * 2 + 2
   const root = new TreeNode(data[i])
   root.left = deserializeSlow(data, left)
   root.right = deserializeSlow(data, right)

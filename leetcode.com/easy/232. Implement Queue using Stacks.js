@@ -22,7 +22,7 @@
 /**
  * Initialize your data structure here.
  */
-const MyQueueSlow = function() {
+const MyQueueSlow = function () {
   this.stack = []
 }
 
@@ -31,7 +31,7 @@ const MyQueueSlow = function() {
  * @param {number} x
  * @return {void}
  */
-MyQueueSlow.prototype.push = function(x) {
+MyQueueSlow.prototype.push = function (x) {
   this.stack.push(x)
 }
 
@@ -39,7 +39,7 @@ MyQueueSlow.prototype.push = function(x) {
  * Removes the element from in front of queue and returns that element.
  * @return {number}
  */
-MyQueueSlow.prototype.pop = function() {
+MyQueueSlow.prototype.pop = function () {
   const tempStack = []
   while (this.stack.length > 0) {
     tempStack.push(this.stack.pop())
@@ -55,7 +55,7 @@ MyQueueSlow.prototype.pop = function() {
  * Get the front element.
  * @return {number}
  */
-MyQueueSlow.prototype.peek = function() {
+MyQueueSlow.prototype.peek = function () {
   const tempStack = []
   while (this.stack.length > 0) {
     tempStack.push(this.stack.pop())
@@ -72,7 +72,7 @@ MyQueueSlow.prototype.peek = function() {
  * Returns whether the queue is empty.
  * @return {boolean}
  */
-MyQueueSlow.prototype.empty = function() {
+MyQueueSlow.prototype.empty = function () {
   return this.stack.length === 0
 }
 
@@ -88,7 +88,7 @@ MyQueueSlow.prototype.empty = function() {
 /**
  * Initialize your data structure here.
  */
-const MyQueue = function() {
+const MyQueue = function () {
   this.enqued = []
   this.dequed = []
 }
@@ -97,7 +97,7 @@ const MyQueue = function() {
  * Transfer elements from enque to deque if deque is empty.
  * @return {void}
  */
-MyQueue.prototype.transfer = function() {
+MyQueue.prototype.transfer = function () {
   if (!this.dequed.length) {
     while (this.enqued.length) {
       this.dequed.push(this.enqued.pop())
@@ -106,45 +106,45 @@ MyQueue.prototype.transfer = function() {
 }
 
 /**
-* Push element x to the back of queue.
-* @param {number} x
-* @return {void}
-*/
-MyQueue.prototype.push = function(x) {
+ * Push element x to the back of queue.
+ * @param {number} x
+ * @return {void}
+ */
+MyQueue.prototype.push = function (x) {
   this.enqued.push(x)
 }
 
 /**
-* Removes the element from in front of queue and returns that element.
-* @return {number}
-*/
-MyQueue.prototype.pop = function() {
+ * Removes the element from in front of queue and returns that element.
+ * @return {number}
+ */
+MyQueue.prototype.pop = function () {
   this.transfer()
   return this.dequed.pop()
 }
 
 /**
-* Get the front element.
-* @return {number}
-*/
-MyQueue.prototype.peek = function() {
+ * Get the front element.
+ * @return {number}
+ */
+MyQueue.prototype.peek = function () {
   this.transfer()
   return this.dequed[this.dequed.length - 1]
 }
 
 /**
-* Returns whether the queue is empty.
-* @return {boolean}
-*/
-MyQueue.prototype.empty = function() {
+ * Returns whether the queue is empty.
+ * @return {boolean}
+ */
+MyQueue.prototype.empty = function () {
   return !this.enqued.length && !this.dequed.length
 }
 
 /**
-* Your MyQueue object will be instantiated and called as such:
-* var obj = new MyQueue()
-* obj.push(x)
-* var param_2 = obj.pop()
-* var param_3 = obj.peek()
-* var param_4 = obj.empty()
-*/
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */

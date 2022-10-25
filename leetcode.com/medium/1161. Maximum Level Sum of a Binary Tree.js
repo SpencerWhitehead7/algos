@@ -2,10 +2,7 @@
 
 // Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
 
-
-
 // Example 1:
-
 
 // Input: root = [1,7,0,7,-8,null,null]
 // Output: 2
@@ -18,7 +15,6 @@
 
 // Input: root = [989,null,10250,98693,-89388,null,null,null,-32127]
 // Output: 2
-
 
 // Constraints:
 
@@ -39,7 +35,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
-const maxLevelSum = root => {
+const maxLevelSum = (root) => {
   let maxLevel = 1
   let maxSum = root.val
 

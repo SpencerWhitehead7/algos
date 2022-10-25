@@ -30,41 +30,42 @@
  * @param {number[][]} matrix
  * @return {number[][]}
  */
-const updateMatrix = matrix => {
+const updateMatrix = (matrix) => {
   const res = new Array(matrix.length)
-  for(let i = 0; i < res.length; i++){
+  for (let i = 0; i < res.length; i++) {
     res[i] = []
   }
-  for(let row = 0; row < matrix.length; row++){
-    for(let col = 0; col < matrix[row].length; col++){
-      if(matrix[row][col] === 0){
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[row].length; col++) {
+      if (matrix[row][col] === 0) {
         res[row][col] = 0
-      }else{
+      } else {
         let queue = [[row, col]]
         const closestZero = []
-        while(queue.length){
+        while (queue.length) {
           const [row, col] = queue.shift()
           const neighboringCoords = generateNeighboringCoords([row, col])
-          for(let i = 0; i < neighboringCoords.length; i++){
+          for (let i = 0; i < neighboringCoords.length; i++) {
             const [row, col] = neighboringCoords[i]
-            if(matrix[row] && matrix[row][col] === 0){
+            if (matrix[row] && matrix[row][col] === 0) {
               queue = []
               closestZero.push(row)
               closestZero.push(col)
               break
-            }else{
+            } else {
               queue.push([row, col])
             }
           }
         }
-        res[row][col] = Math.abs(row - closestZero[0]) + Math.abs(col - closestZero[1])
+        res[row][col] =
+          Math.abs(row - closestZero[0]) + Math.abs(col - closestZero[1])
       }
     }
   }
   return res
 }
 
-const generateNeighboringCoords = coords => {
+const generateNeighboringCoords = (coords) => {
   const [row, col] = coords
   return [
     [row - 1, col],

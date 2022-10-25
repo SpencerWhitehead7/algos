@@ -18,17 +18,18 @@ const values = {
 
 const MAP_SIZE = 1000
 
-const hashFn = key => key
-  .split(``)
-  .map(char => values[char])
-  .reduce((total, charVal) => total + charVal, 0) % MAP_SIZE
+const hashFn = (key) =>
+  key
+    .split(``)
+    .map((char) => values[char])
+    .reduce((total, charVal) => total + charVal, 0) % MAP_SIZE
 
 const createHashTable = () => {
   const table = Array(MAP_SIZE)
 
   return {
     table,
-    get: key => {
+    get: (key) => {
       const hash = hashFn(key)
       return ((table[hash] ?? []).find(([tableKey, _]) => key === tableKey) ?? [
         undefined,
@@ -44,9 +45,11 @@ const createHashTable = () => {
       }
       return table
     },
-    "delete": key => {
+    delete: (key) => {
       const hash = hashFn(key)
-      const removeIdx = (table[hash] ?? []).findIndex(([tableKey, _]) => key === tableKey)
+      const removeIdx = (table[hash] ?? []).findIndex(
+        ([tableKey, _]) => key === tableKey
+      )
       if (removeIdx !== -1) {
         table[hash].splice(removeIdx, 1)
       }
@@ -68,11 +71,11 @@ const createBus = () => {
     sub: (message, cb) => {
       subs.insert(message, cb)
     },
-    pub: message => {
+    pub: (message) => {
       const subedFn = subs.get(message)
       if (subedFn) subedFn()
     },
-    clear: message => {
+    clear: (message) => {
       subs.delete(message)
     },
   }

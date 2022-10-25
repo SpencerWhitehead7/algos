@@ -44,7 +44,7 @@
  * @param {string} str
  * @return {number}
  */
-const myAtoi = str => {
+const myAtoi = (str) => {
   const digits = new Set([`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`])
 
   let ptr = 0
@@ -59,7 +59,7 @@ const myAtoi = str => {
 
   const isNegative = str[ptr] === `-`
   const modifier = isNegative ? -1 : 1
-  const MAX = isNegative ? 2 ** 31 : (2 ** 31) - 1
+  const MAX = isNegative ? 2 ** 31 : 2 ** 31 - 1
 
   let int = 0
 
@@ -76,13 +76,15 @@ const myAtoi = str => {
 }
 
 // leetcode has accepted this in the past, but I think it shouldn't have; it's also kinda against the spirit of the question
-const myAtoiViaNumber = str => {
+const myAtoiViaNumber = (str) => {
   str = str.trim()
   let slicer = 0
   if (str[slicer] === `+` || str[slicer] === `-`) slicer++
-  while (str[slicer] !== undefined &&
+  while (
+    str[slicer] !== undefined &&
     str[slicer] !== ` ` &&
-    [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`].includes(str[slicer])) {
+    [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`].includes(str[slicer])
+  ) {
     slicer++
   }
   const num = Number(str.slice(0, slicer))

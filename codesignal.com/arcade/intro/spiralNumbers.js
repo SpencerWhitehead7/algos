@@ -20,29 +20,29 @@
 
 // [output] array.array.integer
 
-const spiralNumbers = n => {
+const spiralNumbers = (n) => {
   let count = 1
   let depth = 0
   const res = []
-  for(let i = 0; i < n; i++){
+  for (let i = 0; i < n; i++) {
     res.push(new Array(n))
   }
-  while(count < n * n){
-    for(let i = depth; i < n - depth; i++){
+  while (count < n * n) {
+    for (let i = depth; i < n - depth; i++) {
       res[depth][i] = count++
     }
-    for(let i = depth + 1; i < n - 1 - depth; i++){
+    for (let i = depth + 1; i < n - 1 - depth; i++) {
       res[i][res[i].length - 1 - depth] = count++
     }
-    for(let i = n - 1 - depth; i >= 0 + depth; i--){
+    for (let i = n - 1 - depth; i >= 0 + depth; i--) {
       res[n - 1 - depth][i] = count++
     }
-    for(let i = n - 2 - depth; i > 0 + depth; i--){
+    for (let i = n - 2 - depth; i > 0 + depth; i--) {
       res[i][0 + depth] = count++
     }
     depth++
   }
-  if(n % 2 === 1){
+  if (n % 2 === 1) {
     const center = Math.floor(n / 2)
     res[center][center] = count
   }

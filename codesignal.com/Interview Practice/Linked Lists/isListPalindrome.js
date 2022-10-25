@@ -30,26 +30,26 @@
 //   this.next = null;
 // }
 //
-const isListPalindrome = l => {
+const isListPalindrome = (l) => {
   let fast = l
   let slow = l
-  while(fast && fast.next){
+  while (fast && fast.next) {
     fast = fast.next.next
     slow = slow.next
   }
-  if(fast) slow = slow.next
+  if (fast) slow = slow.next
   let firstHalf = l
   let secondHalf = reverseList(slow)
-  while(secondHalf){
-    if(firstHalf.value !== secondHalf.value) return false
+  while (secondHalf) {
+    if (firstHalf.value !== secondHalf.value) return false
     firstHalf = firstHalf.next
     secondHalf = secondHalf.next
   }
   return true
 }
 
-const reverseList = head => {
-  if(!head || !head.next) return head
+const reverseList = (head) => {
+  if (!head || !head.next) return head
   const rest = reverseList(head.next)
   head.next.next = head
   head.next = null

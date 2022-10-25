@@ -1,9 +1,11 @@
+// prettier-ignore
+
 {
   "extends": [
     "eslint:recommended",
     "prettier"
   ],
-  
+
   "env": {
     "es2022": true,
     "node": true,
@@ -15,7 +17,7 @@
     "TreeNode": "readonly",
     "UndirectedGraphNode": "readonly"
   },
-  
+
   "reportUnusedDisableDirectives": true,
 
   "rules": {

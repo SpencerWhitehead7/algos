@@ -4,10 +4,7 @@
 
 // How many possible unique paths are there?
 
-
-
 // Example 1:
-
 
 // Input: m = 3, n = 7
 // Output: 28
@@ -28,7 +25,6 @@
 
 // Input: m = 3, n = 3
 // Output: 6
-
 
 // Constraints:
 
@@ -57,8 +53,7 @@ const uniquePathsRec = (w, h, memo = {}) => {
 
   if (w === 1 || h === 1) return 1
 
-  memo[key] =
-    uniquePathsRec(w - 1, h, memo) + uniquePathsRec(w, h - 1, memo)
+  memo[key] = uniquePathsRec(w - 1, h, memo) + uniquePathsRec(w, h - 1, memo)
 
   return memo[key]
 }

@@ -19,12 +19,15 @@
 
 // [output] array.integer
 
-function alternatingSums(a){
+function alternatingSums(a) {
   let team1 = 0
   let team2 = 0
   a.forEach((player, i) => {
-    if(i%2 === 0){team1 += player}
-    else{team2 += player}
+    if (i % 2 === 0) {
+      team1 += player
+    } else {
+      team2 += player
+    }
   })
   return [team1, team2]
-} 
+}

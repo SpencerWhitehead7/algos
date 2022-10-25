@@ -24,7 +24,7 @@
  * @param {number} n
  * @return {number}
  */
-const climbStairs = n => {
+const climbStairs = (n) => {
   let stepCount = 0
   let waysToReachPrevStep = 0
   let waysToReachCurrStep = 1

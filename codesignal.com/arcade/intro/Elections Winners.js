@@ -39,17 +39,17 @@
 const electionsWinners = (votes, k) => {
   let numTiedForFirst = 1
   let votesToBeat = 0
-  votes.forEach(candidateTotal => {
-    if(candidateTotal > votesToBeat){
+  votes.forEach((candidateTotal) => {
+    if (candidateTotal > votesToBeat) {
       numTiedForFirst = 1
       votesToBeat = candidateTotal
-    }else if(candidateTotal === votesToBeat){
+    } else if (candidateTotal === votesToBeat) {
       numTiedForFirst++
     }
   })
   let possibleWinners = 0
-  votes.forEach(candidateTotal => {
-    if(candidateTotal + k > votesToBeat) possibleWinners++
+  votes.forEach((candidateTotal) => {
+    if (candidateTotal + k > votesToBeat) possibleWinners++
   })
   return possibleWinners === 0 && numTiedForFirst === 1 ? 1 : possibleWinners
 }

@@ -30,7 +30,7 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-const invertTree = root => {
+const invertTree = (root) => {
   if (!root) return root
 
   const { left, right } = root

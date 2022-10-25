@@ -28,12 +28,12 @@
 
 // [output] array.array.integer
 
-const rotateImage = a => {
-  for(let row = 0; row < a.length; row++){
-    for(let col = 0; col < a.length; col++){
+const rotateImage = (a) => {
+  for (let row = 0; row < a.length; row++) {
+    for (let col = 0; col < a.length; col++) {
       a[col].push(a[row].shift())
     }
   }
-  a.forEach(row => row.reverse())
+  a.forEach((row) => row.reverse())
   return a
 }

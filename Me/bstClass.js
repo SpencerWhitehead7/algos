@@ -7,9 +7,9 @@ function BinarySearchTree(value) {
   this.right = null
 }
 
-BinarySearchTree.prototype.insert = function(value) {
+BinarySearchTree.prototype.insert = function (value) {
   let direction
-  value < this.value ? direction = `left` : direction = `right`
+  value < this.value ? (direction = `left`) : (direction = `right`)
   if (this[direction]) {
     this[direction].insert(value)
   } else {
@@ -18,19 +18,19 @@ BinarySearchTree.prototype.insert = function(value) {
   }
 }
 
-BinarySearchTree.prototype.contains = function(target) {
+BinarySearchTree.prototype.contains = function (target) {
   if (this.value === target) {
     return true
   }
   let direction
-  target < this.value ? direction = `left` : direction = `right`
+  target < this.value ? (direction = `left`) : (direction = `right`)
   if (this[direction]) {
     return this[direction].contains(target)
   }
   return false
 }
 
-BinarySearchTree.prototype.depthFirstForEach = function(fn, opt = `in-order`) {
+BinarySearchTree.prototype.depthFirstForEach = function (fn, opt = `in-order`) {
   if (opt === `pre-order`) fn(this.value)
   if (this.left) this.left.depthFirstForEach(fn, opt)
   if (opt === `in-order`) fn(this.value)
@@ -38,7 +38,7 @@ BinarySearchTree.prototype.depthFirstForEach = function(fn, opt = `in-order`) {
   if (opt === `post-order`) fn(this.value)
 }
 
-BinarySearchTree.prototype.breadthFirstForEach = function(fn) {
+BinarySearchTree.prototype.breadthFirstForEach = function (fn) {
   const queue = [this]
   while (queue.length) {
     const current = queue.shift()
@@ -48,7 +48,7 @@ BinarySearchTree.prototype.breadthFirstForEach = function(fn) {
   }
 }
 
-BinarySearchTree.prototype.size = function() {
+BinarySearchTree.prototype.size = function () {
   const count = 1
   if (this.left && this.right) {
     return count + this.left.size() + this.right.size()

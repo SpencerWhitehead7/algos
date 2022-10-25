@@ -17,7 +17,9 @@
   "scripts": {
     "test": "npx mocha **/*.spec.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "pretty": "prettier .",
+    "pretty:fix": "prettier . -w"
   },
   "dependencies": {
     "lodash": "^4.17.21"

@@ -1,7 +1,5 @@
 // Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1. In other words, one of the first string's permutations is the substring of the second string.
 
-
-
 // Example 1:
 
 // Input: s1 = "ab" s2 = "eidbaooo"
@@ -11,7 +9,6 @@
 
 // Input:s1= "ab" s2 = "eidboaoo"
 // Output: False
-
 
 // Constraints:
 
@@ -24,12 +21,10 @@
  * @return {boolean}
  */
 const checkInclusion = (s1, s2) => {
-  const s1Letters = s1
-    .split(``)
-    .reduce((letters, letter) => {
-      letters[letter] = (letters[letter] || 0) + 1
-      return letters
-    }, {})
+  const s1Letters = s1.split(``).reduce((letters, letter) => {
+    letters[letter] = (letters[letter] || 0) + 1
+    return letters
+  }, {})
 
   for (let i = 0; i < s1.length; i++) {
     const letter = s2[i]
@@ -37,7 +32,7 @@ const checkInclusion = (s1, s2) => {
       s1Letters[letter]--
     }
   }
-  if (Object.values(s1Letters).every(count => count < 1)) return true
+  if (Object.values(s1Letters).every((count) => count < 1)) return true
 
   for (let i = s1.length; i < s2.length; i++) {
     const nextLetterIn = s2[i]
@@ -49,7 +44,7 @@ const checkInclusion = (s1, s2) => {
       s1Letters[lastLetterOut]++
     }
 
-    if (Object.values(s1Letters).every(count => count < 1)) return true
+    if (Object.values(s1Letters).every((count) => count < 1)) return true
   }
 
   return false

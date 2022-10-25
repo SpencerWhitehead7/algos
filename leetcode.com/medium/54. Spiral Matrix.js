@@ -23,7 +23,7 @@
  * @param {number[][]} matrix
  * @return {number[]}
  */
-const spiralOrderMut = matrix => {
+const spiralOrderMut = (matrix) => {
   const sorted = []
   while (matrix.length) {
     sorted.push(...matrix.shift())
@@ -40,12 +40,12 @@ const spiralOrderMut = matrix => {
   return sorted
 }
 
-const spiralOrder = matrix => {
+const spiralOrder = (matrix) => {
   const res = []
 
   const length = matrix.length
   const width = matrix[0].length
-  const seen = new Array(length).fill(null).map(_ => new Array(width).fill(false))
+  const seen = new Array(length).fill().map((_) => new Array(width).fill(false))
   const layerConstraint = Math.ceil(Math.min(length, width) / 2)
 
   for (let layer = 0; layer < layerConstraint; layer++) {

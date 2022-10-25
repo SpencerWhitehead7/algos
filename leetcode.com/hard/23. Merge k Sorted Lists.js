@@ -2,8 +2,6 @@
 
 // Merge all the linked-lists into one sorted linked-list and return it.
 
-
-
 // Example 1:
 
 // Input: lists = [[1,4,5],[1,3,4],[2,6]]
@@ -25,7 +23,6 @@
 // Input: lists = [[]]
 // Output: []
 
-
 // Constraints:
 
 // k == lists.length
@@ -46,13 +43,17 @@
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-const naiveMergeKLists = lists => { // 515 ms (not that leetcode is very reliable about these things)
-  lists = lists.filter(ll => ll !== null)
+const naiveMergeKLists = (lists) => {
+  // 515 ms (not that leetcode is very reliable about these things)
+  lists = lists.filter((ll) => ll !== null)
   const mergedHead = new ListNode(0)
   let merged = mergedHead
 
   while (lists.length > 0) {
-    const nextNode = lists.reduce((acc, curr) => (acc.val < curr.val ? acc : curr), new ListNode(Infinity))
+    const nextNode = lists.reduce(
+      (acc, curr) => (acc.val < curr.val ? acc : curr),
+      new ListNode(Infinity)
+    )
 
     const nextNodeI = lists.indexOf(nextNode)
     lists[nextNodeI] = lists[nextNodeI].next
@@ -69,14 +70,15 @@ const naiveMergeKLists = lists => { // 515 ms (not that leetcode is very reliabl
 
 // the speed difference is because the flatten doesn't have to do any extra work finding the next smallest node; it just continuously folds the results forward
 
-const flattenMergeKLists = lists => lists // 334 ms (not that leetcode is very reliable about these things)
-  .filter(ll => ll !== null)
-  .reduce((acc, curr) => mergeLists(acc, curr))
+// 334 ms (not that leetcode is very reliable about these things)
+const flattenMergeKLists = (lists) =>
+  lists.filter((ll) => ll !== null).reduce((acc, curr) => mergeLists(acc, curr))
 
 // the speed difference is because the recursive isn't rechecking nodes as many times as blindly folding repeatedly into the one gigantic list
 
-const recursiveMergeKLists = lists => { // 180 ms (not that leetcode is very reliable about these things)
-  lists.filter(ll => ll !== null)
+// 180 ms (not that leetcode is very reliable about these things)
+const recursiveMergeKLists = (lists) => {
+  lists.filter((ll) => ll !== null)
   if (lists.length === 0) return null
   if (lists.length === 1) return lists[0]
 

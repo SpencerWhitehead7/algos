@@ -29,17 +29,17 @@
  * @param {number} newColor
  * @return {number[][]}
  */
-const floodFill = function(image, sr, sc, newColor){
+const floodFill = (image, sr, sc, newColor) => {
   const color = image[sr][sc]
-  if(color === newColor) return image
+  if (color === newColor) return image
   const queue = [[sr, sc]]
-  while(queue.length > 0){
+  while (queue.length > 0) {
     const [sr, sc] = queue.pop()
     image[sr][sc] = newColor
-    const neighboringCoords = generateNeighboringCoords([sr, sc])
-    neighboringCoords.forEach(neighboringCoord => {
+    const neighboringCoords = generateNeighboringCoords(sr, sc)
+    neighboringCoords.forEach((neighboringCoord) => {
       const [sr, sc] = neighboringCoord
-      if(image[sr] && image[sr][sc] === color){
+      if (image[sr] && image[sr][sc] === color) {
         queue.push(neighboringCoord)
       }
     })
@@ -47,12 +47,9 @@ const floodFill = function(image, sr, sc, newColor){
   return image
 }
 
-const generateNeighboringCoords = coords => {
-  const [sr, sc] = coords
-  return [
-    [sr - 1, sc],
-    [sr, sc + 1],
-    [sr + 1, sc],
-    [sr, sc - 1],
-  ]
-}
+const generateNeighboringCoords = (sr, sc) => [
+  [sr - 1, sc],
+  [sr, sc + 1],
+  [sr + 1, sc],
+  [sr, sc - 1],
+]

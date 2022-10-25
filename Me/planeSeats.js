@@ -30,8 +30,8 @@ const fillSeat0v1 = (seat, floorplan) => {
   floorplan[row][block][chair] = 1
 }
 
-const isFull0v1 = arr => {
-  const sum = arr => arr.reduce((acc, curr) => acc + curr)
+const isFull0v1 = (arr) => {
+  const sum = (arr) => arr.reduce((acc, curr) => acc + curr)
   if (arr.length === 4) {
     return sum(arr.slice(0, 3)) === 3 || sum(arr.slice(1)) === 3
   } else {
@@ -42,8 +42,12 @@ const isFull0v1 = arr => {
 const planeFloorplan0v1 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(_ => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
-  seats.forEach(seat => fillSeat0v1(seat, arr))
+  const arr = new Array(numberOfRows + 1).fill().map(() => [
+    [0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0],
+  ])
+  seats.forEach((seat) => fillSeat0v1(seat, arr))
   for (let i = 1; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
       if (isFull0v1(arr[i][j])) res++
@@ -69,9 +73,9 @@ const seatMap1v1 = {
   K: 9,
 }
 
-const fullBlocksv1 = arr => {
+const fullBlocksv1 = (arr) => {
   let res = 0
-  const sum = arr => arr.reduce((acc, curr) => acc + curr)
+  const sum = (arr) => arr.reduce((acc, curr) => acc + curr)
   if (sum(arr.slice(0, 3)) === 3) res++
   if (sum(arr.slice(3, 6)) === 3 || sum(arr.slice(4, 7)) === 3) res++
   if (sum(arr.slice(7)) === 3) res++
@@ -81,8 +85,10 @@ const fullBlocksv1 = arr => {
 const planeFloorplan1v1 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(_ => new Array(10).fill(0))
-  seats.forEach(seat => {
+  const arr = new Array(numberOfRows + 1)
+    .fill()
+    .map(() => new Array(10).fill(0))
+  seats.forEach((seat) => {
     const [row, letter] = seat.split(``)
     arr[row][seatMap1v1[letter]] = 1
   })
@@ -102,10 +108,11 @@ const planeSortv1 = (numberOfRows, seatsStr) => {
   for (let i = 0; i < seats.length - 2; i++) {
     const chunk = seats.slice(i, i + 3).join(``)
     const row = chunk[0]
-    if (chunk === `${row}A${row}B${row}C` ||
+    if (
+      chunk === `${row}A${row}B${row}C` ||
       chunk === `${row}H${row}J${row}K` ||
       chunk === `${row}D${row}E${row}F` ||
-      chunk === `${row}E${row}F${row}G` && seats[i - 1] !== `${row}D`
+      (chunk === `${row}E${row}F${row}G` && seats[i - 1] !== `${row}D`)
     ) {
       res++
     }
@@ -124,8 +131,10 @@ const planeSetv1 = (numberOfRows, seatsStr) => {
     if (set.has(`${i}A`) && set.has(`${i}B`) && set.has(`${i}C`)) {
       res++
     }
-    if (set.has(`${i}D`) && set.has(`${i}E`) && set.has(`${i}F`) ||
-      set.has(`${i}E`) && set.has(`${i}F`) && set.has(`${i}G`)) {
+    if (
+      (set.has(`${i}D`) && set.has(`${i}E`) && set.has(`${i}F`)) ||
+      (set.has(`${i}E`) && set.has(`${i}F`) && set.has(`${i}G`))
+    ) {
       res++
     }
     if (set.has(`${i}H`) && set.has(`${i}J`) && set.has(`${i}K`)) {
@@ -160,8 +169,8 @@ const fillSeat0v2 = (seat, floorplan) => {
   floorplan[row][block][chair] = 1
 }
 
-const isEmpty0v2 = arr => {
-  const sum = arr => arr.reduce((acc, curr) => acc + curr)
+const isEmpty0v2 = (arr) => {
+  const sum = (arr) => arr.reduce((acc, curr) => acc + curr)
   if (arr.length === 4) {
     return sum(arr.slice(0, 3)) === 3 || sum(arr.slice(1)) === 0
   } else {
@@ -172,8 +181,12 @@ const isEmpty0v2 = arr => {
 const planeFloorplan0v2 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(_ => [[0, 0, 0], [0, 0, 0, 0], [0, 0, 0]])
-  seats.forEach(seat => fillSeat0v2(seat, arr))
+  const arr = new Array(numberOfRows + 1).fill().map(() => [
+    [0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0],
+  ])
+  seats.forEach((seat) => fillSeat0v2(seat, arr))
   for (let i = 1; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
       if (isEmpty0v2(arr[i][j])) res++
@@ -199,9 +212,9 @@ const seatMap1v2 = {
   K: 9,
 }
 
-const emptyBlocksv2 = arr => {
+const emptyBlocksv2 = (arr) => {
   let res = 0
-  const sum = arr => arr.reduce((acc, curr) => acc + curr)
+  const sum = (arr) => arr.reduce((acc, curr) => acc + curr)
   if (sum(arr.slice(0, 3)) === 3) res++
   if (sum(arr.slice(3, 6)) === 3 || sum(arr.slice(4, 7)) === 3) res++
   if (sum(arr.slice(7)) === 3) res++
@@ -211,8 +224,10 @@ const emptyBlocksv2 = arr => {
 const planeFloorplan1v2 = (numberOfRows, seatsStr) => {
   let res = 0
   const seats = seatsStr.split(` `)
-  const arr = new Array(numberOfRows + 1).fill(0).map(_ => new Array(10).fill(0))
-  seats.forEach(seat => {
+  const arr = new Array(numberOfRows + 1)
+    .fill()
+    .map(() => new Array(10).fill(0))
+  seats.forEach((seat) => {
     const [row, letter] = seat.split(``)
     arr[row][seatMap1v1[letter]] = 1
   })
@@ -235,8 +250,10 @@ const planeSetv2 = (numberOfRows, seatsStr) => {
     if (!set.has(`${i}A`) && !set.has(`${i}B`) && !set.has(`${i}C`)) {
       res++
     }
-    if (!set.has(`${i}D`) && !set.has(`${i}E`) && !set.has(`${i}F`) ||
-      !set.has(`${i}E`) && !set.has(`${i}F`) && !set.has(`${i}G`)) {
+    if (
+      (!set.has(`${i}D`) && !set.has(`${i}E`) && !set.has(`${i}F`)) ||
+      (!set.has(`${i}E`) && !set.has(`${i}F`) && !set.has(`${i}G`))
+    ) {
       res++
     }
     if (!set.has(`${i}H`) && !set.has(`${i}J`) && !set.has(`${i}K`)) {

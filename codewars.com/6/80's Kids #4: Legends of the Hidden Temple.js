@@ -50,19 +50,19 @@
 
 // NOTE: this problem's bullshit arithmetic almost killed me and took longer than several real algos put together would have
 
-const markSpot = n => {
-  if(n <= 0 || n % 2 === 0 || typeof n !== `number`) return `?`
-  const generatePad = n => new Array(n + 1).join(` `)
+const markSpot = (n) => {
+  if (n <= 0 || n % 2 === 0 || typeof n !== `number`) return `?`
+  const generatePad = (n) => new Array(n + 1).join(` `)
   const halfway = Math.floor(n / 2)
   const res = []
-  for(let i = 0; i < halfway; i++){
+  for (let i = 0; i < halfway; i++) {
     const left = generatePad(i * 2)
     const middle = generatePad(4 * (halfway - i) - 1)
     const line = `${left}X${middle}X\n`
     res.push(line)
   }
   res.push(`${generatePad(halfway * 2)}X\n`)
-  for(let i = halfway - 1; i >= 0; i--){
+  for (let i = halfway - 1; i >= 0; i--) {
     res.push(res[i])
   }
   return res.join(``)

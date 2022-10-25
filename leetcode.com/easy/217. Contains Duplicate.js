@@ -19,9 +19,9 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-const containsDuplicate = nums => nums.length !== new Set(nums).size
+const containsDuplicate = (nums) => nums.length !== new Set(nums).size
 
-const containsDuplicateSort = nums => {
+const containsDuplicateSort = (nums) => {
   nums.sort()
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] === nums[i + 1]) return true

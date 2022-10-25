@@ -35,8 +35,13 @@ function FakePQ(startingQueue) {
   this.queue = startingQueue
   this.length = this.queue.length
 }
-FakePQ.prototype.popSmallest = function() {
-  const smallest = this.queue.reduce((smallestSoFar, curr) => (curr.cost <= smallestSoFar.cost ? curr : smallestSoFar), { cost: Infinity })
+
+FakePQ.prototype.popSmallest = function () {
+  const smallest = this.queue.reduce(
+    (smallestSoFar, curr) =>
+      curr.cost <= smallestSoFar.cost ? curr : smallestSoFar,
+    { cost: Infinity }
+  )
 
   this.length--
   return this.queue.splice(this.queue.indexOf(smallest), 1)[0]
@@ -57,7 +62,9 @@ const dijkstra = (graph, start, end) => {
   while (queue.length) {
     const current = queue.popSmallest()
 
-    for (const [neighborVertex, neighborCost] of Object.entries(graph[current.vertex])) {
+    for (const [neighborVertex, neighborCost] of Object.entries(
+      graph[current.vertex]
+    )) {
       if (!resultTable[neighborVertex].visited) {
         if (resultTable[neighborVertex].cost > neighborCost + current.cost) {
           resultTable[neighborVertex].cost = neighborCost + current.cost
@@ -80,7 +87,6 @@ const dijkstra = (graph, start, end) => {
 }
 
 dijkstra(theSouth, `memphis`, `atlanta`)
-
 
 // {
 //   memphis: { cost: 0, via: null },

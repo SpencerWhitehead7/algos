@@ -18,12 +18,15 @@
 
 // The longest word from text. It's guaranteed that there is a unique output.
 
-const longestWord = text => {
-  const wordyChunks = text.replace(/[^a-z]/gi, ` `).replace(/\s\s+/g, ` `).split(` `)
+const longestWord = (text) => {
+  const wordyChunks = text
+    .replace(/[^a-z]/gi, ` `)
+    .replace(/\s\s+/g, ` `)
+    .split(` `)
   console.log(wordyChunks)
   let longest = wordyChunks[0]
-  wordyChunks.forEach(wordyChunk => {
-    if(wordyChunk.length > longest.length) longest = wordyChunk
+  wordyChunks.forEach((wordyChunk) => {
+    if (wordyChunk.length > longest.length) longest = wordyChunk
   })
   return longest
 }

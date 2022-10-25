@@ -16,21 +16,26 @@
  * @param {number} n
  * @return {boolean}
  */
-const isHappy = n => {
+const isHappy = (n) => {
   let tortoise = n
   let hare = takeStep(n)
-  while(tortoise !== hare && hare !== 1){
+  while (tortoise !== hare && hare !== 1) {
     tortoise = takeStep(tortoise)
     hare = takeStep(takeStep(hare))
   }
   return hare === 1
 }
 
-const isHappyMath = n => {
-  while(n !== 1 && n !== 4){
+const isHappyMath = (n) => {
+  while (n !== 1 && n !== 4) {
     n = takeStep(n)
   }
   return n === 1
 }
 
-const takeStep = n => n.toString().split(``).map(a => Number(a) * Number(a)).reduce((acc, curr) => acc + curr)
+const takeStep = (n) =>
+  n
+    .toString()
+    .split(``)
+    .map((a) => Number(a) * Number(a))
+    .reduce((acc, curr) => acc + curr)

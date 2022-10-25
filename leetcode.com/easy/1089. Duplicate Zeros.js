@@ -4,8 +4,6 @@
 
 // Do the above modifications to the input array in place, do not return anything from your function.
 
-
-
 // Example 1:
 
 // Input: [1,0,2,3,0,4,5,0]
@@ -17,7 +15,6 @@
 // Output: null
 // Explanation: After calling your function, the input array is modified to: [1,2,3]
 
-
 // Note:
 
 // 1 <= arr.length <= 10000
@@ -27,7 +24,7 @@
  * @param {number[]} arr
  * @return {void} Do not return anything, modify arr in-place instead.
  */
-const duplicateZeros = arr => {
+const duplicateZeros = (arr) => {
   const originalLength = arr.length
   const holderArr = new Array(originalLength)
   while (arr.length) {

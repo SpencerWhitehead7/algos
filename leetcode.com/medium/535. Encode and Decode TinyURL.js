@@ -9,7 +9,7 @@
  * @param {string} longUrl
  * @return {string}
  */
-const encode = longUrl => {
+const encode = (longUrl) => {
   const hash = Buffer.from(longUrl).toString(`base64`)
   return `https://www.tinyUrl.com/${hash}`
 }
@@ -20,7 +20,7 @@ const encode = longUrl => {
  * @param {string} shortUrl
  * @return {string}
  */
-const decode = shortUrl => {
+const decode = (shortUrl) => {
   const hash = shortUrl.split(`.com/`).pop()
   return Buffer.from(hash, `base64`).toString(`ascii`)
 }

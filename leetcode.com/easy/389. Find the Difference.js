@@ -23,17 +23,17 @@
  */
 const findTheDifference = (s, t) => {
   const tracker = {}
-  s.split(``).forEach(letter => {
-    if(tracker[letter]){
+  s.split(``).forEach((letter) => {
+    if (tracker[letter]) {
       tracker[letter]++
-    }else{
+    } else {
       tracker[letter] = 1
     }
   })
-  for(let i = 0; i < t.length; i++){
-    if(tracker[t[i]]){
+  for (let i = 0; i < t.length; i++) {
+    if (tracker[t[i]]) {
       tracker[t[i]]--
-    }else{
+    } else {
       return t[i]
     }
   }

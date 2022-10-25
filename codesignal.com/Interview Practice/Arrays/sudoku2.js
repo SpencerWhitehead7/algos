@@ -46,29 +46,29 @@
 
 // Return true if grid represents a valid Sudoku puzzle, otherwise return false.
 
-const sudoku2 = grid => {
-  if(!grid.every(isValid)) return false
-  for(let colI = 0; colI < grid.length; colI++){
+const sudoku2 = (grid) => {
+  if (!grid.every(isValid)) return false
+  for (let colI = 0; colI < grid.length; colI++) {
     const col = []
-    for(let rowI = 0; rowI < grid.length; rowI++){
+    for (let rowI = 0; rowI < grid.length; rowI++) {
       col.push(grid[rowI][colI])
     }
-    if(!isValid(col)) return false
+    if (!isValid(col)) return false
   }
-  for(let boxHI = 0; boxHI < grid.length; boxHI += 3){
-    for(let boxVI = 0; boxVI < grid.length; boxVI += 3){
+  for (let boxHI = 0; boxHI < grid.length; boxHI += 3) {
+    for (let boxVI = 0; boxVI < grid.length; boxVI += 3) {
       const box = []
-      for(let boxRow = boxVI; boxRow < boxVI + 3; boxRow++){
+      for (let boxRow = boxVI; boxRow < boxVI + 3; boxRow++) {
         box.push(...grid[boxRow].slice(boxHI, boxHI + 3))
       }
-      if(!isValid(box)) return false
+      if (!isValid(box)) return false
     }
   }
   return true
 }
 
-const isValid = array => {
-  array = array.filter(ele => ele !== `.`)
+const isValid = (array) => {
+  array = array.filter((ele) => ele !== `.`)
   const set = new Set(array)
   return set.size === array.length
 }

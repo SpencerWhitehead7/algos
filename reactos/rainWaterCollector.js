@@ -12,7 +12,7 @@
 
 // Here are some samples to test to be sure the function works. It is helpful to draw them out then walk step-by-step through the solution to help visualize it.
 
-const rainCollector = arr => {
+const rainCollector = (arr) => {
   const rightMaxes = []
   let rightMax = 0
   for (let i = arr.length - 1; i >= 0; i--) {
@@ -33,7 +33,6 @@ const rainCollector = arr => {
     return waterCollected + Math.min(leftMax, rightMax) - block
   }, 0)
 }
-
 
 // // vol = 7
 const a = [0, 0, 1, 2, 4, 3, 2, 5, 0, 0, 2, 1]

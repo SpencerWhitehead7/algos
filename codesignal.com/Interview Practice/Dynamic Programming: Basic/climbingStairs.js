@@ -23,9 +23,9 @@
 
 // It's guaranteed that the answer will fit in a 32-bit integer.
 
-const climbingStairs = n => {
+const climbingStairs = (n) => {
   const dpArr = [0, 1, 2]
-  for(let i = 3; i <= n; i++){
+  for (let i = 3; i <= n; i++) {
     const newWays = dpArr[i - 1] + dpArr[i - 2]
     dpArr.push(newWays)
   }

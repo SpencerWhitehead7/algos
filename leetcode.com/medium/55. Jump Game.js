@@ -20,16 +20,16 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-const canJump = function(nums){
-  if(nums[0] === 0 && nums.length > 1) return false
-  for(let i=nums.length-2; i>=0; i--){
-    if(nums[i]===0){
-      for(let j=i-1; j>=0; j--){
-        if(nums[j]>i-j){
+const canJump = (nums) => {
+  if (nums[0] === 0 && nums.length > 1) return false
+  for (let i = nums.length - 2; i >= 0; i--) {
+    if (nums[i] === 0) {
+      for (let j = i - 1; j >= 0; j--) {
+        if (nums[j] > i - j) {
           i = j
           break
         }
-        if(j===0) return false
+        if (j === 0) return false
       }
     }
   }

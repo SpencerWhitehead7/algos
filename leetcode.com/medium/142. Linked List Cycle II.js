@@ -17,7 +17,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const detectCycle = head => {
+const detectCycle = (head) => {
   if (!head) return null
   let tortoise = head
   let hare = head.next

@@ -23,6 +23,6 @@
 
 // true if name is a correct variable name, false otherwise.
 
-function variableName(name){
-  return (!/[^a-zA-Z0-9_]/.test(name) && /[^0-9]/.test(name[0]))
+function variableName(name) {
+  return !/[^a-zA-Z0-9_]/.test(name) && /[^0-9]/.test(name[0])
 }

@@ -47,54 +47,56 @@
  * @param {number} key
  * @return {TreeNode}
  */
-const deleteNodeIter = function(root, key){
+const deleteNodeIter = (root, key) => {
   let curr = root
   let prev
   let ref
-  while(curr){
-    if(curr.val > key){
+  while (curr) {
+    if (curr.val > key) {
       prev = curr
       curr = curr.left
-    }else if(curr.val < key){
+    } else if (curr.val < key) {
       prev = curr
       curr = curr.right
-    }else{
-      if(!curr.left || !curr.right){
-        if(!prev){
+    } else {
+      if (!curr.left || !curr.right) {
+        if (!prev) {
           return curr.left || curr.right
-        }else{
-          prev.val > key ? prev.left = curr.left || curr.right : prev.right = curr.left || curr.right
+        } else {
+          prev.val > key
+            ? (prev.left = curr.left || curr.right)
+            : (prev.right = curr.left || curr.right)
           return root
         }
       }
       ref = curr
       prev = curr
       curr = curr.right
-      while(curr.left){
+      while (curr.left) {
         prev = curr
         curr = curr.left
       }
       ref.val = curr.val
-      prev.left === curr ? prev.left = null : prev.right = null
+      prev.left === curr ? (prev.left = null) : (prev.right = null)
       key = curr.val
     }
   }
   return root
 }
 
-const deleteNodeRec = function(root, key){
-  if(root === null) return null
-  if(root.val === key){
-    if(root.left === null) return root.right
-    if(root.right === null) return root.left
+const deleteNodeRec = (root, key) => {
+  if (root === null) return null
+  if (root.val === key) {
+    if (root.left === null) return root.right
+    if (root.right === null) return root.left
     let next = root.right
-    while(next.left){
+    while (next.left) {
       next = next.left
     }
     next.left = root.left
     return root.right
   }
-  if(root.val > key) root.left = deleteNodeRec(root.left, key)
-  else if(root.val < key) root.right = deleteNodeRec(root.right, key)
+  if (root.val > key) root.left = deleteNodeRec(root.left, key)
+  else if (root.val < key) root.right = deleteNodeRec(root.right, key)
   return root
 }

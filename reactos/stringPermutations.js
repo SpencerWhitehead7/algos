@@ -77,7 +77,7 @@
 
 // finds all possible permutations *while* maintaining the order of the characters
 
-const stringPermutations = str => {
+const stringPermutations = (str) => {
   if (str.length === 1) return [str]
   const all = []
   let i = 0
@@ -86,17 +86,17 @@ const stringPermutations = str => {
     // get all the other characters
     const otherChars = str.slice(0, i) + str.slice(i + 1)
     // compute all permutations of the *other* characters
-    stringPermutations(otherChars).forEach(submpermut => {
+    stringPermutations(otherChars).forEach((submpermut) => {
       // add the current letter to the front of each of these "sub-permutations"
       // add *that* to the full result set
       all.push(letter + submpermut)
     })
     // increment until we reach a new letter (to avoid duplicates in the result set)
-    while (str[i] === letter) { i++ }
+    while (str[i] === letter) i++
   }
   return all
 }
-const sortedStringPermutations = str => {
+const sortedStringPermutations = (str) => {
   // sort the characters in the string
   const sortedStr = str.split(``).sort().join(``)
   // then find the ordered permutations of that sorted string

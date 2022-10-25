@@ -3,9 +3,9 @@
 // Find out how many ways to assign symbols to make sum of integers equal to target S.
 
 // Example 1:
-// Input: nums is [1, 1, 1, 1, 1], S is 3. 
+// Input: nums is [1, 1, 1, 1, 1], S is 3.
 // Output: 5
-// Explanation: 
+// Explanation:
 
 // -1+1+1+1+1 = 3
 // +1-1+1+1+1 = 3
@@ -24,14 +24,14 @@
  * @param {number} S
  * @return {number}
  */
-const findTargetSumWays = function(nums, S){
+const findTargetSumWays = (nums, S) => {
   const allNums = [0]
-  for(let i=0; i<nums.length; i++){
+  for (let i = 0; i < nums.length; i++) {
     const length = allNums.length
-    for(let j=0; j<length; j++){
+    for (let j = 0; j < length; j++) {
       allNums.push(allNums[j] + nums[i])
       allNums[j] = allNums[j] - nums[i]
     }
   }
-  return allNums.filter(num => num === S).length
+  return allNums.filter((num) => num === S).length
 }

@@ -12,7 +12,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-const longestConsecutive = nums => {
+const longestConsecutive = (nums) => {
   const unvisited = new Set(nums)
   const unvisitedIterator = unvisited.values()
   let maxLength = 0

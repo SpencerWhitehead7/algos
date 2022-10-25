@@ -16,8 +16,8 @@
  * @param {string} s
  * @return {boolean}
  */
-const isNumber = function(s){
-  if(s === ` `) return false
+const isNumber = (s) => {
+  if (s === ` `) return false
   return !isNaN(Number(s))
 }
 

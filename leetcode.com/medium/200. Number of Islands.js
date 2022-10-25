@@ -23,7 +23,7 @@
  * @param {character[][]} grid
  * @return {number}
  */
-const numIslands = grid => {
+const numIslands = (grid) => {
   if (!grid.length) return 0
 
   const rowsLength = grid.length
@@ -44,10 +44,15 @@ const numIslands = grid => {
             { row: row + 1, col },
             { row, col: col - 1 },
           ]
-            .filter(({ row, col }) => row >= 0 && row < rowsLength && col >= 0 && col < colsLength)
+            .filter(
+              ({ row, col }) =>
+                row >= 0 && row < rowsLength && col >= 0 && col < colsLength
+            )
             .filter(({ row, col }) => grid[row][col] === `1`)
 
-          landNeighbors.forEach(({ row, col }) => { grid[row][col] = `2` })
+          landNeighbors.forEach(({ row, col }) => {
+            grid[row][col] = `2`
+          })
 
           cellsToExplore.push(...landNeighbors)
         }

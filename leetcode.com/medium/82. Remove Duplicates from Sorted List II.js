@@ -20,22 +20,22 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const deleteDuplicates = head => {
-  if(!head || !head.next) return head
+const deleteDuplicates = (head) => {
+  if (!head || !head.next) return head
   const dummy = new ListNode(0)
   dummy.next = head
   let base = dummy
   let follower = head
   let leader = head.next
-  while(leader){
-    if(leader.val === follower.val){
-      while(leader && leader.val === follower.val){
+  while (leader) {
+    if (leader.val === follower.val) {
+      while (leader && leader.val === follower.val) {
         leader = leader.next
       }
       base.next = leader
       follower = leader
-      if(leader) leader = leader.next
-    }else{
+      if (leader) leader = leader.next
+    } else {
       base = base.next
       follower = follower.next
       leader = leader.next

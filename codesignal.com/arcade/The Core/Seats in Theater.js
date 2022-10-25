@@ -11,7 +11,6 @@
 
 // Here is what the theater looks like:
 
-
 // Input/Output
 
 // [execution time limit] 4 seconds (js)
@@ -48,4 +47,5 @@
 
 // The number of people who sit strictly behind you and in your column or to the left.
 
-const seatsInTheater = (nCols, nRows, col, row) => (nCols - col + 1) * (nRows - row)
+const seatsInTheater = (nCols, nRows, col, row) =>
+  (nCols - col + 1) * (nRows - row)

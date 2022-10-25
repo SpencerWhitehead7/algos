@@ -2,8 +2,12 @@ const expect = require(`chai`).expect
 const _cloneDeep = require(`lodash/cloneDeep`)
 
 const { snailRec, snailIter } = require(`../codewars.com/4/snail`)
-const { spiralOrderMut, spiralOrder } = require(`../leetcode.com/medium/54. Spiral Matrix`)
+const {
+  spiralOrderMut,
+  spiralOrder,
+} = require(`../leetcode.com/medium/54. Spiral Matrix`)
 
+// prettier-ignore
 const testCases = {
   empty: [
     [
@@ -15,7 +19,7 @@ const testCases = {
     [
       [[1]],
       [1],
-    ],
+      ],
     [
       [[1, 2], [3, 4]],
       [1, 2, 4, 3],
@@ -51,7 +55,7 @@ const testCases = {
     [
       [[1, 2]],
       [1, 2],
-    ],
+      ],
     [
       [[1, 2, 3], [4, 5, 6]],
       [1, 2, 3, 6, 5, 4],

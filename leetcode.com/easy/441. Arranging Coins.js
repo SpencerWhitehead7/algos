@@ -30,28 +30,28 @@
  * @param {number} n
  * @return {number}
  */
-const arrangeCoinsSlow = n => {
+const arrangeCoinsSlow = (n) => {
   let count = 0
   let i
-  for(i = 0; count <= n; i++){
+  for (i = 0; count <= n; i++) {
     count += i + 1
   }
   return i - 1
 }
 
-const arrangeCoinsFast = n => {
-  if(n === 0) return 0
-  if(n === 1) return 1
+const arrangeCoinsFast = (n) => {
+  if (n === 0) return 0
+  if (n === 1) return 1
   let start = 0
   let end = n
-  while(start < end){
+  while (start < end) {
     const middle = Math.floor((start + end) / 2)
     const sum = (middle + 1) * (middle / 2)
-    if(sum > n){
+    if (sum > n) {
       end = middle
-    }else if(sum < n){
+    } else if (sum < n) {
       start = middle + 1
-    }else{
+    } else {
       return middle
     }
   }

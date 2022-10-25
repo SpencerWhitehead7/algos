@@ -61,13 +61,13 @@ const numComponents = (head, G) => {
   const testSet = new Set(G)
   let res = 0
   let pointer = head
-  while(pointer){
-    if(testSet.has(pointer.val)){
+  while (pointer) {
+    if (testSet.has(pointer.val)) {
       res++
-      while(pointer && testSet.has(pointer.val)){
+      while (pointer && testSet.has(pointer.val)) {
         pointer = pointer.next
       }
-    }else{
+    } else {
       pointer = pointer.next
     }
   }

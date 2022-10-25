@@ -33,11 +33,23 @@
 
 // shameful one-liner
 
-const lateRide = n => String(Math.floor(n / 60)).split(``).map(digit => Number(digit)).reduce((acc, curr) => acc + curr) + String(Math.floor(n % 60)).split(``).map(digit => Number(digit)).reduce((acc, curr) => acc + curr)
+const lateRide = (n) =>
+  String(Math.floor(n / 60))
+    .split(``)
+    .map((digit) => Number(digit))
+    .reduce((acc, curr) => acc + curr) +
+  String(Math.floor(n % 60))
+    .split(``)
+    .map((digit) => Number(digit))
+    .reduce((acc, curr) => acc + curr)
 
 // readable ver
 
-const lateRideAlt = n => {
-  const getDigitSum = number => String(number).split(``).map(digit => Number(digit)).reduce((acc, curr) => acc + curr)
+const lateRideAlt = (n) => {
+  const getDigitSum = (number) =>
+    String(number)
+      .split(``)
+      .map((digit) => Number(digit))
+      .reduce((acc, curr) => acc + curr)
   return getDigitSum(Math.floor(n / 60)) + getDigitSum(n % 60)
 }

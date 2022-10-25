@@ -11,7 +11,7 @@
 // Setup
 // See slides for diagrams and hints!
 
-const findCycleLength = nodeInCycle => {
+const findCycleLength = (nodeInCycle) => {
   let count = 1
   let runner = nodeInCycle.next
   while (runner !== nodeInCycle) {
@@ -21,7 +21,7 @@ const findCycleLength = nodeInCycle => {
   return count
 }
 
-const detectLoop = head => {
+const detectLoop = (head) => {
   const start = head
   if (start === null || start.next === null) return false
   let slow = start

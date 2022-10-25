@@ -25,7 +25,7 @@
  * @param {string[]} list2
  * @return {string[]}
  */
-const findRestaurant = function(list1, list2){
+const findRestaurant = (list1, list2) => {
   const tracker = {}
   let res = []
   let smallest = Infinity
@@ -33,12 +33,12 @@ const findRestaurant = function(list1, list2){
     tracker[restaurant] = i + 1
   })
   list2.forEach((restaurant, i) => {
-    if(tracker[restaurant]){
+    if (tracker[restaurant]) {
       const sum = tracker[restaurant] + i
-      if(sum < smallest){
+      if (sum < smallest) {
         smallest = sum
         res = [restaurant]
-      }else if(sum ===  smallest){
+      } else if (sum === smallest) {
         res.push(restaurant)
       }
     }

@@ -20,15 +20,15 @@
 
 // [output] string
 
-function reverseParentheses(s){
+function reverseParentheses(s) {
   const arr = s.split(``)
-  while(arr.includes(`(`)){
+  while (arr.includes(`(`)) {
     let opening = 0
     let closing = arr.length - 1
-    for(let i=0; i<arr.length; i++){
-      if(arr[i] === `(`){
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === `(`) {
         opening = i
-      }else if(arr[i] === `)`){
+      } else if (arr[i] === `)`) {
         closing = i
         break
       }
@@ -37,4 +37,4 @@ function reverseParentheses(s){
     arr.splice(opening, closing - opening + 1, ...reversedSegment)
   }
   return arr.join(``)
-} 
+}

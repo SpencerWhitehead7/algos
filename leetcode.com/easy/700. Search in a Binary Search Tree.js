@@ -37,7 +37,9 @@ const searchBSTRec = (root, val) => {
   if (root.val === val) {
     return root
   }
-  return root.val > val ? searchBSTRec(root.left, val) : searchBSTRec(root.right, val)
+  return root.val > val
+    ? searchBSTRec(root.left, val)
+    : searchBSTRec(root.right, val)
 }
 
 const searchBSTIter = (root, val) => {

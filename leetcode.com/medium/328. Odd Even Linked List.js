@@ -26,7 +26,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const oddEvenList = head => {
+const oddEvenList = (head) => {
   if (!head || !head.next || !head.next.next) return head
 
   let odds = head

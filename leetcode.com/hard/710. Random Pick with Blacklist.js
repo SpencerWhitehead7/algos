@@ -39,12 +39,12 @@
  * @param {number} N
  * @param {number[]} blacklist
  */
-const Solution = function(N, blacklist){
+const Solution = function (N, blacklist) {
   const possibleNumbers = []
   const blacklistSet = new Set(blacklist)
-  if(N < 1000000000){
-    for(let i = 0; i < N; i++){
-      if(!blacklistSet.has(i)){
+  if (N < 1000000000) {
+    for (let i = 0; i < N; i++) {
+      if (!blacklistSet.has(i)) {
         possibleNumbers.push(i)
       }
     }
@@ -58,14 +58,16 @@ const Solution = function(N, blacklist){
 /**
  * @return {number}
  */
-Solution.prototype.pick = function(){
-  if(this.useWhitelist){
-    return this.possibleNumbers[Math.floor(Math.random() * this.possibleNumbers.length)]
-  }else{
+Solution.prototype.pick = function () {
+  if (this.useWhitelist) {
+    return this.possibleNumbers[
+      Math.floor(Math.random() * this.possibleNumbers.length)
+    ]
+  } else {
     // eslint-disable-next-line no-constant-condition
-    while(true){
+    while (true) {
       const possibleRes = Math.floor(Math.random() * this.N)
-      if(!this.blacklistSet.has(possibleRes)){
+      if (!this.blacklistSet.has(possibleRes)) {
         return possibleRes
       }
     }

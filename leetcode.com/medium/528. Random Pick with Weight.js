@@ -24,11 +24,11 @@
 /**
  * @param {number[]} w
  */
-const Solution = function(w){
+const Solution = function (w) {
   const total = w.reduce((acc, curr) => acc + curr)
   let bottom = 0
   let top = 0
-  const weights = w.map(wNum => {
+  const weights = w.map((wNum) => {
     top += wNum
     const res = [bottom, top]
     bottom = top
@@ -41,10 +41,10 @@ const Solution = function(w){
 /**
  * @return {number}
  */
-Solution.prototype.pickIndex = function(){
+Solution.prototype.pickIndex = function () {
   const pick = Math.random() * this.total
-  for(let i = 0; i < this.weights.length; i++){
-    if(pick >= this.weights[i][0] && pick < this.weights[i][1]) return i
+  for (let i = 0; i < this.weights.length; i++) {
+    if (pick >= this.weights[i][0] && pick < this.weights[i][1]) return i
   }
 }
 

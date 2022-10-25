@@ -36,18 +36,18 @@
 
 const arrayMaxConsecutiveSumIneff = (inputArray, k) => {
   const resArr = []
-  for(let i = 0; i <= inputArray.length - k; i++){
+  for (let i = 0; i <= inputArray.length - k; i++) {
     resArr.push(sum(inputArray.slice(i, i + k)))
   }
-  return resArr.reduce((acc, curr) => acc > curr ? acc : curr)
+  return resArr.reduce((acc, curr) => (acc > curr ? acc : curr))
 }
 
-const sum = arr => arr.reduce((acc, curr) => acc + curr)
+const sum = (arr) => arr.reduce((acc, curr) => acc + curr)
 
 const arrayMaxConsecutiveSum = (inputArray, k) => {
   const resArr = [inputArray.slice(0, k).reduce((acc, curr) => acc + curr)]
-  for(let i = 1; i <= inputArray.length - k; i++){
+  for (let i = 1; i <= inputArray.length - k; i++) {
     resArr.push(resArr[i - 1] - inputArray[i - 1] + inputArray[i + (k - 1)])
   }
-  return resArr.reduce((acc, curr) => acc > curr ? acc : curr)
+  return resArr.reduce((acc, curr) => (acc > curr ? acc : curr))
 }

@@ -8,9 +8,7 @@
 // A Sudoku board (partially filled) could be valid but is not necessarily solvable.
 // Only the filled cells need to be validated according to the mentioned rules.
 
-
 // Example 1:
-
 
 // Input: board =
 // [["5","3",".",".","7",".",".",".","."]
@@ -38,7 +36,6 @@
 // Output: false
 // Explanation: Same as Example 1, except with the 5 in the top left corner being modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid.
 
-
 // Constraints:
 
 // board.length == 9
@@ -49,7 +46,7 @@
  * @param {character[][]} board
  * @return {boolean}
  */
-const isValidSudoku = board => {
+const isValidSudoku = (board) => {
   for (let i = 0; i < 9; i++) {
     const row = Array(9)
     const col = Array(9)
@@ -58,15 +55,17 @@ const isValidSudoku = board => {
     for (let j = 0; j < 9; j++) {
       row[j] = board[i][j]
       col[j] = board[j][i]
-      box[j] = board[(i - (i % 3)) + Math.floor(j / 3)][(3 * (i % 3)) + (j % 3)]
+      box[j] = board[i - (i % 3) + Math.floor(j / 3)][3 * (i % 3) + (j % 3)]
     }
 
-    if (!isValidUnit(row) || !isValidUnit(col) || !isValidUnit(box)) return false
+    if (!isValidUnit(row) || !isValidUnit(col) || !isValidUnit(box)) {
+      return false
+    }
   }
   return true
 }
 
-const isValidUnit = items => {
+const isValidUnit = (items) => {
   const set = new Set()
   for (let i = 0; i < items.length; i++) {
     const item = items[i]

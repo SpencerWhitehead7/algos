@@ -10,8 +10,6 @@
 
 // Note: The test cases are generated such that getRandom will only be called if there is at least one item in the RandomizedCollection.
 
-
-
 // Example 1:
 
 // Input
@@ -34,7 +32,6 @@
 // randomizedCollection.remove(1);   // return true since the collection contains 1.
 //                                   // Removes 1 from the collection. Collection now contains [1,2].
 // randomizedCollection.getRandom(); // getRandom should return 1 or 2, both equally likely.
-
 
 // Constraints:
 

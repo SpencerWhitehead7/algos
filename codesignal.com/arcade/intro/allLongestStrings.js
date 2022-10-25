@@ -21,17 +21,17 @@
 
 // Array of the longest strings, stored in the same order as in the inputArray.
 
-function allLongestStrings(inputArray){
+function allLongestStrings(inputArray) {
   let lengthToBeat = 0
   let res = []
-  for(let i=0; i<inputArray.length; i++){
+  for (let i = 0; i < inputArray.length; i++) {
     const ele = inputArray[i]
-    if(ele.length > lengthToBeat){
+    if (ele.length > lengthToBeat) {
       lengthToBeat = ele.length
       res = [ele]
-    }else if(ele.length === lengthToBeat){
+    } else if (ele.length === lengthToBeat) {
       res.push(ele)
     }
   }
   return res
-} 
+}

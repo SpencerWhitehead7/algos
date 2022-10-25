@@ -10,15 +10,17 @@
 
 // Spirit of the question way
 
-const disemvowel = str => {
+const disemvowel = (str) => {
   let res = ``
-  str.split(``).forEach(letter => {
+  str.split(``).forEach((letter) => {
     const LETTER = letter.toUpperCase()
-    if(LETTER !== `A` &&
-    LETTER !== `E` &&
-    LETTER !== `I` &&
-    LETTER !== `O` &&
-    LETTER !== `U`){
+    if (
+      LETTER !== `A` &&
+      LETTER !== `E` &&
+      LETTER !== `I` &&
+      LETTER !== `O` &&
+      LETTER !== `U`
+    ) {
       res += letter
     }
   })
@@ -27,4 +29,4 @@ const disemvowel = str => {
 
 // best practices way
 
-const disemvowelAlt = str => str.replace(/[aeiou]/gi, ``)
+const disemvowelAlt = (str) => str.replace(/[aeiou]/gi, ``)

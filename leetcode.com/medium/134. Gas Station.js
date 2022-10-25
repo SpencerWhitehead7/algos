@@ -47,13 +47,13 @@
  * @return {number}
  */
 const canCompleteCircuit = (gas, cost) => {
-  for(let i = 0; i < gas.length; i++){
+  for (let i = 0; i < gas.length; i++) {
     let change = 0
-    for(let j = i; j < gas.length + i; j++){
+    for (let j = i; j < gas.length + i; j++) {
       change += gas[j % gas.length] - cost[j % gas.length]
-      if(change < 0) break
+      if (change < 0) break
     }
-    if(change >= 0) return i
+    if (change >= 0) return i
   }
   return -1
 }
@@ -66,9 +66,9 @@ const canCompleteCircuit2 = (gas, cost) => {
   let minVal = 0
   let minIndex = 0
   let sum = 0
-  for(let i = 0; i < gas.length; i++){
+  for (let i = 0; i < gas.length; i++) {
     sum += gas[i] - cost[i]
-    if(sum <= minVal){
+    if (sum <= minVal) {
       minVal = sum
       minIndex = i
     }

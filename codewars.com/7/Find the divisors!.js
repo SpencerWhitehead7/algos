@@ -5,10 +5,10 @@
 // divisors(25); // should return [5]
 // divisors(13); // should return "13 is prime"
 
-const divisors = integer => {
+const divisors = (integer) => {
   const res = []
-  for(let i = 2; i < (integer / 2) + 1; i++){
-    if(integer % i === 0){
+  for (let i = 2; i < integer / 2 + 1; i++) {
+    if (integer % i === 0) {
       res.push(i)
     }
   }

@@ -143,11 +143,14 @@
 //   this.right = null;
 // }
 const hasPathWithGivenSum = (t, s, memo = 0) => {
-  if(!t) return false
+  if (!t) return false
   memo += t.value
-  if(!t.left && !t.right){
+  if (!t.left && !t.right) {
     return s === memo
-  }else{
-    return hasPathWithGivenSum(t.left, s, memo) || hasPathWithGivenSum(t.right, s, memo)
+  } else {
+    return (
+      hasPathWithGivenSum(t.left, s, memo) ||
+      hasPathWithGivenSum(t.right, s, memo)
+    )
   }
 }

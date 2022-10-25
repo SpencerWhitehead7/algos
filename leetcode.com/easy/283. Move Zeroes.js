@@ -14,7 +14,7 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 // n^2
-const moveZeroesSlow = nums => {
+const moveZeroesSlow = (nums) => {
   let shiftCount = 0
   let i = 0
   while (i < nums.length - shiftCount) {
@@ -28,7 +28,7 @@ const moveZeroesSlow = nums => {
 }
 
 // n
-const moveZeroes = nums => {
+const moveZeroes = (nums) => {
   let writePtr = 0
   for (let readPtr = 0; readPtr < nums.length; readPtr++) {
     const rVal = nums[readPtr]

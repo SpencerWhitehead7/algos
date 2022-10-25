@@ -23,11 +23,11 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-const subsets = nums => {
+const subsets = (nums) => {
   const results = [[]]
 
   for (const num of nums) {
-    results.forEach(subset => {
+    results.forEach((subset) => {
       results.push([...subset, num])
     })
   }

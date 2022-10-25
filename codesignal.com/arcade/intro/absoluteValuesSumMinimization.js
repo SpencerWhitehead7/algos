@@ -23,6 +23,6 @@
 
 // [output] integer
 
-function absoluteValuesSumMinimization(a){
-  return a[Math.ceil(a.length/2)-1]
+function absoluteValuesSumMinimization(a) {
+  return a[Math.ceil(a.length / 2) - 1]
 }

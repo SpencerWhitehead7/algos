@@ -16,17 +16,17 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-const findDisappearedNumbers = nums => {
-  const allNums = [...Array(nums.length).keys()].map(num => num + 1)
+const findDisappearedNumbers = (nums) => {
+  const allNums = [...Array(nums.length).keys()].map((num) => num + 1)
   for (const num of nums) {
     allNums[num - 1] = null
   }
 
-  return allNums.filter(num => Boolean(num))
+  return allNums.filter(Boolean)
 }
 
-const findDisappearedNumbersSet = nums => {
-  const allNums = new Set([...Array(nums.length).keys()].map(num => num + 1))
+const findDisappearedNumbersSet = (nums) => {
+  const allNums = new Set([...Array(nums.length).keys()].map((num) => num + 1))
   for (const num of nums) {
     allNums.remove(num)
   }
@@ -34,7 +34,7 @@ const findDisappearedNumbersSet = nums => {
   return [...allNums]
 }
 
-const findDisappearedNumbersConstSpace = nums => {
+const findDisappearedNumbersConstSpace = (nums) => {
   for (let i = 0; i < nums.length; i++) {
     const derivedIndex = Math.abs(nums[i]) - 1
     const derivedIndexHasBeenVisited = nums[derivedIndex] < 0

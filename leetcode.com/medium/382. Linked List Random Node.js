@@ -26,7 +26,7 @@
         Note that the head is guaranteed to be not null, so it contains at least one node.
  * @param {ListNode} head
  */
-const Solution = function(head){
+const Solution = function (head) {
   this.head = head
 }
 
@@ -34,16 +34,16 @@ const Solution = function(head){
  * Returns a random node's value.
  * @return {number}
  */
-Solution.prototype.getRandom = function(){
+Solution.prototype.getRandom = function () {
   let length = 0
   let pointer = this.head
-  while(pointer){
+  while (pointer) {
     length++
     pointer = pointer.next
   }
   let randomNode = Math.floor(Math.random() * length)
   pointer = this.head
-  while(randomNode > 0){
+  while (randomNode > 0) {
     randomNode--
     pointer = pointer.next
   }

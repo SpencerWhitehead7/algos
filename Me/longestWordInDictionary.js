@@ -1,14 +1,16 @@
 // I'm unsure what this prompt actually was, but I think it was something like this https://stackoverflow.com/questions/52382844/given-a-word-find-the-longest-words-in-a-dictionary-that-can-be-formed-using
 
 // O(n!)
-const findLongestViaPermutation = (dict, chars) => { // assumes a set for dict
+const findLongestViaPermutation = (dict, chars) => {
+  // assumes a set for dict
   const permute = (remainingLetters, baseLetters) => {
     const permutations = [baseLetters]
     if (!remainingLetters.length) return permutations
 
     for (let i = 0; i < remainingLetters.length; i++) {
       const letter = remainingLetters[i]
-      const otherLetters = remainingLetters.slice(0, i) + remainingLetters.slice(i + 1)
+      const otherLetters =
+        remainingLetters.slice(0, i) + remainingLetters.slice(i + 1)
       permutations.push(...permute(otherLetters, `${baseLetters}${letter}`))
     }
 
@@ -30,10 +32,10 @@ const findLongestViaPermutation = (dict, chars) => { // assumes a set for dict
 }
 
 // O(n)
-const findLongest = (dict, chars) => { // assumes an array for dict
-  const getFreqMap = str => str
-    .split(``)
-    .reduce((acc, char) => {
+const findLongest = (dict, chars) => {
+  // assumes an array for dict
+  const getFreqMap = (str) =>
+    str.split(``).reduce((acc, char) => {
       acc[char] ??= 0
       acc[char]++
       return acc
@@ -41,7 +43,9 @@ const findLongest = (dict, chars) => { // assumes an array for dict
 
   const charMap = getFreqMap(chars)
 
-  const possibleWords = dict.filter(word => Object.entries(getFreqMap(word)).every(([k, v]) => v <= charMap[k]))
+  const possibleWords = dict.filter((word) =>
+    Object.entries(getFreqMap(word)).every(([k, v]) => v <= charMap[k])
+  )
 
   let longestWord = ``
 
@@ -55,5 +59,6 @@ const findLongest = (dict, chars) => { // assumes an array for dict
   return longestWord
 }
 
+// prettier-ignore
 console.log(findLongestViaPermutation(new Set([`to`, `toe`, `toes`, `dog`]), `ote`))
 console.log(findLongest([`to`, `toe`, `toes`, `dog`], `ote`))

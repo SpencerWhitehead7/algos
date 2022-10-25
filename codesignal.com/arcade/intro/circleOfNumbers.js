@@ -7,8 +7,6 @@
 // For n = 10 and firstNumber = 2, the output should be
 // circleOfNumbers(n, firstNumber) = 7.
 
-
-
 // Input/Output
 
 // [execution time limit] 4 seconds (js)
@@ -27,6 +25,6 @@
 
 // [output] integer
 
-function circleOfNumbers(n, firstNumber){
-  return (firstNumber + (n/2))%n
-} 
+function circleOfNumbers(n, firstNumber) {
+  return (firstNumber + n / 2) % n
+}

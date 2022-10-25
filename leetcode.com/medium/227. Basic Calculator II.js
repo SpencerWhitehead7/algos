@@ -23,37 +23,37 @@
  * @param {string} s
  * @return {number}
  */
-const calculate = s => {
+const calculate = (s) => {
   s = s.replace(/\s/g, ``)
   const arr = []
   let numStart = 0
   let inNum = false
-  for(let i = 0; i < s.length; i++){
-    if(s[i] === `*` || s[i] === `/` || s[i] === `+` || s[i] === `-`){
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === `*` || s[i] === `/` || s[i] === `+` || s[i] === `-`) {
       arr.push(Number(s.slice(numStart, i)))
       arr.push(s[i])
       inNum = false
-    }else if(!inNum){
+    } else if (!inNum) {
       numStart = i
       inNum = true
     }
   }
   arr.push(Number(s.slice(numStart)))
 
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i] === `*`){
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === `*`) {
       arr.splice(i - 1, 3, arr[i - 1] * arr[i + 1])
       i -= 3
-    }else if(arr[i] === `/`){
+    } else if (arr[i] === `/`) {
       arr.splice(i - 1, 3, Math.floor(arr[i - 1] / arr[i + 1]))
       i -= 3
     }
   }
 
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i] === `+`){
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === `+`) {
       arr[i + 1] = arr[i - 1] + arr[i + 1]
-    }else if(arr[i] === `-`){
+    } else if (arr[i] === `-`) {
       arr[i + 1] = arr[i - 1] - arr[i + 1]
     }
   }

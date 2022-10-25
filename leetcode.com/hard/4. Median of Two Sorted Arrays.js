@@ -32,7 +32,9 @@ const findMedianSortedArrays = (nums1, nums2) => {
   let searchMaxContrib = search.length
 
   while (searchMinContrib <= searchMaxContrib) {
-    const searchContrib = Math.floor(searchMinContrib + ((searchMaxContrib - searchMinContrib) / 2)) // === Math.floor(min + max) / 2) to prevent integer overflows do the algebra
+    const searchContrib = Math.floor(
+      searchMinContrib + (searchMaxContrib - searchMinContrib) / 2
+    ) // === Math.floor(min + max) / 2) to prevent integer overflows do the algebra
     const lastLeftSearchVal = search[searchContrib - 1]
     const firstRightSearchVal = search[searchContrib]
 
@@ -47,17 +49,19 @@ const findMedianSortedArrays = (nums1, nums2) => {
     } else if (firstRightSearchVal < lastLeftAltVal) {
       searchMinContrib = searchContrib + 1
     } else {
-      const leftHalfEnd = searchContrib === 0
-        ? lastLeftAltVal
-        : altContrib === 0
+      const leftHalfEnd =
+        searchContrib === 0
+          ? lastLeftAltVal
+          : altContrib === 0
           ? lastLeftSearchVal
           : Math.max(lastLeftSearchVal, lastLeftAltVal)
       if ((search.length + alt.length) % 2 === 1) {
         return leftHalfEnd
       } else {
-        const rightHalfStart = searchContrib === search.length
-          ? firstRightAltVal
-          : altContrib === alt.length
+        const rightHalfStart =
+          searchContrib === search.length
+            ? firstRightAltVal
+            : altContrib === alt.length
             ? firstRightSearchVal
             : Math.min(firstRightSearchVal, firstRightAltVal)
 
@@ -81,9 +85,10 @@ const findMedianSortedArraysLinear = (nums1, nums2) => {
     }
   }
 
-  const leftHalfEnd = nums1Write === 0
-    ? nums2[nums2Write - 1]
-    : nums2Write === 0
+  const leftHalfEnd =
+    nums1Write === 0
+      ? nums2[nums2Write - 1]
+      : nums2Write === 0
       ? nums1[nums1Write - 1]
       : Math.max(nums1[nums1Write - 1], nums2[nums2Write - 1])
 
@@ -91,9 +96,10 @@ const findMedianSortedArraysLinear = (nums1, nums2) => {
     return leftHalfEnd
   }
 
-  const rightHalfStart = nums1Write === nums1.length
-    ? nums2[nums2Write]
-    : nums2Write === nums2.length
+  const rightHalfStart =
+    nums1Write === nums1.length
+      ? nums2[nums2Write]
+      : nums2Write === nums2.length
       ? nums1[nums1Write]
       : Math.min(nums1[nums1Write], nums2[nums2Write])
 

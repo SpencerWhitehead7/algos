@@ -17,12 +17,12 @@
  * @param {number[]} nums
  * @return {number}
  */
-const singleNumber = nums => {
+const singleNumber = (nums) => {
   const uniques = new Set(nums)
   const totalSum = nums.reduce((acc, curr) => acc + curr)
   let setSum = 0
-  for(const num of uniques){
+  for (const num of uniques) {
     setSum += num
   }
-  return (setSum * 2) - totalSum
+  return setSum * 2 - totalSum
 }

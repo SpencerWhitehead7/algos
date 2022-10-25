@@ -37,7 +37,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-const removeDuplicates = nums => {
+const removeDuplicates = (nums) => {
   let i = 0
   while (i < nums.length) {
     if (nums[i] === nums[i - 2]) {
@@ -49,9 +49,13 @@ const removeDuplicates = nums => {
   return nums.length
 }
 
-const removeDuplicatesFast = nums => {
+const removeDuplicatesFast = (nums) => {
   let skips = 0
-  for (let follower = 1, leader = 2; leader < nums.length; follower++, leader++) {
+  for (
+    let follower = 1, leader = 2;
+    leader < nums.length;
+    follower++, leader++
+  ) {
     if (nums[follower] === nums[follower - 1]) {
       while (nums[follower] === nums[leader]) {
         leader++
@@ -65,7 +69,7 @@ const removeDuplicatesFast = nums => {
   return nums.length - skips
 }
 
-const removeDuplicatesSimple = nums => {
+const removeDuplicatesSimple = (nums) => {
   let write = 2
   let read = 2
   while (read < nums.length) {

@@ -2,8 +2,6 @@
 
 // A customer's wealth is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum wealth.
 
-
-
 // Example 1:
 
 // Input: accounts = [[1,2,3],[3,2,1]]
@@ -26,7 +24,6 @@
 // Input: accounts = [[2,8,7],[7,1,3],[1,9,5]]
 // Output: 17
 
-
 // Constraints:
 
 // m == accounts.length
@@ -38,4 +35,7 @@
  * @param {number[][]} accounts
  * @return {number}
  */
-const maximumWealth = accounts => Math.max(...accounts.map(account => account.reduce((acc, curr) => acc + curr)))
+const maximumWealth = (accounts) =>
+  Math.max(
+    ...accounts.map((account) => account.reduce((acc, curr) => acc + curr))
+  )

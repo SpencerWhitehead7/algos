@@ -18,42 +18,42 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-const sortColorsDisgustinglyTrivial = nums => {
+const sortColorsDisgustinglyTrivial = (nums) => {
   nums.sort((a, b) => a - b)
 }
 
-const sortColorsTrivial = nums => {
-  const counter = {0 : 0, 1 : 0, 2 : 0}
-  nums.forEach(num => {
+const sortColorsTrivial = (nums) => {
+  const counter = { 0: 0, 1: 0, 2: 0 }
+  nums.forEach((num) => {
     counter[num]++
   })
   nums.forEach((num, i) => {
-    if(counter[0]){
+    if (counter[0]) {
       nums[i] = 0
       counter[0]--
-    }else if(counter[1]){
+    } else if (counter[1]) {
       nums[i] = 1
       counter[1]--
-    }else if(counter[2]){
+    } else if (counter[2]) {
       nums[i] = 2
       counter[2]--
     }
   })
 }
 
-const sortColors = nums => {
-  for(let i = 0; i < nums.length; i++){
+const sortColors = (nums) => {
+  for (let i = 0; i < nums.length; i++) {
     const num = nums[i]
-    if(num === 0){
+    if (num === 0) {
       nums.unshift(nums.splice(i, 1)[0])
-    }else if(num === 2){
+    } else if (num === 2) {
       nums.push(nums.splice(i, 1)[0])
       let counter = 0
-      while(nums[i] === 2 && i + counter < nums.length){
+      while (nums[i] === 2 && i + counter < nums.length) {
         nums.push(nums.splice(i, 1)[0])
         counter++
       }
-      if(i + counter >= nums.length) break
+      if (i + counter >= nums.length) break
       i--
     }
   }

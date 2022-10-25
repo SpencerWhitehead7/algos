@@ -11,8 +11,6 @@
 
 // Check out the image below for better understanding:
 
-
-
 // Input/Output
 
 // [execution time limit] 4 seconds (js)
@@ -29,8 +27,8 @@
 
 // The desired length.
 
-function avoidObstacles(inputArray){
-  for(let jump = 2;; jump++){
-    if(inputArray.every(obstacle => obstacle%jump !==0)) return jump
+function avoidObstacles(inputArray) {
+  for (let jump = 2; ; jump++) {
+    if (inputArray.every((obstacle) => obstacle % jump !== 0)) return jump
   }
-} 
+}

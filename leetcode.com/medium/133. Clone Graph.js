@@ -1,6 +1,5 @@
 // Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
 
-
 // OJ's undirected graph serialization:
 // Nodes are labeled uniquely.
 
@@ -33,16 +32,18 @@
  * @param {UndirectedGraphNode} graph
  * @return {UndirectedGraphNode}
  */
-const cloneGraph = function(graph){
+const cloneGraph = (graph) => {
   const map = {}
   return traverse(graph, map)
 }
 
 const traverse = (node, map) => {
-  if(!node) return node
-  if(!map[node.label]){
+  if (!node) return node
+  if (!map[node.label]) {
     map[node.label] = new UndirectedGraphNode(node.label)
-    map[node.label].neighbors = node.neighbors.map(neighbor => traverse(neighbor, map))
+    map[node.label].neighbors = node.neighbors.map((neighbor) =>
+      traverse(neighbor, map)
+    )
   }
   return map[node.label]
 }

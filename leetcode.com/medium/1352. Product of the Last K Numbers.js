@@ -9,8 +9,6 @@
 // You can assume that always the current list has at least k numbers.
 // At any time, the product of any contiguous sequence of numbers will fit into a single 32-bit integer without overflowing.
 
-
-
 // Example:
 
 // Input
@@ -33,14 +31,13 @@
 // productOfNumbers.add(8);        // [3,0,2,5,4,8]
 // productOfNumbers.getProduct(2); // return 32. The product of the last 2 numbers is 4 * 8 = 32
 
-
 // Constraints:
 
 // There will be at most 40000 operations considering both add and getProduct.
 // 0 <= num <= 100
 // 1 <= k <= 40000
 
-const ProductOfNumbers = function() {
+const ProductOfNumbers = function () {
   this.products = [1]
 }
 
@@ -48,7 +45,7 @@ const ProductOfNumbers = function() {
  * @param {number} num
  * @return {void}
  */
-ProductOfNumbers.prototype.add = function(num) {
+ProductOfNumbers.prototype.add = function (num) {
   if (num === 0) {
     this.products = [1]
   } else {
@@ -60,10 +57,11 @@ ProductOfNumbers.prototype.add = function(num) {
  * @param {number} k
  * @return {number}
  */
-ProductOfNumbers.prototype.getProduct = function(k) {
+ProductOfNumbers.prototype.getProduct = function (k) {
   return k > this.products.length - 1
     ? 0
-    : this.products[this.products.length - 1] / this.products[this.products.length - k - 1]
+    : this.products[this.products.length - 1] /
+        this.products[this.products.length - k - 1]
 }
 
 /**

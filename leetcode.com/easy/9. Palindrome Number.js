@@ -22,17 +22,17 @@
  * @param {number} x
  * @return {boolean}
  */
-const isPalindromeStr = x => {
+const isPalindromeStr = (x) => {
   const str = x.toString()
   const backwards = str.split(``).reverse().join(``)
   return str === backwards
 }
 
-const isPalindromeNoStr = x => {
+const isPalindromeNoStr = (x) => {
   if (x < 0 || (x % 10 === 0 && x !== 0)) return false
   let comparison = 0
   while (comparison < x) {
-    comparison = (comparison * 10) + (x % 10)
+    comparison = comparison * 10 + (x % 10)
     x = Math.floor(x / 10)
   }
   return comparison === x || Math.floor(comparison / 10) === x

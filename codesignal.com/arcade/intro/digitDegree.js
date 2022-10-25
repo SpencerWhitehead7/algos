@@ -23,10 +23,13 @@
 
 // [output] integer
 
-const digitDegree = n => {
+const digitDegree = (n) => {
   let res = 0
-  while(n >= 10){
-    n = n.toString().split(``).map(ele => Number(ele))
+  while (n >= 10) {
+    n = n
+      .toString()
+      .split(``)
+      .map((ele) => Number(ele))
       .reduce((acc, curr) => acc + curr)
     res++
   }

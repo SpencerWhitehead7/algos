@@ -19,6 +19,9 @@
 
 // true if all digits of n are even, false otherwise.
 
-function evenDigitsOnly(n){
-  return n.toString().split(``).every(digit => digit%2 ===0)
-} 
+function evenDigitsOnly(n) {
+  return n
+    .toString()
+    .split(``)
+    .every((digit) => digit % 2 === 0)
+}

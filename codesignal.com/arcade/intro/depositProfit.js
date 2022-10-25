@@ -42,11 +42,11 @@
 
 // The number of years it would take to hit the threshold. It is guaranteed that this number is not greater than 6.
 
-function depositProfit(deposit, rate, threshold){
+function depositProfit(deposit, rate, threshold) {
   let years = 0
-  while(deposit<threshold){
-    deposit += deposit*(rate/100)
+  while (deposit < threshold) {
+    deposit += deposit * (rate / 100)
     years++
   }
   return years
-} 
+}

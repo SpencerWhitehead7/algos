@@ -20,4 +20,9 @@
 
 // The sum of the first and second digits of the input number.
 
-const addTwoDigits = n => n.toString().split(``).map(ele => Number(ele)).reduce((acc, curr) => acc + curr)
+const addTwoDigits = (n) =>
+  n
+    .toString()
+    .split(``)
+    .map((ele) => Number(ele))
+    .reduce((acc, curr) => acc + curr)

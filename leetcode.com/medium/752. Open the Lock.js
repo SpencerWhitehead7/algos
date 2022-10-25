@@ -47,8 +47,8 @@ const openLock = (deadends, target) => {
     for (let i = 0; i < base.length; i++) {
       const numToModify = Number(base[i])
       const start = base.slice(0, i)
-      const end = base.slice(i + 1);
-      [1, 9].forEach(adder => {
+      const end = base.slice(i + 1)
+      ;[1, 9].forEach((adder) => {
         const newVal = `${start}${(numToModify + adder) % 10}${end}`
         if (!tried.has(newVal)) {
           tried.add(newVal)

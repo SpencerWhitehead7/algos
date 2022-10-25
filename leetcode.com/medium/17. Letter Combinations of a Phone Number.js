@@ -16,7 +16,7 @@
  * @param {string} digits
  * @return {string[]}
  */
-const letterCombinations = digits => {
+const letterCombinations = (digits) => {
   const strings = []
   if (!digits) return strings
 

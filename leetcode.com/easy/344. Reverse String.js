@@ -4,8 +4,6 @@
 
 // You may assume all the characters consist of printable ascii characters.
 
-
-
 // Example 1:
 
 // Input: ["h","e","l","l","o"]
@@ -29,4 +27,4 @@ const reverseString = (s, i = 0) => {
   reverseString(s, i + 1)
 }
 
-const reverseStringWimpy = s => s.reverse()
+const reverseStringWimpy = (s) => s.reverse()

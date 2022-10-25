@@ -28,14 +28,20 @@
 
 const myFindGrantsCap = (grantsArray, newBudget) => {
   let cap = 0
-  let total = grantsArray.map(ele => (ele > cap ? cap : ele)).reduce((acc, curr) => acc + curr)
+  let total = grantsArray
+    .map((ele) => (ele > cap ? cap : ele))
+    .reduce((acc, curr) => acc + curr)
   while (total < newBudget) {
     cap++
-    total = grantsArray.map(ele => (ele > cap ? cap : ele)).reduce((acc, curr) => acc + curr)
+    total = grantsArray
+      .map((ele) => (ele > cap ? cap : ele))
+      .reduce((acc, curr) => acc + curr)
   }
   cap--
-  total = grantsArray.map(ele => (ele > cap ? cap : ele)).reduce((acc, curr) => acc + curr)
-  cap += (newBudget - total) / grantsArray.filter(ele => ele > cap).length
+  total = grantsArray
+    .map((ele) => (ele > cap ? cap : ele))
+    .reduce((acc, curr) => acc + curr)
+  cap += (newBudget - total) / grantsArray.filter((ele) => ele > cap).length
   return cap
 }
 

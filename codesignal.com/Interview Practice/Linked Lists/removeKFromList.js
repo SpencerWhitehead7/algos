@@ -39,15 +39,15 @@
 //
 
 const removeKFromList = (l, k) => {
-  while(l && l.value === k){
+  while (l && l.value === k) {
     l = l.next
   }
   let curr = l
   let prev = l
-  while(curr){
-    if(curr.value === k){
+  while (curr) {
+    if (curr.value === k) {
       prev.next = curr.next
-    }else{
+    } else {
       prev = curr
     }
     curr = curr.next

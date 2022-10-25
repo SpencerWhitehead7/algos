@@ -55,7 +55,7 @@ const map = {
   M: 1000,
 }
 
-const romanToInt = s => {
+const romanToInt = (s) => {
   const digits = s.split(``)
   let res = 0
   for (let i = digits.length - 1; i >= 0; i--) {

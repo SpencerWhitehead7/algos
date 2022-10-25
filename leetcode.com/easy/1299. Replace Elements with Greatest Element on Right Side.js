@@ -2,8 +2,6 @@
 
 // After doing so, return the array.
 
-
-
 // Example 1:
 
 // Input: arr = [17,18,5,4,6,1]
@@ -21,7 +19,6 @@
 // Output: [-1]
 // Explanation: There are no elements to the right of index 0.
 
-
 // Constraints:
 
 // 1 <= arr.length <= 104
@@ -31,7 +28,7 @@
  * @param {number[]} arr
  * @return {number[]}
  */
-const replaceElements = arr => {
+const replaceElements = (arr) => {
   const stack = arr.reduceRight((acc, curr, i) => {
     if (curr > arr[acc[acc.length - 1]] || acc.length === 0) {
       acc.push(i)

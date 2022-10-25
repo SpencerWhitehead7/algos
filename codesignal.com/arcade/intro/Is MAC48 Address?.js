@@ -25,14 +25,35 @@
 
 // true if inputString corresponds to MAC-48 address naming rules, false otherwise.
 
-const isMAC48Address = str => {
-  const set = new Set([`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `A`, `B`, `C`, `D`, `E`, `F`])
+const isMAC48Address = (str) => {
+  const set = new Set([
+    `0`,
+    `1`,
+    `2`,
+    `3`,
+    `4`,
+    `5`,
+    `6`,
+    `7`,
+    `8`,
+    `9`,
+    `A`,
+    `B`,
+    `C`,
+    `D`,
+    `E`,
+    `F`,
+  ])
   const pieces = str.split(`-`)
-  if(pieces.length !== 6 ||
-      pieces.some(piece => piece.length !== 2) ||
-      !pieces.every(piece => piece.split(``).every(subPiece => set.has(subPiece)))){
+  if (
+    pieces.length !== 6 ||
+    pieces.some((piece) => piece.length !== 2) ||
+    !pieces.every((piece) =>
+      piece.split(``).every((subPiece) => set.has(subPiece))
+    )
+  ) {
     return false
-  }else{
+  } else {
     return true
   }
 }

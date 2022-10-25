@@ -25,4 +25,7 @@
 
 // The decrypted message.
 
-const messageFromBinaryCode = code => String.fromCharCode(...code.match(/.{1,8}/g).map(binaryLetter => parseInt(binaryLetter, 2)))
+const messageFromBinaryCode = (code) =>
+  String.fromCharCode(
+    ...code.match(/.{1,8}/g).map((binaryLetter) => parseInt(binaryLetter, 2))
+  )

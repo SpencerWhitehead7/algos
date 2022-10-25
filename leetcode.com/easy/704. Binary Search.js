@@ -1,6 +1,5 @@
 // Given a sorted (in ascending order) integer array nums of n elements and a target value, write a function to search target in nums. If target exists, then return its index, otherwise return -1.
 
-
 // Example 1:
 
 // Input: nums = [-1,0,3,5,9,12], target = 9
@@ -12,7 +11,6 @@
 // Input: nums = [-1,0,3,5,9,12], target = 2
 // Output: -1
 // Explanation: 2 does not exist in nums so return -1
-
 
 // Note:
 
@@ -29,7 +27,7 @@ const search = (nums, target) => {
   let start = 0
   let end = nums.length - 1
   while (start <= end) {
-    const middle = Math.floor(start + ((end - start) / 2))
+    const middle = Math.floor(start + (end - start) / 2)
     if (nums[middle] === target) {
       return middle
     } else if (nums[middle] < target) {

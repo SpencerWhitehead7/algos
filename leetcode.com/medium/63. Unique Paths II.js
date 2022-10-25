@@ -4,8 +4,6 @@
 
 // Now consider if some obstacles are added to the grids. How many unique paths would there be?
 
-
-
 // An obstacle and empty space is marked as 1 and 0 respectively in the grid.
 
 // Note: m and n will be at most 100.
@@ -29,34 +27,37 @@
  * @param {number[][]} obstacleGrid
  * @return {number}
  */
-const uniquePathsWithObstacles = obstacleGrid => {
-  if(obstacleGrid[0][0] === 1) return 0
+const uniquePathsWithObstacles = (obstacleGrid) => {
+  if (obstacleGrid[0][0] === 1) return 0
   obstacleGrid[0][0] = 1
   fillFirsts(obstacleGrid)
-  for(let row = 1; row < obstacleGrid.length; row++){
-    for(let col = 1; col < obstacleGrid[row].length; col++){
-      if(obstacleGrid[row][col] === 0){
-        obstacleGrid[row][col] = obstacleGrid[row - 1][col] + obstacleGrid[row][col - 1]
-      }else{
+  for (let row = 1; row < obstacleGrid.length; row++) {
+    for (let col = 1; col < obstacleGrid[row].length; col++) {
+      if (obstacleGrid[row][col] === 0) {
+        obstacleGrid[row][col] =
+          obstacleGrid[row - 1][col] + obstacleGrid[row][col - 1]
+      } else {
         obstacleGrid[row][col] = 0
       }
     }
   }
-  return obstacleGrid[obstacleGrid.length - 1][obstacleGrid[obstacleGrid.length - 1].length - 1]
+  return obstacleGrid[obstacleGrid.length - 1][
+    obstacleGrid[obstacleGrid.length - 1].length - 1
+  ]
 }
 
-const fillFirsts = obstacleGrid => {
-  for(let i = 1; i < obstacleGrid[0].length; i++){
-    if(obstacleGrid[0][i] === 0){
+const fillFirsts = (obstacleGrid) => {
+  for (let i = 1; i < obstacleGrid[0].length; i++) {
+    if (obstacleGrid[0][i] === 0) {
       obstacleGrid[0][i] = obstacleGrid[0][i - 1]
-    }else{
+    } else {
       obstacleGrid[0][i] = 0
     }
   }
-  for(let i = 1; i < obstacleGrid.length; i++){
-    if(obstacleGrid[i][0] === 0){
+  for (let i = 1; i < obstacleGrid.length; i++) {
+    if (obstacleGrid[i][0] === 0) {
       obstacleGrid[i][0] = obstacleGrid[i - 1][0]
-    }else{
+    } else {
       obstacleGrid[i][0] = 0
     }
   }

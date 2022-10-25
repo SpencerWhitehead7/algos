@@ -13,13 +13,11 @@
 // snail(array) #=> [1,2,3,4,5,6,7,8,9]
 // This image will illustrate things more clearly:
 
-
-
 // NOTE: The idea is not sort the elements from the lowest value to the highest; the idea is to traverse the 2-d array in a clockwise snailshell pattern.
 
 // NOTE 2: The 0x0 (empty matrix) is represented as [[]]
 
-const snailRec = array => {
+const snailRec = (array) => {
   if (array.length === 1) {
     return array[0]
   } else if (array.length === 0) {
@@ -39,7 +37,7 @@ const snailRec = array => {
   }
 }
 
-const snailIter = array => {
+const snailIter = (array) => {
   const sorted = []
   while (array.length) {
     sorted.push(...array.shift())
@@ -54,7 +52,7 @@ const snailIter = array => {
   return sorted
 }
 
-const spiralOrder = matrix => {
+const spiralOrder = (matrix) => {
   const sorted = []
   while (matrix.length) {
     sorted.push(...matrix.shift())
@@ -71,12 +69,12 @@ const spiralOrder = matrix => {
   return sorted
 }
 
-const spiralOrderNonMutating = matrix => {
+const spiralOrderNonMutating = (matrix) => {
   const res = []
 
   const length = matrix.length
   const width = matrix[0].length
-  const seen = new Array(length).fill(null).map(_ => new Array(width).fill(false))
+  const seen = new Array(length).fill().map((_) => new Array(width).fill(false))
   const layerConstraint = Math.ceil(Math.min(length, width) / 2)
 
   for (let layer = 0; layer < layerConstraint; layer++) {

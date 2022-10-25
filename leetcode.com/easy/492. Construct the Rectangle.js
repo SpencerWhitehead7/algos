@@ -19,7 +19,7 @@
  * @param {number} area
  * @return {number[]}
  */
-const constructRectangle = area => {
+const constructRectangle = (area) => {
   let width = Math.ceil(Math.sqrt(area))
 
   while (area % width !== 0) {

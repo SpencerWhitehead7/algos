@@ -4,15 +4,12 @@
 
 // Return the final string after all such duplicate removals have been made.  It is guaranteed the answer is unique.
 
-
-
 // Example 1:
 
 // Input: "abbaca"
 // Output: "ca"
 // Explanation:
 // For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.  The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".
-
 
 // Note:
 
@@ -23,7 +20,7 @@
  * @param {string} S
  * @return {string}
  */
-const removeDuplicates = s => {
+const removeDuplicates = (s) => {
   const dedupedChars = []
 
   for (const char in s) {
@@ -38,14 +35,15 @@ const removeDuplicates = s => {
 }
 
 // bask in the power of this almost-fp
-const removeDuplicatesChain = s => s
-  .split(``)
-  .reduce((dedupedChars, char) => {
-    if (dedupedChars[dedupedChars.length - 1] === char) {
-      dedupedChars.pop()
-    } else {
-      dedupedChars.push(char)
-    }
-    return dedupedChars
-  }, [])
-  .join(``)
+const removeDuplicatesChain = (s) =>
+  s
+    .split(``)
+    .reduce((dedupedChars, char) => {
+      if (dedupedChars[dedupedChars.length - 1] === char) {
+        dedupedChars.pop()
+      } else {
+        dedupedChars.push(char)
+      }
+      return dedupedChars
+    }, [])
+    .join(``)

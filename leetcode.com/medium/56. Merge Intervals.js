@@ -16,7 +16,7 @@
  * @param {number[][]} intervals
  * @return {number[][]}
  */
-const merge = intervals => {
+const merge = (intervals) => {
   if (!intervals.length) return []
 
   intervals.sort(([startTime1], [startTime2]) => startTime1 - startTime2)
@@ -27,7 +27,10 @@ const merge = intervals => {
     const lastInterval = mergedIntervals[mergedIntervals.length - 1]
     const currInterval = intervals[i]
     if (lastInterval[1] >= currInterval[0]) {
-      mergedIntervals[mergedIntervals.length - 1] = [lastInterval[0], Math.max(lastInterval[1], currInterval[1])]
+      mergedIntervals[mergedIntervals.length - 1] = [
+        lastInterval[0],
+        Math.max(lastInterval[1], currInterval[1]),
+      ]
     } else {
       mergedIntervals.push(currInterval)
     }
@@ -38,7 +41,7 @@ const merge = intervals => {
 
 // no extra space for the result array, but is n^2 time because of the splices instead of nlogn time
 // also mutates the input, but then, so does sorting it
-const mergeInPlace = intervals => {
+const mergeInPlace = (intervals) => {
   if (!intervals.length) return []
 
   intervals.sort(([startTime1], [startTime2]) => startTime1 - startTime2)
@@ -47,7 +50,10 @@ const mergeInPlace = intervals => {
     const lastInterval = intervals[i - 1]
     const currInterval = intervals[i]
     if (lastInterval[1] >= currInterval[0]) {
-      intervals[i - 1] = [lastInterval[0], Math.max(lastInterval[1], currInterval[1])]
+      intervals[i - 1] = [
+        lastInterval[0],
+        Math.max(lastInterval[1], currInterval[1]),
+      ]
       intervals.splice(i, 1)
       i--
     }
@@ -57,7 +63,7 @@ const mergeInPlace = intervals => {
 }
 
 // alternate taking on merging in place; actually still uses same space as the non-inplace version because of the filter at the end, but it's the same idea
-const mergeInPlace2 = intervals => {
+const mergeInPlace2 = (intervals) => {
   if (!intervals.length) return []
 
   intervals.sort(([startTime1], [startTime2]) => startTime1 - startTime2)
@@ -68,7 +74,10 @@ const mergeInPlace2 = intervals => {
     const lastInterval = intervals[mergeBase]
     const currInterval = intervals[i]
     if (lastInterval[1] >= currInterval[0]) {
-      intervals[mergeBase] = [lastInterval[0], Math.max(lastInterval[1], currInterval[1])]
+      intervals[mergeBase] = [
+        lastInterval[0],
+        Math.max(lastInterval[1], currInterval[1]),
+      ]
       intervals[i] = false
     } else {
       mergeBase = i

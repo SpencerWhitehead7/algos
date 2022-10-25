@@ -32,7 +32,7 @@
  * @param {number} n
  * @return {number[]}
  */
-const sumZero = function(n) {
+const sumZero = (n) => {
   const res = []
   for (let i = 1; i <= n / 2; i++) {
     res.push(i, -i)

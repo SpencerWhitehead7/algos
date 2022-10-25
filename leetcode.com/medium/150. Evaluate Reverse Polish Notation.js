@@ -20,7 +20,7 @@
 
 // Input: ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
 // Output: 22
-// Explanation: 
+// Explanation:
 //   ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 // = ((10 * (6 / (12 * -11))) + 17) + 5
 // = ((10 * (6 / -132)) + 17) + 5
@@ -33,23 +33,23 @@
  * @param {string[]} tokens
  * @return {number}
  */
-const evalRPN = function(tokens){
+const evalRPN = (tokens) => {
   const stack = []
-  for(let i=0; i<tokens.length; i++){
-    if(tokens[i] === `+`){
+  for (let i = 0; i < tokens.length; i++) {
+    if (tokens[i] === `+`) {
       stack.push(stack.pop() + stack.pop())
-    }else if(tokens[i] === `-`){
+    } else if (tokens[i] === `-`) {
       const subtracter = stack.pop()
       const subtracted = stack.pop()
       stack.push(subtracted - subtracter)
-    }else if(tokens[i] === `*`){
+    } else if (tokens[i] === `*`) {
       stack.push(stack.pop() * stack.pop())
-    }else if(tokens[i] === `/`){
+    } else if (tokens[i] === `/`) {
       const divider = stack.pop()
       const divided = stack.pop()
       const res = divided / divider
       stack.push(res > 0 ? Math.floor(res) : Math.ceil(res))
-    }else{
+    } else {
       stack.push(Number(tokens[i]))
     }
   }

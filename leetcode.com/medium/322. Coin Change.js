@@ -15,10 +15,10 @@
 const coinChange = (coins, amount) => {
   const dpArr = new Array(amount + 1)
   dpArr[0] = 0
-  for(let i = 1; i <= amount; i++){
+  for (let i = 1; i <= amount; i++) {
     dpArr[i] = Infinity
-    coins.forEach(coin => {
-      if(i - coin >= 0){
+    coins.forEach((coin) => {
+      if (i - coin >= 0) {
         dpArr[i] = Math.min(dpArr[i], dpArr[i - coin] + 1)
       }
     })

@@ -12,18 +12,13 @@
 // Only the red nodes satisfy the property "every subtree not containing a 1".
 // The diagram on the right represents the answer.
 
-
 // Example 2:
 // Input: [1,0,1,0,0,0,1]
 // Output: [1,null,1,null,1]
 
-
-
 // Example 3:
 // Input: [1,1,0,1,1,0,1,0]
 // Output: [1,1,0,1,1,null,1]
-
-
 
 // Note:
 
@@ -42,12 +37,13 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-const pruneTree = root => {
+const pruneTree = (root) => {
   if (!root) return null
 
   root.left = pruneTree(root.left)
   root.right = pruneTree(root.right)
 
+  // prettier-ignore
   return root.left || root.right
     ? root
     : root.val === 1

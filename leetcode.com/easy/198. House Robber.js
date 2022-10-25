@@ -19,7 +19,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-const rob = nums => {
+const rob = (nums) => {
   let prevBest = 0
   let best = 0
 

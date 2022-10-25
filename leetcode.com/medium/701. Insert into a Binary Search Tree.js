@@ -28,7 +28,6 @@
 //          \
 //           4
 
-
 // Constraints:
 
 // The number of nodes in the given tree will be between 0 and 10^4.
@@ -84,7 +83,10 @@ const insertIntoBSTIter = (root, val) => {
     }
   }
 
-  parent.val > val ? parent.left = newNode : parent.right = newNode
+  // prettier-ignore
+  parent.val > val
+    ? (parent.left = newNode)
+    : (parent.right = newNode)
 
   return root
 }

@@ -6,19 +6,14 @@
 
 // Return the total number of provinces.
 
-
-
 // Example 1:
-
 
 // Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]
 // Output: 2
 // Example 2:
 
-
 // Input: isConnected = [[1,0,0],[0,1,0],[0,0,1]]
 // Output: 3
-
 
 // Constraints:
 
@@ -33,7 +28,7 @@
  * @param {number[][]} isConnected
  * @return {number}
  */
-const findCircleNumIter = isConnected => {
+const findCircleNumIter = (isConnected) => {
   let provinceCount = 0
 
   for (let i = 0; i < isConnected.length; i++) {
@@ -56,7 +51,7 @@ const findCircleNumIter = isConnected => {
   return provinceCount
 }
 
-const findCircleNumRec = isConnected => {
+const findCircleNumRec = (isConnected) => {
   const dfs = (ownIdx, neiIdx) => {
     isConnected[ownIdx][neiIdx] = 2
     isConnected[neiIdx][ownIdx] = 2

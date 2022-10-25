@@ -16,9 +16,9 @@
 
 // [output] string
 
-const longestDigitsPrefix = inputString => {
+const longestDigitsPrefix = (inputString) => {
   let i = 0
-  while(inputString[i] !== ` ` && !isNaN(Number(inputString[i]))){
+  while (inputString[i] !== ` ` && !isNaN(Number(inputString[i]))) {
     i++
   }
   return inputString.slice(0, i)

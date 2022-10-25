@@ -15,7 +15,7 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-const findDuplicates = nums => {
+const findDuplicates = (nums) => {
   const seen = new Set()
   const res = []
 
@@ -30,7 +30,7 @@ const findDuplicates = nums => {
   return res
 }
 
-const findDuplicatesConstSpace = nums => {
+const findDuplicatesConstSpace = (nums) => {
   const res = []
 
   for (let i = 0; i < nums.length; i++) {

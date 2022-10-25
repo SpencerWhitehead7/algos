@@ -45,12 +45,12 @@
 
 const phoneCall = (min1, min2_10, min11, s) => {
   let minutes = 0
-  while(s > 0){
-    if(minutes === 0){
+  while (s > 0) {
+    if (minutes === 0) {
       s -= min1
-    }else if(minutes < 10){
+    } else if (minutes < 10) {
       s -= min2_10
-    }else{
+    } else {
       s -= min11
     }
     minutes++

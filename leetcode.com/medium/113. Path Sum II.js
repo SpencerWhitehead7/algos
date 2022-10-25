@@ -33,12 +33,16 @@
  * @return {number[][]}
  */
 const pathSumRec = (root, sum, memo = [], res = []) => {
-  if(!root) return []
-  const newMemo = memo.map(ele => ele)
+  if (!root) return []
+  const newMemo = memo.map((ele) => ele)
   newMemo.push(root.val)
-  if(!root.left && !root.right && newMemo.reduce((acc, curr) => acc + curr) === sum){
+  if (
+    !root.left &&
+    !root.right &&
+    newMemo.reduce((acc, curr) => acc + curr) === sum
+  ) {
     res.push(newMemo)
-  }else{
+  } else {
     pathSumRec(root.left, sum, newMemo, res)
     pathSumRec(root.right, sum, newMemo, res)
   }
@@ -49,30 +53,30 @@ const pathSumRec = (root, sum, memo = [], res = []) => {
 
 const pathSumIter = (root, sum) => {
   const result = []
-  if(!root){
+  if (!root) {
     return result
   }
 
   // Init stack with root, array of its val, and sum of its root.val
   const stack = [root, [root.val], root.val]
-  while(stack.length > 0){
+  while (stack.length > 0) {
     // Extract currSum, currPath, currNode from stack
     const currSum = stack.pop()
     const currPath = stack.pop()
     const currNode = stack.pop()
 
     // If we're at a leaf and currSum equals sum
-    if(!currNode.left && !currNode.right && currSum === sum){
+    if (!currNode.left && !currNode.right && currSum === sum) {
       result.push(currPath.slice())
     }
 
-    if(currNode.left){
+    if (currNode.left) {
       stack.push(currNode.left)
       stack.push(currPath.concat(currNode.left.val))
       stack.push(currSum + currNode.left.val)
     }
 
-    if(currNode.right){
+    if (currNode.right) {
       stack.push(currNode.right)
       stack.push(currPath.concat(currNode.right.val))
       stack.push(currSum + currNode.right.val)
@@ -89,16 +93,24 @@ const pathSumRec2 = (root, sum) => {
 
   // amountLeft is technically extraneous (you could sum the array every step), but does make things clearer/less computationally intensive
   const explore = (root, amountLeft, arr) => {
-    if(!root) return
+    if (!root) return
 
     amountLeft -= root.val
     arr.push(root.val)
 
-    if(!root.left && !root.rigth && amountLeft === 0){
+    if (!root.left && !root.rigth && amountLeft === 0) {
       result.push(arr)
-    }else{
-      explore(root.left, amountLeft, arr.map(a => a))
-      explore(root.right, amountLeft, arr.map(a => a))
+    } else {
+      explore(
+        root.left,
+        amountLeft,
+        arr.map((a) => a)
+      )
+      explore(
+        root.right,
+        amountLeft,
+        arr.map((a) => a)
+      )
     }
   }
 

@@ -25,13 +25,13 @@
 
 // Encoded version of s.
 
-const lineEncoding = str => {
+const lineEncoding = (str) => {
   let res = ``
   let currChar = str[0]
-  for(let i = 0; i < str.length; i++){
+  for (let i = 0; i < str.length; i++) {
     currChar = str[i]
     let counter = 1
-    while(str[i + counter] === currChar){
+    while (str[i + counter] === currChar) {
       counter++
     }
     res += counter === 1 ? currChar : `${counter}${currChar}`

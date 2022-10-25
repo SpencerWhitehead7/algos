@@ -19,7 +19,7 @@
 // 0 ≤ arr.length ≤ 20
 // [output] array.integer
 
-const arrayOfArrayProducts = arr => {
+const arrayOfArrayProducts = (arr) => {
   if (arr.length === 0 || arr.length === 1) return []
   const res = []
   let product = 1

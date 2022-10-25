@@ -19,9 +19,9 @@
  * @param {number} x
  * @return {number}
  */
-const mySqrtTrivial = x => Math.floor(Math.sqrt(x))
+const mySqrtTrivial = (x) => Math.floor(Math.sqrt(x))
 
-const mySqrt = x => {
+const mySqrt = (x) => {
   if (x === 1 || x === 2) return 1
   let start = 0
   let end = x

@@ -19,11 +19,11 @@
 
 // [output] array.string
 
-const fileNaming = names => {
+const fileNaming = (names) => {
   const tracker = {}
-  return names.map(name => {
+  return names.map((name) => {
     let newName = name
-    while(tracker[newName]){
+    while (tracker[newName]) {
       newName = `${name}(${tracker[name]++})`
     }
     tracker[newName] = 1

@@ -15,7 +15,7 @@
  * @param {ListNode} head
  * @return {boolean}
  */
-const hasCycle = head => {
+const hasCycle = (head) => {
   if (!head) return false
 
   let slow = head

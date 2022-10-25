@@ -15,7 +15,6 @@
 // Given word = "SEE", return true.
 // Given word = "ABCB", return false.
 
-
 // Constraints:
 
 // board and word consists only of lowercase and uppercase English letters.
@@ -44,8 +43,17 @@ const exist = (board, word) => {
       [row, col + 1],
       [row + 1, col],
       [row, col - 1],
-    ]
-      .reduce((result, [row, col]) => result || (row >= 0 && row < rowsCount && col >= 0 && col < colsCount && word[i] === letter && search(row, col, i + 1)), false)
+    ].reduce(
+      (result, [row, col]) =>
+        result ||
+        (row >= 0 &&
+          row < rowsCount &&
+          col >= 0 &&
+          col < colsCount &&
+          word[i] === letter &&
+          search(row, col, i + 1)),
+      false
+    )
 
     board[row][col] = letter
     return searchResult

@@ -2,8 +2,6 @@
 
 // If there is no common prefix, return an empty string "".
 
-
-
 // Example 1:
 
 // Input: strs = ["flower","flow","flight"]
@@ -13,7 +11,6 @@
 // Input: strs = ["dog","racecar","car"]
 // Output: ""
 // Explanation: There is no common prefix among the input strings.
-
 
 // Constraints:
 
@@ -25,11 +22,11 @@
  * @param {string[]} strs
  * @return {string}
  */
-const longestCommonPrefix = strs => {
+const longestCommonPrefix = (strs) => {
   let prefix = ``
   let candidatePrefix = strs[0][0]
   let i = 1
-  while (strs.every(str => str.startsWith(candidatePrefix))) {
+  while (strs.every((str) => str.startsWith(candidatePrefix))) {
     prefix = candidatePrefix
     candidatePrefix += strs[0][i]
     i++

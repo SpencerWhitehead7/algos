@@ -34,14 +34,17 @@
  * @return {number[]}
  */
 const findAnagrams = (s, p) => {
-  const getLetterCounts = str => str
-    .split(``)
-    .reduce((memo, letter) => {
+  const getLetterCounts = (str) =>
+    str.split(``).reduce((memo, letter) => {
       memo[letter] = (memo[letter] || 0) + 1
       return memo
     }, {})
   // a general form of this would also check that the objs are the same size, but it won't come up in this restricted example
-  const isAnagram = (letterCountObj1, letterCountObj2) => Object.keys(letterCountObj1).reduce((acc, key) => acc && letterCountObj1[key] === letterCountObj2[key], true)
+  const isAnagram = (letterCountObj1, letterCountObj2) =>
+    Object.keys(letterCountObj1).reduce(
+      (acc, key) => acc && letterCountObj1[key] === letterCountObj2[key],
+      true
+    )
 
   const res = []
   const pLetterCounts = getLetterCounts(p)
@@ -86,9 +89,8 @@ const findAnagramsRollingArrHash = (s, p) => {
     y: 24,
     z: 25,
   }
-  const getLetterHash = str => str
-    .split(``)
-    .reduce((acc, letter) => {
+  const getLetterHash = (str) =>
+    str.split(``).reduce((acc, letter) => {
       acc[map[letter]]++
       return acc
     }, new Array(26).fill(0))
@@ -136,13 +138,14 @@ const findAnagramsBrute = (s, p) => {
     y: 24,
     z: 25,
   }
-  const getLetterHash = str => str
-    .split(``)
-    .reduce((acc, letter) => {
-      acc[map[letter]]++
-      return acc
-    }, new Array(26).fill(0))
-    .join(``)
+  const getLetterHash = (str) =>
+    str
+      .split(``)
+      .reduce((acc, letter) => {
+        acc[map[letter]]++
+        return acc
+      }, new Array(26).fill(0))
+      .join(``)
 
   const pLetterHash = getLetterHash(p)
 

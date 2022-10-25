@@ -18,17 +18,17 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-const intersection = function(nums1, nums2){
+const intersection = (nums1, nums2) => {
   const res = []
   const hash = {}
-  nums1.forEach(num => {
+  nums1.forEach((num) => {
     hash[num] = 1
   })
-  nums2.forEach(num => {
-    if(hash[num]) hash[num]++
+  nums2.forEach((num) => {
+    if (hash[num]) hash[num]++
   })
-  Object.keys(hash).forEach(key => {
-    if(hash[key] > 1) res.push(Number(key))
+  Object.keys(hash).forEach((key) => {
+    if (hash[key] > 1) res.push(Number(key))
   })
   return res
 }

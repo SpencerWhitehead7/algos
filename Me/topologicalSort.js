@@ -1,4 +1,5 @@
 const theSouth = {
+  // prettier-ignore
   memphis: [
     `nashville`,
     `atlanta`,
@@ -12,20 +13,20 @@ const theSouth = {
   savannah: [],
 }
 
-const topologicalSort = graph => {
+const topologicalSort = (graph) => {
   const inBounds = Object.values(graph).reduce((acc, curr) => {
-    curr.forEach(node => {
+    curr.forEach((node) => {
       acc[node] = acc[node] ? acc[node] + 1 : 1
     })
     return acc
   }, {})
 
-  const sorted = Object.keys(graph).filter(node => !inBounds[node])
+  const sorted = Object.keys(graph).filter((node) => !inBounds[node])
 
   let i = 0
   while (i < sorted.length) {
     const curr = sorted[i]
-    graph[curr].forEach(outbound => {
+    graph[curr].forEach((outbound) => {
       inBounds[outbound]--
       if (inBounds[outbound] === 0) sorted.push(outbound)
     })

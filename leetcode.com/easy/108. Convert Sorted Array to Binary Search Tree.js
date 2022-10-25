@@ -26,7 +26,7 @@
  * @param {number[]} nums
  * @return {TreeNode}
  */
-const sortedArrayToBST = nums => {
+const sortedArrayToBST = (nums) => {
   if (!nums.length) return null
 
   const centerI = Math.floor(nums.length / 2)
@@ -34,7 +34,7 @@ const sortedArrayToBST = nums => {
   const root = new TreeNode(
     nums[centerI],
     sortedArrayToBST(nums.slice(0, centerI)),
-    sortedArrayToBST(nums.slice(centerI + 1)),
+    sortedArrayToBST(nums.slice(centerI + 1))
   )
 
   return root

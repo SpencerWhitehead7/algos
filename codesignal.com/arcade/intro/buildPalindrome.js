@@ -18,11 +18,18 @@
 
 // [output] string
 
-const buildPalindrome = str => {
+const buildPalindrome = (str) => {
   let palindromeIndex = 0
-  while(str.slice(palindromeIndex) !== str.slice(palindromeIndex).split(``).reverse().join(``)){
+  while (
+    str.slice(palindromeIndex) !==
+    str.slice(palindromeIndex).split(``).reverse().join(``)
+  ) {
     palindromeIndex++
   }
-  const chunkToReverse = str.slice(0, palindromeIndex).split(``).reverse().join(``)
+  const chunkToReverse = str
+    .slice(0, palindromeIndex)
+    .split(``)
+    .reverse()
+    .join(``)
   return str + chunkToReverse
 }

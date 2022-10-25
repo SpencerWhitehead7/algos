@@ -1,7 +1,5 @@
 // Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order.
 
-
-
 // Example 1:
 
 // Input: [-4,-1,0,3,10]
@@ -10,7 +8,6 @@
 
 // Input: [-7,-3,2,3,11]
 // Output: [4,9,9,49,121]
-
 
 // Note:
 
@@ -22,11 +19,14 @@
  * @param {number[]} A
  * @return {number[]}
  */
-const sortedSquaresMerge = A => {
-  const [negatives, positives] = A.reduce((arrs, num) => {
-    arrs[num >= 0 ? 1 : 0].push(num * num)
-    return arrs
-  }, [[], []])
+const sortedSquaresMerge = (A) => {
+  const [negatives, positives] = A.reduce(
+    (arrs, num) => {
+      arrs[num >= 0 ? 1 : 0].push(num * num)
+      return arrs
+    },
+    [[], []]
+  )
 
   const res = []
   let negI = negatives.length - 1
@@ -52,8 +52,8 @@ const sortedSquaresMerge = A => {
   return res
 }
 
-const sortedSquaresMiddlePointer = A => {
-  let left = A.findIndex(num => num >= 0) - 1
+const sortedSquaresMiddlePointer = (A) => {
+  let left = A.findIndex((num) => num >= 0) - 1
   let right = left + 1
   for (let i = 0; i < A.length; i++) {
     A[i] *= A[i]

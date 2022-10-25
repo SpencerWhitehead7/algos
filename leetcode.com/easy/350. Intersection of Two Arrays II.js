@@ -23,18 +23,18 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-const intersect = function(nums1, nums2){
+const intersect = (nums1, nums2) => {
   nums1.sort((a, b) => a - b)
   nums2.sort((a, b) => a - b)
   const res = []
   let p1 = 0
   let p2 = 0
-  while(nums1[p1]!==undefined && nums2[p2]!==undefined){
-    if(nums1[p1] === nums2[p2]){
+  while (nums1[p1] !== undefined && nums2[p2] !== undefined) {
+    if (nums1[p1] === nums2[p2]) {
       res.push(nums1[p1])
       p1++
       p2++
-    }else{
+    } else {
       nums1[p1] < nums2[p2] ? p1++ : p2++
     }
   }

@@ -41,23 +41,27 @@
 const findAll = (sum, numDigits) => {
   const res = []
   const start = Math.pow(10, numDigits - 1)
-  for(let i = start; i < start * 10; i++){
-    const digits = String(i).split(``).map(digit => Number(digit))
+  for (let i = start; i < start * 10; i++) {
+    const digits = String(i)
+      .split(``)
+      .map((digit) => Number(digit))
     let increasing = true
-    for(let n = 1; n < digits.length; n++){
-      if(digits[n] < digits[n - 1]){
+    for (let n = 1; n < digits.length; n++) {
+      if (digits[n] < digits[n - 1]) {
         increasing = false
         const jump = digits.slice(0, n)
-        while(jump.length < digits.length){
+        while (jump.length < digits.length) {
           jump.push(jump[jump.length - 1])
         }
         i = Number(jump.join(``)) - 1
         break
       }
     }
-    if(increasing && digits.reduce((acc, curr) => acc + curr) === sum){
+    if (increasing && digits.reduce((acc, curr) => acc + curr) === sum) {
       res.push(i)
     }
   }
-  return res.length === 0 ? [] : [res.length, String(res[0]), String(res[res.length - 1])]
+  return res.length === 0
+    ? []
+    : [res.length, String(res[0]), String(res[res.length - 1])]
 }

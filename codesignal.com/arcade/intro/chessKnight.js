@@ -2,19 +2,13 @@
 
 // The knight can move to a square that is two squares horizontally and one square vertically, or two squares vertically and one square horizontally away from it. The complete move therefore looks like the letter L. Check out the image below to see all valid moves for a knight piece that is placed on one of the central squares.
 
-
-
 // Example
 
 // For cell = "a1", the output should be
 // chessKnight(cell) = 2.
 
-
-
 // For cell = "c2", the output should be
 // chessKnight(cell) = 6.
-
-
 
 // Input/Output
 
@@ -26,17 +20,18 @@
 
 // [output] integer
 
-const chessKnight = cell => {
+const chessKnight = (cell) => {
   const map = {
-    a : 1,
-    b : 2,
-    c : 3,
-    d : 4,
-    e : 5,
-    f : 6,
-    g : 7,
-    h : 8,
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4,
+    e: 5,
+    f: 6,
+    g: 7,
+    h: 8,
   }
+
   let [xCoord, yCoord] = cell.split(``)
   xCoord = map[xCoord]
   yCoord = Number(yCoord)
@@ -50,5 +45,8 @@ const chessKnight = cell => {
     [xCoord - 2, yCoord + 1],
     [xCoord - 1, yCoord + 2],
   ]
-  return coords.filter(coordPair => coordPair.every(coord => coord > 0 && coord <= 8)).length
+
+  return coords.filter((coordPair) =>
+    coordPair.every((coord) => coord > 0 && coord <= 8)
+  ).length
 }

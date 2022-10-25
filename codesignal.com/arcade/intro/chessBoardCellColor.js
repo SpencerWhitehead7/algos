@@ -5,12 +5,8 @@
 // For cell1 = "A1" and cell2 = "C3", the output should be
 // chessBoardCellColor(cell1, cell2) = true.
 
-
-
 // For cell1 = "A1" and cell2 = "H3", the output should be
 // chessBoardCellColor(cell1, cell2) = false.
-
-
 
 // Input/Output
 
@@ -24,10 +20,10 @@
 
 // true if both cells have the same color, false otherwise.
 
-function chessBoardCellColor(cell1, cell2){
+function chessBoardCellColor(cell1, cell2) {
   return checkColor(cell1) === checkColor(cell2)
 }
 
-function checkColor(cell){
-  return (/[ACEG]+[1357]/.test(cell) || /[BDFH]+[2468]/.test(cell))
+function checkColor(cell) {
+  return /[ACEG]+[1357]/.test(cell) || /[BDFH]+[2468]/.test(cell)
 }

@@ -7,8 +7,6 @@
 // arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
 // arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
 
-
-
 // Example 1:
 
 // Input: arr = [2,1]
@@ -22,7 +20,6 @@
 // Input: arr = [0,3,2,1]
 // Output: true
 
-
 // Constraints:
 
 // 1 <= arr.length <= 104
@@ -32,12 +29,12 @@
  * @param {number[]} arr
  * @return {boolean}
  */
-const validMountainArray = arr => {
+const validMountainArray = (arr) => {
   let i = 0
 
-  while (arr[i] < arr[i + 1]) { i++ }
+  while (arr[i] < arr[i + 1]) i++
   if (i === 0 || i === arr.length - 1) return false
 
-  while (arr[i] > arr[i + 1]) { i++ }
+  while (arr[i] > arr[i + 1]) i++
   return i === arr.length - 1
 }

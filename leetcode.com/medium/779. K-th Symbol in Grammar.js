@@ -33,6 +33,7 @@
 const kthGrammar = (N, K) => {
   if (N === 1 && K === 1) return 0
 
+  // prettier-ignore
   return kthGrammar(N - 1, Math.ceil(K / 2)) === 0
     ? K % 2 === 0 ? 1 : 0
     : K % 2 === 0 ? 0 : 1

@@ -2,8 +2,6 @@
 
 // Return any array that satisfies this condition.
 
-
-
 // Example 1:
 
 // Input: nums = [3,1,2,4]
@@ -14,7 +12,6 @@
 // Input: nums = [0]
 // Output: [0]
 
-
 // Constraints:
 
 // 1 <= nums.length <= 5000
@@ -24,7 +21,8 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-const sortArrayByParity = nums => { // basically copies "shuffle to end" technique from 283
+const sortArrayByParity = (nums) => {
+  // basically copies "shuffle to end" technique from 283
   let writePtr = 0
   for (let readPtr = 0; readPtr < nums.length; readPtr++) {
     const rVal = nums[readPtr]
@@ -39,7 +37,8 @@ const sortArrayByParity = nums => { // basically copies "shuffle to end" techniq
   return nums
 }
 
-const sortArrayByParity2 = nums => { // actual value swapping
+const sortArrayByParity2 = (nums) => {
+  // actual value swapping
   let lPtr = 0
   let rPtr = nums.length - 1
   while (lPtr < rPtr) {

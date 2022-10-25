@@ -20,7 +20,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const deleteDuplicates = head => {
+const deleteDuplicates = (head) => {
   if (!head) return head
 
   let follower = head

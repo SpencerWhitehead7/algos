@@ -23,11 +23,11 @@
 
 // The minimal number of statues that need to be added to existing statues such that it contains every integer size from an interval [L, R] (for some L, R) and no other sizes.
 
-function makeArrayConsecutive2(statues){
-  statues.sort((a, b)=> a - b)
+function makeArrayConsecutive2(statues) {
+  statues.sort((a, b) => a - b)
   let additional = 0
-  for(let i=0; i<statues.length - 1; i++){
-    additional += statues[i+1] - statues[i] - 1
+  for (let i = 0; i < statues.length - 1; i++) {
+    additional += statues[i + 1] - statues[i] - 1
   }
   return additional
-} 
+}

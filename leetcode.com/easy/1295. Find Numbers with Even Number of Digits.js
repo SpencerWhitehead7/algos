@@ -1,6 +1,5 @@
 // Given an array nums of integers, return how many of them contain an even number of digits.
 
-
 // Example 1:
 
 // Input: nums = [12,345,2,6,7896]
@@ -19,7 +18,6 @@
 // Explanation:
 // Only 1771 contains an even number of digits.
 
-
 // Constraints:
 
 // 1 <= nums.length <= 500
@@ -29,12 +27,13 @@
  * @param {number[]} nums
  * @return {number}
  */
-const findNumbers = nums => nums.reduce((count, num) => {
-  let digitCount = 0
-  while (num !== 0) {
-    num = Math.floor(num / 10)
-    digitCount++
-  }
+const findNumbers = (nums) =>
+  nums.reduce((count, num) => {
+    let digitCount = 0
+    while (num !== 0) {
+      num = Math.floor(num / 10)
+      digitCount++
+    }
 
-  return count + (digitCount % 2 === 0 ? 1 : 0)
-}, 0)
+    return count + (digitCount % 2 === 0 ? 1 : 0)
+  }, 0)

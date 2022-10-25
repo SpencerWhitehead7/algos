@@ -28,17 +28,17 @@
 
 // Matt Contract helped
 
-function almostIncreasingSequence(arr){
+function almostIncreasingSequence(arr) {
   let removed = false
-  for(let i = 1; i < arr.length; i++){
-    if(arr[i] <= arr[i-1]){
-      if(removed) return false
-      if(i === arr.length - 1) return true
-      if(arr[i-1] < arr[i+1]){
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] <= arr[i - 1]) {
+      if (removed) return false
+      if (i === arr.length - 1) return true
+      if (arr[i - 1] < arr[i + 1]) {
         removed = true
-      }else if(!arr[i-2] || arr[i-2] < arr[i]){
+      } else if (!arr[i - 2] || arr[i - 2] < arr[i]) {
         removed = true
-      }else{
+      } else {
         return false
       }
     }

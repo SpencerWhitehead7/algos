@@ -15,7 +15,7 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-const productExceptSelf = nums => {
+const productExceptSelf = (nums) => {
   const res = []
   let productSoFar = 1
   for (let i = 0; i < nums.length; i++) {

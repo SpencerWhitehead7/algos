@@ -9,7 +9,7 @@
 
 const { performance } = require(`perf_hooks`)
 
-const shortestBalancedSubsequenceBruteForce = str => {
+const shortestBalancedSubsequenceBruteForce = (str) => {
   for (let len = 2; len <= str.length; len++) {
     for (let i = 0; i + len <= str.length; i++) {
       const subseq = str.slice(i, i + len)
@@ -17,7 +17,10 @@ const shortestBalancedSubsequenceBruteForce = str => {
       if (
         subseq
           .split(``)
-          .every(char => chars.has(char.toLowerCase()) && chars.has(char.toUpperCase()))
+          .every(
+            (char) =>
+              chars.has(char.toLowerCase()) && chars.has(char.toUpperCase())
+          )
       ) {
         return subseq
       }
@@ -78,15 +81,19 @@ CharCounter.prototype.isBalanced = function () {
   return true
 }
 
-const shortestBalancedSubsequence = str => {
+const shortestBalancedSubsequence = (str) => {
   const charsInStr = new Set(str)
 
-  const unbalancableChars = new Set(str
-    .split(``)
-    .filter(k => (
-      (charsInStr.has(k.toUpperCase()) && !charsInStr.has(k.toLowerCase())) ||
-      (charsInStr.has(k.toLowerCase()) && !charsInStr.has(k.toUpperCase()))
-    )))
+  const unbalancableChars = new Set(
+    str
+      .split(``)
+      .filter(
+        (k) =>
+          (charsInStr.has(k.toUpperCase()) &&
+            !charsInStr.has(k.toLowerCase())) ||
+          (charsInStr.has(k.toLowerCase()) && !charsInStr.has(k.toUpperCase()))
+      )
+  )
 
   const charCounter = new CharCounter()
 
@@ -113,7 +120,11 @@ const shortestBalancedSubsequence = str => {
       }
 
       if (charCounter.isBalanced()) {
-        if (startI === -1 || endI === -1 || (startI - endI) + 1 > (sPtr - ePtr) + 1) {
+        if (
+          startI === -1 ||
+          endI === -1 ||
+          startI - endI + 1 > sPtr - ePtr + 1
+        ) {
           startI = sPtr
           endI = ePtr
         }
@@ -123,6 +134,7 @@ const shortestBalancedSubsequence = str => {
     ePtr++
   }
 
+  // prettier-ignore
   return startI === -1 || endI === -1
     ? -1
     : str.slice(startI, endI + 1)
@@ -134,7 +146,10 @@ const tests = [
   { i: `azABaabza`, e: `ABaab` },
   { i: `TacoCat`, e: -1 },
   { i: `AcZCbaBz`, e: `AcZCbaBz` },
-  { i: `AcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBz`, e: `AcZCbaBz` },
+  {
+    i: `AcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBzAcZCbaBz`,
+    e: `AcZCbaBz`,
+  },
 ]
 
 const runTests = (ts, func) => {

@@ -20,11 +20,11 @@
 
 // The result string after replacing all of its characters.
 
-function alphabeticShift(inputString){
+function alphabeticShift(inputString) {
   const alphaPlusa = `abcdefghijklmnopqrstuvwxyza`
   let output = ``
-  for(let i=0; i<inputString.length; i++){
+  for (let i = 0; i < inputString.length; i++) {
     output += alphaPlusa[alphaPlusa.indexOf(inputString[i]) + 1]
   }
   return output
-} 
+}

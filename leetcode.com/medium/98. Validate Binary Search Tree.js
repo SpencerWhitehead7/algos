@@ -34,7 +34,7 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-const isValidBST = function(root) {
+const isValidBST = (root) => {
   if (!root) return true
   const res = depthFirstInOrder(root)
   for (let i = 1; i < res.length; i++) {
@@ -43,7 +43,7 @@ const isValidBST = function(root) {
   return true
 }
 
-const depthFirstInOrder = root => {
+const depthFirstInOrder = (root) => {
   const res = []
   if (root.left) res.push(...depthFirstInOrder(root.left))
   res.push(root.val)

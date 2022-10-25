@@ -6,8 +6,6 @@
 
 // It is guaranteed that the answer is unique.
 
-
-
 // Example 1:
 
 // Input: s = "abcd", k = 2
@@ -26,7 +24,6 @@
 // Input: s = "pbbcggttciiippooaais", k = 2
 // Output: "ps"
 
-
 // Constraints:
 
 // 1 <= s.length <= 10^5
@@ -38,26 +35,27 @@
  * @param {number} k
  * @return {string}
  */
-const removeDuplicates = (s, k) => s
-  .split(``)
-  .reduce((stack, char) => {
-    stack.push(char)
+const removeDuplicates = (s, k) =>
+  s
+    .split(``)
+    .reduce((stack, char) => {
+      stack.push(char)
 
-    let count = 0
-    while (count < k && stack[stack.length - 1 - count] === char) {
-      count++
-    }
-
-    if (count === k) {
-      while (count > 0) {
-        stack.pop()
-        count--
+      let count = 0
+      while (count < k && stack[stack.length - 1 - count] === char) {
+        count++
       }
-    }
 
-    return stack
-  }, [])
-  .join(``)
+      if (count === k) {
+        while (count > 0) {
+          stack.pop()
+          count--
+        }
+      }
+
+      return stack
+    }, [])
+    .join(``)
 
 // I think it's sort of uglier and less direct, but it's approx the same algo, except about a zillion times faster
 const removeDuplicatesFast = (s, k) => {
@@ -80,19 +78,20 @@ const removeDuplicatesFast = (s, k) => {
 }
 
 // it's still not quite as fast as 2, but it is close, and it might be prettier than 1
-const removeDuplicatesSynthesis = (s, k) => s
-  .split(``)
-  .reduce((stack, char) => {
-    if (stack[stack.length - 1]?.letter !== char) {
-      stack.push({ letter: char, count: 1 })
-    } else {
-      stack[stack.length - 1].count++
-      if (stack[stack.length - 1].count === k) {
-        stack.pop()
+const removeDuplicatesSynthesis = (s, k) =>
+  s
+    .split(``)
+    .reduce((stack, char) => {
+      if (stack[stack.length - 1]?.letter !== char) {
+        stack.push({ letter: char, count: 1 })
+      } else {
+        stack[stack.length - 1].count++
+        if (stack[stack.length - 1].count === k) {
+          stack.pop()
+        }
       }
-    }
 
-    return stack
-  }, [])
-  .map(({ letter, count }) => new Array(count).fill(letter).join(``))
-  .join(``)
+      return stack
+    }, [])
+    .map(({ letter, count }) => new Array(count).fill(letter).join(``))
+    .join(``)

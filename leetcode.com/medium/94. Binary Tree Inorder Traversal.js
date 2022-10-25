@@ -25,7 +25,7 @@
  */
 
 // Rec
-const inorderTraversalRec = function(root) {
+const inorderTraversalRec = (root) => {
   const res = []
   if (!root) return res
   if (root.left) res.push(...inorderTraversalRec(root.left))
@@ -35,7 +35,7 @@ const inorderTraversalRec = function(root) {
 }
 
 // Iter
-const inorderTraversalIter = function(root) {
+const inorderTraversalIter = (root) => {
   const res = []
   if (!root) return res
   const stack = [root]

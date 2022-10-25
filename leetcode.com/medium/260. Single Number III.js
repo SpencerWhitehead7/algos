@@ -13,19 +13,19 @@
  * @param {number[]} nums
  * @return {number}
  */
-const singleNumber = nums => {
+const singleNumber = (nums) => {
   const tracker = {}
-  nums.forEach(num => {
-    if(tracker[num]){
+  nums.forEach((num) => {
+    if (tracker[num]) {
       tracker[num]++
-    }else{
+    } else {
       tracker[num] = 1
     }
   })
   const res = []
   const keys = Object.keys(tracker)
-  for(let i = 0; i < keys.length; i++){
-    if(tracker[keys[i]] === 1) res.push(Number(keys[i]))
+  for (let i = 0; i < keys.length; i++) {
+    if (tracker[keys[i]] === 1) res.push(Number(keys[i]))
   }
   return res
 }

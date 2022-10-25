@@ -20,13 +20,13 @@
 // The minimal number of moves needed to obtain a strictly increasing sequence from inputArray.
 // It's guaranteed that for the given test cases the answer always fits signed 32-bit integer type.
 
-function arrayChange(inputArray){
+function arrayChange(inputArray) {
   let movesCount = 0
-  for(let i=1; i<inputArray.length; i++){
-    while(inputArray[i]<=inputArray[i-1]){
+  for (let i = 1; i < inputArray.length; i++) {
+    while (inputArray[i] <= inputArray[i - 1]) {
       inputArray[i]++
       movesCount++
     }
   }
   return movesCount
-} 
+}

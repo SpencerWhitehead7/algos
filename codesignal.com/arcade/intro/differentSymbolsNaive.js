@@ -20,4 +20,4 @@
 
 // [output] integer
 
-const differentSymbolsNaive = s => new Set(s).size
+const differentSymbolsNaive = (s) => new Set(s).size

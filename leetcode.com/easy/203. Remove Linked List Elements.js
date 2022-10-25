@@ -17,15 +17,15 @@
  * @param {number} val
  * @return {ListNode}
  */
-const removeElements = function(head, val){
-  if(head === null) return null
+const removeElements = (head, val) => {
+  if (head === null) return null
   let prev = head
   let curr = prev.next
-  while(curr){
-    if(curr.val === val){
+  while (curr) {
+    if (curr.val === val) {
       prev.next = prev.next.next
       curr = prev.next
-    }else{
+    } else {
       prev = curr
       curr = curr.next
     }

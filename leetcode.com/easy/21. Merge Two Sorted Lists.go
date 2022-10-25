@@ -32,7 +32,8 @@ package algos
  *     Next *ListNode
  * }
  */
-func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode { // see .js file for an iterative implementation
+func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+	// see .js file for an iterative implementation
 	if l1 == nil {
 		return l2
 	}

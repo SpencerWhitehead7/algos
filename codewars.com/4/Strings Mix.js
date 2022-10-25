@@ -38,13 +38,13 @@
 
 const LETTERS = new Set(`abcdefghijklmnopqrstuvwxyz`.split(``))
 
-const count = str => {
+const count = (str) => {
   const res = {}
-  for(const letter of LETTERS){
+  for (const letter of LETTERS) {
     res[letter] = 0
   }
-  str.split(``).forEach(letter => {
-    if(LETTERS.has(letter)){
+  str.split(``).forEach((letter) => {
+    if (LETTERS.has(letter)) {
       res[letter]++
     }
   })
@@ -57,27 +57,27 @@ const mix = (s1, s2) => {
   const chunks = []
   const s1Count = count(s1)
   const s2Count = count(s2)
-  for(const letter of LETTERS){
+  for (const letter of LETTERS) {
     const s1Letter = s1Count[letter]
     const s2Letter = s2Count[letter]
-    if(s1Letter > s2Letter && s1Letter > 1){
+    if (s1Letter > s2Letter && s1Letter > 1) {
       chunks.push(`1:${letter.repeat(s1Letter)}`)
-    }else if(s1Letter < s2Letter && s2Letter > 1){
+    } else if (s1Letter < s2Letter && s2Letter > 1) {
       chunks.push(`2:${letter.repeat(s2Letter)}`)
-    }else if(s1Letter === s2Letter && s1Letter > 1){
+    } else if (s1Letter === s2Letter && s1Letter > 1) {
       chunks.push(`=:${letter.repeat(s1Letter)}`)
     }
   }
   chunks.sort((a, b) => b.length - a.length)
   let last = 0
-  for(let i = 1; i < chunks.length; i++){
-    if(chunks[i].length !== chunks[i - 1].length){
+  for (let i = 1; i < chunks.length; i++) {
+    if (chunks[i].length !== chunks[i - 1].length) {
       res.push(...chunks.slice(last, i).sort())
       last = i
-    }else if(i === chunks.length - 1){
+    } else if (i === chunks.length - 1) {
       res.push(...chunks.slice(last).sort())
     }
   }
-  if(chunks.length !== res.length) res.push(chunks[chunks.length - 1])
+  if (chunks.length !== res.length) res.push(chunks[chunks.length - 1])
   return res.join(`/`)
 }

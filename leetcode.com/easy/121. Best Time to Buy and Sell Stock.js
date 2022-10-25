@@ -20,7 +20,7 @@
  * @param {number[]} prices
  * @return {number}
  */
-const maxProfit = prices => {
+const maxProfit = (prices) => {
   let minPrice = Infinity
   let maxPossibleProfit = 0
   for (const price of prices) {

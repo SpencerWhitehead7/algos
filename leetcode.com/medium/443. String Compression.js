@@ -6,10 +6,8 @@
 
 // After you are done modifying the input array in-place, return the new length of the array.
 
-
 // Follow up:
 // Could you solve it using only O(1) extra space?
-
 
 // Example 1:
 
@@ -22,7 +20,6 @@
 // Explanation:
 // "aa" is replaced by "a2". "bb" is replaced by "b2". "ccc" is replaced by "c3".
 
-
 // Example 2:
 
 // Input:
@@ -33,7 +30,6 @@
 
 // Explanation:
 // Nothing is replaced.
-
 
 // Example 3:
 
@@ -47,7 +43,6 @@
 // Since the character "a" does not repeat, it is not compressed. "bbbbbbbbbbbb" is replaced by "b12".
 // Notice each digit has it's own entry in the array.
 
-
 // Note:
 
 // All characters have an ASCII value in [35, 126].
@@ -57,14 +52,14 @@
  * @param {character[]} chars
  * @return {number}
  */
-const compress = chars => {
+const compress = (chars) => {
   let readI = 0
   let writeI = 0
   while (readI < chars.length) {
     const repeatedSubStrStart = readI
     const char = chars[readI]
 
-    while (char === chars[readI + 1]) { readI++ }
+    while (char === chars[readI + 1]) readI++
 
     chars[writeI] = char
     writeI++

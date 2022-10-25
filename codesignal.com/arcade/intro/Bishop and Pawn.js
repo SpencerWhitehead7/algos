@@ -2,18 +2,13 @@
 
 // The bishop has no restrictions in distance for each move, but is limited to diagonal movement. Check out the example below to see how it can move:
 
-
 // Example
 
 // For bishop = "a1" and pawn = "c3", the output should be
 // bishopAndPawn(bishop, pawn) = true.
 
-
-
 // For bishop = "h1" and pawn = "h3", the output should be
 // bishopAndPawn(bishop, pawn) = false.
-
-
 
 // Input/Output
 
@@ -37,9 +32,12 @@ const bishopAndPawn = (bishop, pawn) => {
   const distanceY = pawnY - bishopY
   const letters = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`]
   const startingPoint = letters.indexOf(bishopX)
-  if(`${letters[startingPoint + distanceY]}${pawnY}` === pawn || `${letters[startingPoint - distanceY]}${pawnY}` === pawn){
+  if (
+    `${letters[startingPoint + distanceY]}${pawnY}` === pawn ||
+    `${letters[startingPoint - distanceY]}${pawnY}` === pawn
+  ) {
     return true
-  }else{
+  } else {
     return false
   }
 }

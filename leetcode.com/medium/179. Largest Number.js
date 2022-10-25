@@ -14,14 +14,16 @@
  * @param {number[]} nums
  * @return {string}
  */
-const largestNumber = function(nums){
-  const strs = nums.map(num => num.toString()).sort((a, b) => {
-    const orderOne = a+b
-    const orderTwo = b+a
-    if(orderOne>orderTwo) return -1
-    else if(orderOne<orderTwo) return 1
-    else return 0
-  })
+const largestNumber = (nums) => {
+  const strs = nums
+    .map((num) => num.toString())
+    .sort((a, b) => {
+      const orderOne = a + b
+      const orderTwo = b + a
+      if (orderOne > orderTwo) return -1
+      else if (orderOne < orderTwo) return 1
+      else return 0
+    })
   const res = strs.join(``)
   return Number(res) === 0 ? `0` : res
 }

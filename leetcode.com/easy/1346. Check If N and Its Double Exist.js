@@ -27,7 +27,7 @@
 // 2 <= arr.length <= 500
 // -10^3 <= arr[i] <= 10^3
 
-const checkIfExist = arr => {
+const checkIfExist = (arr) => {
   const seen = new Set()
 
   for (const n of arr) {

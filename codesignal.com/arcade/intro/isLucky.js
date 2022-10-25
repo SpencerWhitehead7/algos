@@ -23,14 +23,14 @@
 
 // true if n is a lucky ticket number, false otherwise.
 
-function isLucky(n){
+function isLucky(n) {
   const str = n.toString()
-  const firstHalf = str.slice(0, str.length/2)
-  const secondHalf = str.slice(str.length/2)
+  const firstHalf = str.slice(0, str.length / 2)
+  const secondHalf = str.slice(str.length / 2)
   return sum(firstHalf) === sum(secondHalf)
 }
- 
-function sum(str){
-  const digits = str.split(``).map(ele => parseInt(ele))
+
+function sum(str) {
+  const digits = str.split(``).map((ele) => parseInt(ele))
   return digits.reduce((acc, curr) => acc + curr)
 }

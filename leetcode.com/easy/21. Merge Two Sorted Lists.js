@@ -4,10 +4,7 @@
 
 // Return the head of the merged linked list.
 
-
-
 //   Example 1:
-
 
 // Input: list1 = [1, 2, 4], list2 = [1, 3, 4]
 // Output: [1, 1, 2, 3, 4, 4]
@@ -19,7 +16,6 @@
 
 // Input: list1 = [], list2 = [0]
 // Output: [0]
-
 
 // Constraints:
 
@@ -39,7 +35,8 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-const mergeTwoLists = (l1, l2) => { // see .go version for a recursive implementation
+const mergeTwoLists = (l1, l2) => {
+  // see .go version for a recursive implementation
   if (!l1) return l2
   if (!l2) return l1
 

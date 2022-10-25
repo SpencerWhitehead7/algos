@@ -19,13 +19,14 @@
 
 // There is no first number.
 
-function isIPv4Address(inputString){
+function isIPv4Address(inputString) {
   let result = true
   const arr = inputString.split(`.`)
   console.log(arr)
-  arr.forEach(subStr => {
-    if(!(Number(subStr) <= 255 && Number(subStr) >= 0 && subStr !== ``)) result = false
+  arr.forEach((subStr) => {
+    if (!(Number(subStr) <= 255 && Number(subStr) >= 0 && subStr !== ``))
+      result = false
   })
-  if(arr.length !== 4) result = false
+  if (arr.length !== 4) result = false
   return result
-} 
+}

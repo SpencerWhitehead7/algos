@@ -13,16 +13,21 @@
  * @param {number} num
  * @return {number}
  */
-const addDigits = num => {
-  while(num > 9){
-    num = num.toString().split(``).map(a => Number(a)).reduce((acc, curr) => acc + curr)
-  } return num
+const addDigits = (num) => {
+  while (num > 9) {
+    num = num
+      .toString()
+      .split(``)
+      .map(Number)
+      .reduce((acc, curr) => acc + curr)
+  }
+  return num
 }
 
-const addDigitsMath = num => {
-  if(num === 0){
+const addDigitsMath = (num) => {
+  if (num === 0) {
     return 0
-  }else{
+  } else {
     return num % 9 === 0 ? 9 : num % 9
   }
 }

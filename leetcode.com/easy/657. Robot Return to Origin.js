@@ -4,8 +4,6 @@
 
 // Note: The way that the robot is "facing" is irrelevant. "R" will always make the robot move to the right once, "L" will always make it move left, etc. Also, assume that the magnitude of the robot's movement is the same for each move.
 
-
-
 // Example 1:
 
 // Input: moves = "UD"
@@ -25,7 +23,6 @@
 // Input: moves = "LDRRLRUULR"
 // Output: false
 
-
 // Constraints:
 
 // 1 <= moves.length <= 2 * 104
@@ -35,7 +32,7 @@
  * @param {string} moves
  * @return {boolean}
  */
-const judgeCircle = moves => {
+const judgeCircle = (moves) => {
   let x = 0
   let y = 0
   for (let i = 0; i < moves.length; i++) {
@@ -58,7 +55,7 @@ const judgeCircle = moves => {
   return x === 0 && y === 0
 }
 
-const judgeCircle2 = moves => {
+const judgeCircle2 = (moves) => {
   const moveCounts = {
     R: 0,
     L: 0,
@@ -73,18 +70,19 @@ const judgeCircle2 = moves => {
   return moveCounts.R === moveCounts.L && moveCounts.U === moveCounts.D
 }
 
-const judgeCircle3 = moves => {
-  const moveCounts = moves
-    .split(``)
-    .reduce((counts, move) => {
+const judgeCircle3 = (moves) => {
+  const moveCounts = moves.split(``).reduce(
+    (counts, move) => {
       counts[move]++
       return counts
-    }, {
+    },
+    {
       R: 0,
       L: 0,
       U: 0,
       D: 0,
-    })
+    }
+  )
 
   return moveCounts.R === moveCounts.L && moveCounts.U === moveCounts.D
 }

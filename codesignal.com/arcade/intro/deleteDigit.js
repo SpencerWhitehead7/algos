@@ -17,12 +17,17 @@
 
 // [output] integer
 
-const deleteDigit = num => {
-  const digits = num.toString().split(``).map(digit => Number(digit))
+const deleteDigit = (num) => {
+  const digits = num
+    .toString()
+    .split(``)
+    .map((digit) => Number(digit))
   let largest
-  for(let i = 0; i < digits.length; i++){
-    const newNum = Number([...digits.slice(0, i), ...digits.slice(i + 1)].join(``))
-    if(!largest || newNum > largest) largest = newNum
+  for (let i = 0; i < digits.length; i++) {
+    const newNum = Number(
+      [...digits.slice(0, i), ...digits.slice(i + 1)].join(``)
+    )
+    if (!largest || newNum > largest) largest = newNum
   }
   return largest
 }

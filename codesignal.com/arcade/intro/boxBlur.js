@@ -8,8 +8,8 @@
 
 // For
 
-// image = [[1, 1, 1], 
-//          [1, 7, 1], 
+// image = [[1, 1, 1],
+//          [1, 7, 1],
 //          [1, 1, 1]]
 // the output should be boxBlur(image) = [[1]].
 
@@ -17,13 +17,13 @@
 
 // For
 
-// image = [[7, 4, 0, 1], 
-//          [5, 6, 2, 2], 
-//          [6, 10, 7, 8], 
+// image = [[7, 4, 0, 1],
+//          [5, 6, 2, 2],
+//          [6, 10, 7, 8],
 //          [1, 4, 2, 0]]
 // the output should be
 
-// boxBlur(image) = [[5, 4], 
+// boxBlur(image) = [[5, 4],
 //                   [4, 4]]
 // There are four 3 × 3 squares in the input image, so there should be four integers in the blurred output. To get the first value: (7 + 4 + 0 + 5 + 6 + 2 + 6 + 10 + 7) = 47 / 9 = 5.2222 = 5. The other three integers are obtained the same way, then the surrounding integers are cropped from the final result.
 
@@ -44,25 +44,26 @@
 
 // A blurred image represented as integers, obtained through the process in the description.
 
-function boxBlur(image){
+function boxBlur(image) {
   const output = []
-  for(let row=1; row<image.length-1; row++){
+  for (let row = 1; row < image.length - 1; row++) {
     const newRow = []
-    for(let col = 1; col< image[row].length-1; col++){
-      const newVal = Math.floor((
-        image[row-1][col-1] +
-        image[row-1][col] +
-        image[row-1][col+1] +
-        image[row][col-1] +
-        image[row][col] +
-        image[row][col+1] +
-        image[row+1][col-1] +
-        image[row+1][col] +
-        image[row+1][col+1]
-      ) / 9)
+    for (let col = 1; col < image[row].length - 1; col++) {
+      const newVal = Math.floor(
+        (image[row - 1][col - 1] +
+          image[row - 1][col] +
+          image[row - 1][col + 1] +
+          image[row][col - 1] +
+          image[row][col] +
+          image[row][col + 1] +
+          image[row + 1][col - 1] +
+          image[row + 1][col] +
+          image[row + 1][col + 1]) /
+          9
+      )
       newRow.push(newVal)
     }
     output.push(newRow)
   }
   return output
-} 
+}

@@ -38,38 +38,41 @@ const sumOfTwo = (a, b, v) => {
   const larger = a.length > b.length ? a : b
   const smaller = a.length > b.length ? b : a
   const tracker = {}
-  smaller.forEach(num => {
+  smaller.forEach((num) => {
     tracker[num] = 1
   })
-  for(let i = 0; i < larger.length; i++){
-    if(tracker[v - larger[i]]) return true
+  for (let i = 0; i < larger.length; i++) {
+    if (tracker[v - larger[i]]) return true
   }
   return false
 }
 
 const sumOfTwoSillyVer = (a, b, v) => {
   const mixedArr = []
-  for(let i = 0; i < a.length; i++){
-    mixedArr.push({num : a[i], arr : `a`})
+  for (let i = 0; i < a.length; i++) {
+    mixedArr.push({ num: a[i], arr: `a` })
   }
-  for(let i = 0; i < b.length; i++){
-    mixedArr.push({num : b[i], arr : `b`})
+  for (let i = 0; i < b.length; i++) {
+    mixedArr.push({ num: b[i], arr: `b` })
   }
   mixedArr.sort((v1, v2) => v1.num - v2.num)
   let pointer1 = 0
   let pointer2 = mixedArr.length - 1
-  while(pointer1 < pointer2){
-    if(mixedArr[pointer1].num + mixedArr[pointer2].num === v && mixedArr[pointer1].arr !== mixedArr[pointer2].arr){
+  while (pointer1 < pointer2) {
+    if (
+      mixedArr[pointer1].num + mixedArr[pointer2].num === v &&
+      mixedArr[pointer1].arr !== mixedArr[pointer2].arr
+    ) {
       return true
-    }else if(mixedArr[pointer1].num + mixedArr[pointer2].num < v){
+    } else if (mixedArr[pointer1].num + mixedArr[pointer2].num < v) {
       pointer1++
-    }else if(mixedArr[pointer1].num + mixedArr[pointer2].num > v){
+    } else if (mixedArr[pointer1].num + mixedArr[pointer2].num > v) {
       pointer2--
-    }else if(mixedArr[pointer1].num === mixedArr[pointer1 + 1].num){
+    } else if (mixedArr[pointer1].num === mixedArr[pointer1 + 1].num) {
       pointer1++
-    }else if(mixedArr[pointer2].num === mixedArr[pointer2 - 1].num){
+    } else if (mixedArr[pointer2].num === mixedArr[pointer2 - 1].num) {
       pointer2--
-    }else{
+    } else {
       pointer1++
       pointer2--
     }

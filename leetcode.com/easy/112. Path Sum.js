@@ -28,11 +28,11 @@
  * @return {boolean}
  */
 const hasPathSum = (root, sum, memo = 0) => {
-  if(!root) return false
+  if (!root) return false
   memo += root.val
-  if(!root.left && !root.right){
+  if (!root.left && !root.right) {
     return sum === memo
-  }else{
+  } else {
     return hasPathSum(root.left, sum, memo) || hasPathSum(root.right, sum, memo)
   }
 }

@@ -49,22 +49,22 @@ const digitToRoman = (place, digit) => {
   let add = ``
   let sub1 = ``
   let sub2 = ``
-  if(place === 0){
+  if (place === 0) {
     add = `I`
     sub1 = `V`
     sub2 = `X`
-  }else if(place === 1){
+  } else if (place === 1) {
     add = `X`
     sub1 = `L`
     sub2 = `C`
-  }else if(place === 2){
+  } else if (place === 2) {
     add = `C`
     sub1 = `D`
     sub2 = `M`
-  }else if(place === 3){
+  } else if (place === 3) {
     add = `M`
   }
-  switch(digit){
+  switch (digit) {
     case `1`:
       return add
     case `2`:
@@ -90,9 +90,11 @@ const digitToRoman = (place, digit) => {
   }
 }
 
-const intToRoman = function(num){
+const intToRoman = (num) => {
   const digits = num.toString().split(``).reverse()
   let res = ``
-  digits.forEach((digit, i) => {res = digitToRoman(i, digit) + res})
+  digits.forEach((digit, i) => {
+    res = digitToRoman(i, digit) + res
+  })
   return res
 }

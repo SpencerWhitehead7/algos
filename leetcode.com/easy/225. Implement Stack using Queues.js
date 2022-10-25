@@ -22,7 +22,7 @@
 /**
  * Initialize your data structure here.
  */
-const MyStack = function(){
+const MyStack = function () {
   this.queue = []
 }
 
@@ -31,7 +31,7 @@ const MyStack = function(){
  * @param {number} x
  * @return {void}
  */
-MyStack.prototype.push = function(x){
+MyStack.prototype.push = function (x) {
   this.queue.push(x)
 }
 
@@ -39,13 +39,13 @@ MyStack.prototype.push = function(x){
  * Removes the element on top of the stack and returns that element.
  * @return {number}
  */
-MyStack.prototype.pop = function(){
+MyStack.prototype.pop = function () {
   const tempQueue = []
-  while(this.queue.length > 1){
+  while (this.queue.length > 1) {
     tempQueue.push(this.queue.shift())
   }
   const res = this.queue.shift()
-  while(tempQueue.length > 0){
+  while (tempQueue.length > 0) {
     this.queue.push(tempQueue.shift())
   }
   return res
@@ -55,13 +55,13 @@ MyStack.prototype.pop = function(){
  * Get the top element.
  * @return {number}
  */
-MyStack.prototype.top = function(){
+MyStack.prototype.top = function () {
   const tempQueue = []
-  while(this.queue.length > 1){
+  while (this.queue.length > 1) {
     tempQueue.push(this.queue.shift())
   }
   const res = this.queue.shift()
-  while(tempQueue.length > 0){
+  while (tempQueue.length > 0) {
     this.queue.push(tempQueue.shift())
   }
   this.queue.push(res)
@@ -72,7 +72,7 @@ MyStack.prototype.top = function(){
  * Returns whether the stack is empty.
  * @return {boolean}
  */
-MyStack.prototype.empty = function(){
+MyStack.prototype.empty = function () {
   return this.queue.length === 0
 }
 

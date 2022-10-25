@@ -2,8 +2,6 @@
 
 // Note that If there is such a window, it is guaranteed that there will always be only one unique minimum window in s.
 
-
-
 // Example 1:
 
 // Input: s = "ADOBECODEBANC", t = "ABC"
@@ -13,14 +11,12 @@
 // Input: s = "a", t = "a"
 // Output: "a"
 
-
 // Constraints:
 
 // m == s.length
 // n == t.length
 // 1 <= m, n <= 105
 // s and t consist of English letters.
-
 
 // Follow up: Could you find an algorithm that runs in O(m + n) time?
 
@@ -31,20 +27,23 @@
  */
 const minWindow = (s, t) => {
   const windowCharCounts = {}
-  const tCharCounts = Object.entries(t
-    .split(``)
-    .reduce((counts, char) => {
+  const tCharCounts = Object.entries(
+    t.split(``).reduce((counts, char) => {
       counts[char] = (counts[char] ?? 0) + 1
       return counts
-    }, {}))
+    }, {})
+  )
 
   let res = ``
   let left = 0
   let right = 0
   while (right < s.length) {
     windowCharCounts[s[right]] = (windowCharCounts[s[right]] ?? 0) + 1
-    while (tCharCounts.every(([char, count]) => windowCharCounts[char] >= count)) {
-      if (res === `` || right - left < res.length) res = s.slice(left, right + 1)
+    while (
+      tCharCounts.every(([char, count]) => windowCharCounts[char] >= count)
+    ) {
+      if (res === `` || right - left < res.length)
+        res = s.slice(left, right + 1)
       windowCharCounts[s[left]]--
       left++
     }
@@ -61,12 +60,10 @@ const minWindow = (s, t) => {
  */
 const minWindowOptimized = (s, t) => {
   const winCharCounts = {}
-  const tCharCounts = t
-    .split(``)
-    .reduce((counts, char) => {
-      counts[char] = (counts[char] ?? 0) + 1
-      return counts
-    }, {})
+  const tCharCounts = t.split(``).reduce((counts, char) => {
+    counts[char] = (counts[char] ?? 0) + 1
+    return counts
+  }, {})
 
   const necessaryCharsLength = Object.entries(tCharCounts).length
 
@@ -80,10 +77,12 @@ const minWindowOptimized = (s, t) => {
     if (tCharCounts[rChar] === winCharCounts[rChar]) completedCharsLength++
 
     while (completedCharsLength === necessaryCharsLength) {
-      if (right - left < res.length || res === ``) res = s.slice(left, right + 1)
+      if (right - left < res.length || res === ``)
+        res = s.slice(left, right + 1)
       const lChar = s[left]
       winCharCounts[lChar]--
-      if (tCharCounts[lChar] && winCharCounts[lChar] < tCharCounts[lChar]) completedCharsLength--
+      if (tCharCounts[lChar] && winCharCounts[lChar] < tCharCounts[lChar])
+        completedCharsLength--
       left++
     }
     right++

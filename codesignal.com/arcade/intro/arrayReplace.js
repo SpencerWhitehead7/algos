@@ -27,6 +27,8 @@
 
 // [output] array.integer
 
-function arrayReplace(inputArray, elemToReplace, substitutionElem){
-  return inputArray.map(ele => ele === elemToReplace ? substitutionElem : ele)
-} 
+function arrayReplace(inputArray, elemToReplace, substitutionElem) {
+  return inputArray.map((ele) =>
+    ele === elemToReplace ? substitutionElem : ele
+  )
+}

@@ -8,14 +8,17 @@
  * @param {number[]} temperatures
  * @return {number[]}
  */
-const dailyTemperatures = function(temperatures){
+const dailyTemperatures = (temperatures) => {
   const res = []
   const stack = []
-  for(let i=temperatures.length-1; i>=0; i--){
-    while(stack.length>0 && temperatures[stack[stack.length-1]]<=temperatures[i]){
+  for (let i = temperatures.length - 1; i >= 0; i--) {
+    while (
+      stack.length > 0 &&
+      temperatures[stack[stack.length - 1]] <= temperatures[i]
+    ) {
       stack.pop()
     }
-    res.unshift(stack[stack.length-1] ? stack[stack.length-1] - i : 0)
+    res.unshift(stack[stack.length - 1] ? stack[stack.length - 1] - i : 0)
     stack.push(i)
   }
   return res

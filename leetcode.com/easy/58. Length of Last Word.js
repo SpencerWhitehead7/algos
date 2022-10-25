@@ -13,7 +13,7 @@
  * @param {string} s
  * @return {number}
  */
-const lengthOfLastWord = s => {
+const lengthOfLastWord = (s) => {
   let length = 0
   let i = s.length - 1
   while (s[i] === ` `) {

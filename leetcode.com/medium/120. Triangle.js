@@ -18,7 +18,7 @@
  * @param {number[][]} triangle
  * @return {number}
  */
-const minimumTotal = triangle => {
+const minimumTotal = (triangle) => {
   while (triangle.length > 1) {
     const bottomRow = triangle.pop()
     const newBottomRow = triangle[triangle.length - 1]

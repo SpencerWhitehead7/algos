@@ -23,41 +23,41 @@
  * @return {boolean}
  */
 
-const reverseLL = head => {
-  if(!head || !head.next) return head
+const reverseLL = (head) => {
+  if (!head || !head.next) return head
   const rest = reverseLL(head.next)
   head.next.next = head
   head.next = null
   return rest
 }
 
-const isPalindrome = function(head){
-  if(!head || !head.next) return true
+const isPalindrome = (head) => {
+  if (!head || !head.next) return true
   let start = head
   let middle = head
   let leader = head
-  while(leader && leader.next){
+  while (leader && leader.next) {
     middle = middle.next
     leader = leader.next.next
   }
-  if(leader) middle = middle.next
+  if (leader) middle = middle.next
   middle = reverseLL(middle)
-  while(middle){
-    if(start.val !== middle.val) return false
+  while (middle) {
+    if (start.val !== middle.val) return false
     start = start.next
     middle = middle.next
   }
   return true
 }
 
-const isPalindromeClever = head => {
+const isPalindromeClever = (head) => {
   let current = head
   let result = true
 
-  const traverse = list => {
-    if(list){
+  const traverse = (list) => {
+    if (list) {
       traverse(list.next)
-      if(list.val != current.val){
+      if (list.val != current.val) {
         result = false
         return
       }

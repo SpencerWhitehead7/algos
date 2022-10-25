@@ -15,17 +15,17 @@
  * @param {number[]} nums
  * @return {number}
  */
-const missingNumber = function(nums){
+const missingNumber = (nums) => {
   const hash = {}
-  nums.forEach(num => {
+  nums.forEach((num) => {
     hash[num] = 1
   })
-  for(let i=0; i<=nums.length; i++){
-    if(!hash[i]) return i
+  for (let i = 0; i <= nums.length; i++) {
+    if (!hash[i]) return i
   }
 }
 
-const missingNumberPureMath = function(nums){
+const missingNumberPureMath = (nums) => {
   const expectedSum = (nums.length * (nums.length + 1)) / 2
   const actualSum = nums.reduce((acc, curr) => acc + curr)
   return expectedSum - actualSum

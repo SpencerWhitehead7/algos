@@ -38,7 +38,7 @@
  * @return {number}
  */
 // n ^ 2
-const removeDuplicatesSlow = nums => {
+const removeDuplicatesSlow = (nums) => {
   let i = 0
   while (i < nums.length) {
     if (nums[i] === nums[i - 1]) {
@@ -51,7 +51,7 @@ const removeDuplicatesSlow = nums => {
 }
 
 // n
-const removeDuplicates = nums => {
+const removeDuplicates = (nums) => {
   let writePtr = 0
   for (let readPtr = 1; readPtr < nums.length; readPtr++) {
     if (nums[writePtr] !== nums[readPtr]) {

@@ -51,5 +51,7 @@ const nouveau = (Constructor, ...args) => {
   // Don't forget, unnamed arguments after Constructor may be passed in!
   const instance = Object.create(Constructor.prototype)
   const res = Constructor.apply(instance, args)
-  return (typeof res === `object` || typeof res === `function`) && res ? res : instance
+  return (typeof res === `object` || typeof res === `function`) && res
+    ? res
+    : instance
 }
