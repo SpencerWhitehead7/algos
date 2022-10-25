@@ -15,6 +15,7 @@
 package algos
 
 func getRow(rowIndex int) []int {
+	// see .js for an iterative, more efficient solution
 	if rowIndex == 0 {
 		return []int{1}
 	}

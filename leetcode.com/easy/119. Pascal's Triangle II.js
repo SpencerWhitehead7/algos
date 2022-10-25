@@ -1,32 +1,39 @@
-// Given a non-negative index k where k ≤ 33, return the kth index row of the Pascal's triangle.
+// Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
 
-// Note that the row index starts from 0.
+// In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
 
-// In Pascal's triangle, each number is the sum of the two numbers directly above it.
+// Example 1:
 
-// Example:
-
-// Input: 3
+// Input: rowIndex = 3
 // Output: [1,3,3,1]
-// Follow up:
+// Example 2:
 
-// Could you optimize your algorithm to use only O(k) extra space?
+// Input: rowIndex = 0
+// Output: [1]
+// Example 3:
+
+// Input: rowIndex = 1
+// Output: [1,1]
+
+// Constraints:
+
+// 0 <= rowIndex <= 33
+
+// Follow up: Could you optimize your algorithm to use only O(rowIndex) extra space?
 
 /**
  * @param {number} rowIndex
  * @return {number[]}
  */
 const getRow = (rowIndex) => {
-  let currRow = [0, 1, 0]
-  for (let i = 0; i < rowIndex; i++) {
-    const nextRow = [0]
-    for (let j = 0; j < currRow.length - 1; j++) {
-      nextRow.push(currRow[j] + currRow[j + 1])
+  // see .go for a recursive solution
+  const row = [1]
+  for (let r = 0; r < rowIndex; r++) {
+    row.push(1)
+    for (let i = row.length - 2; i > 0; i--) {
+      row[i] = row[i - 1] + row[i]
     }
-    nextRow.push(0)
-    currRow = nextRow
   }
-  currRow.pop()
-  currRow.shift()
-  return currRow
+
+  return row
 }
