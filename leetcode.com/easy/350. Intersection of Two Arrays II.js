@@ -1,4 +1,4 @@
-// Given two arrays, write a function to compute their intersection.
+// Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
 
 // Example 1:
 
@@ -8,10 +8,13 @@
 
 // Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
 // Output: [4,9]
-// Note:
+// Explanation: [9,4] is also accepted.
 
-// Each element in the result should appear as many times as it shows in both arrays.
-// The result can be in any order.
+// Constraints:
+
+// 1 <= nums1.length, nums2.length <= 1000
+// 0 <= nums1[i], nums2[i] <= 1000
+
 // Follow up:
 
 // What if the given array is already sorted? How would you optimize your algorithm?
@@ -24,6 +27,27 @@
  * @return {number[]}
  */
 const intersect = (nums1, nums2) => {
+  // O(n) time O(n) extra space
+  const smaller = nums1.length < nums2.length ? nums1 : nums2
+  const larger = nums1.length < nums2.length ? nums2 : nums1
+
+  const counts = smaller.reduce((acc, n) => {
+    acc[n] ??= 0
+    acc[n]++
+    return acc
+  }, {})
+
+  return larger.reduce((res, curr) => {
+    if (counts[curr] > 0) {
+      res.push(curr)
+      counts[curr]--
+    }
+    return res
+  }, [])
+}
+
+const intersectSort = (nums1, nums2) => {
+  // O(nlogn) time O(1) (additional) space
   nums1.sort((a, b) => a - b)
   nums2.sort((a, b) => a - b)
   const res = []
