@@ -28,13 +28,15 @@
 // 1 <= prices.length <= 3 * 104
 // 0 <= prices[i] <= 104
 
-class Solution {
-    fun maxProfit(prices: IntArray): Int {
-        var maxProfit = 0
-        for (i in 1 until prices.size) {
-            val differenceSinceYesterday = prices[i] - prices[i - 1]
-            if (differenceSinceYesterday > 0) maxProfit += differenceSinceYesterday
-        }
-        return maxProfit
-    }
+package algos
+
+func maxProfit(prices []int) int {
+	totalProfit := 0
+	for i := 1; i < len(prices); i++ {
+		priceDiff := prices[i] - prices[i-1]
+		if priceDiff > 0 {
+			totalProfit += priceDiff
+		}
+	}
+	return totalProfit
 }
