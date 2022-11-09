@@ -27,10 +27,28 @@
 // Try to come up with as many solutions as you can. There are at least three different ways to solve this problem.
 // Could you do it in-place with O(1) extra space?
 
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {void} Do not return anything, modify nums in-place instead.
- */
-const rotate = (nums, k) =>
-  nums.splice(0, 0, ...nums.splice(nums.length - (k % nums.length)))
+package algos
+
+// leetcode doesn't support go 1.18 (generics release) yet???
+// func inPlaceReverse[T any](nums []T, lPtr int, rPtr int) {
+// 	for lPtr < rPtr {
+// 		nums[lPtr], nums[rPtr] = nums[rPtr], nums[lPtr]
+// 		lPtr++
+// 		rPtr--
+// 	}
+// }
+
+func inPlaceReverse(nums []int, lPtr int, rPtr int) {
+	for lPtr < rPtr {
+		nums[lPtr], nums[rPtr] = nums[rPtr], nums[lPtr]
+		lPtr++
+		rPtr--
+	}
+}
+
+func rotate(nums []int, k int) {
+	k %= len(nums)
+	inPlaceReverse(nums, 0, len(nums)-1)
+	inPlaceReverse(nums, 0, k-1)
+	inPlaceReverse(nums, k, len(nums)-1)
+}
