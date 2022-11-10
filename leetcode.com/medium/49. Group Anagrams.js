@@ -1,18 +1,25 @@
-// Given an array of strings, group anagrams together.
+// Given an array of strings strs, group the anagrams together. You can return the answer in any order.
 
-// Example:
+// An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
 
-// Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
-// Output:
-// [
-//   ["ate","eat","tea"],
-//   ["nat","tan"],
-//   ["bat"]
-// ]
-// Note:
+// Example 1:
 
-// All inputs will be in lowercase.
-// The order of your output does not matter.
+// Input: strs = ["eat","tea","tan","ate","nat","bat"]
+// Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+// Example 2:
+
+// Input: strs = [""]
+// Output: [[""]]
+// Example 3:
+
+// Input: strs = ["a"]
+// Output: [["a"]]
+
+// Constraints:
+
+// 1 <= strs.length <= 104
+// 0 <= strs[i].length <= 100
+// strs[i] consists of lowercase English letters.
 
 /**
  * @param {string[]} strs
@@ -62,25 +69,20 @@ const groupAnagramsFaster = (strs) => {
   return res
 }
 
-const groupAnagrams = (strs) => {
-  const baseHash = new Array(26).fill(0)
-  const tracker = strs.reduce((accTracker, str) => {
-    const hash = str.split(``).reduce(
-      (accHash, letter) => {
-        accHash[letter.charCodeAt(0) - 97]++
-        return accHash
-      },
-      [...baseHash]
-    )
+const groupAnagrams = (strs) =>
+  Object.values(
+    strs.reduce((hashesToStrs, str) => {
+      const hash = str
+        .split(``)
+        .reduce((hashArr, letter) => {
+          hashArr[letter.charCodeAt(0) - 97]++
+          return hashArr
+        }, new Array(26).fill(0))
+        .join(`,`)
 
-    if (!accTracker[hash]) {
-      accTracker[hash] = [str]
-    } else {
-      accTracker[hash].push(str)
-    }
+      hashesToStrs[hash] ??= []
+      hashesToStrs[hash].push(str)
 
-    return accTracker
-  }, {})
-
-  return Object.values(tracker)
-}
+      return hashesToStrs
+    }, {})
+  )
