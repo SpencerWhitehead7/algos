@@ -19,29 +19,32 @@
  * @return {number[][]}
  */
 const threeSum = (nums) => {
-  nums.sort((a, b) => a - b)
   const res = []
+
+  nums.sort((a, b) => a - b)
+
   for (let i = 0; i < nums.length - 2; i++) {
     if (i === 0 || nums[i - 1] !== nums[i]) {
-      let start = i + 1
-      let end = nums.length - 1
-      while (start < end) {
-        const sum = nums[i] + nums[start] + nums[end]
+      let l = i + 1
+      let r = nums.length - 1
+      while (l < r) {
+        const sum = nums[i] + nums[l] + nums[r]
         if (sum === 0) {
-          res.push([nums[i], nums[start], nums[end]])
-          start++
-          end--
-          while (start < end && nums[start - 1] === nums[start]) {
-            start++
+          res.push([nums[i], nums[l], nums[r]])
+          l++
+          r--
+          while (l < r && nums[l - 1] === nums[l]) {
+            l++
           }
-          while (start < end && nums[end] === nums[end + 1]) {
-            end--
+          while (l < r && nums[r] === nums[r + 1]) {
+            r--
           }
         } else {
-          sum < 0 ? start++ : end--
+          sum < 0 ? l++ : r--
         }
       }
     }
   }
+
   return res
 }
