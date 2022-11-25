@@ -33,25 +33,25 @@
  * @return {TreeNode}
  */
 const buildTree = (preorder, inorder) => {
-  if (preorder.length === 0 && inorder.length === 0) {
-    return null
-  }
-  if (preorder.length === 1 && inorder.length === 1) {
-    return new TreeNode(preorder[0])
+  let preorderI = -1
+  const inorderIMap = inorder.reduce((acc, v, i) => {
+    acc[v] = i
+    return acc
+  }, {})
+
+  const buildSubTree = (l, r) => {
+    if (l > r) return null
+
+    preorderI++
+    const val = preorder[preorderI]
+    const inorderSplitI = inorderIMap[val]
+
+    return new TreeNode(
+      val,
+      buildSubTree(l, inorderSplitI - 1),
+      buildSubTree(inorderSplitI + 1, r)
+    )
   }
 
-  const rootVal = preorder[0]
-  const inorderSplitPoint = inorder.indexOf(rootVal)
-  const inorderL = inorder.slice(0, inorderSplitPoint)
-  const inorderR = inorder.slice(inorderSplitPoint + 1)
-  const lVals = new Set(inorderL)
-  const rVals = new Set(inorderR)
-  const preorderL = preorder.filter((v) => lVals.has(v))
-  const preorderR = preorder.filter((v) => rVals.has(v))
-
-  return new TreeNode(
-    preorder[0],
-    buildTree(preorderL, inorderL),
-    buildTree(preorderR, inorderR)
-  )
+  return buildSubTree(0, inorder.length - 1)
 }
