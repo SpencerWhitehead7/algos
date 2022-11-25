@@ -30,9 +30,29 @@
  * @param {number} k
  * @return {number}
  */
-const kthSmallest = (root, k) => {
+const kthSmallestUnopt = (root, k) => {
   const inOrder = (root) =>
     root ? [...inOrder(root.left), root.val, ...inOrder(root.right)] : []
 
   return inOrder(root)[k - 1]
+}
+
+const kthSmallest = (root, k) => {
+  const stack = []
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    while (root) {
+      stack.push(root)
+      root = root.left
+    }
+    root = stack.pop()
+
+    k--
+    if (k === 0) {
+      return root.val
+    }
+
+    root = root.right
+  }
 }
