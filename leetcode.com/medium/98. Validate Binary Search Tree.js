@@ -36,19 +36,21 @@
  */
 const isValidBST = (root) => {
   if (!root) return true
-  const res = depthFirstInOrder(root)
-  for (let i = 1; i < res.length; i++) {
-    if (res[i] <= res[i - 1]) return false
+
+  const sortedBST = []
+  const dfsInOrder = (root) => {
+    if (!root) return
+
+    dfsInOrder(root.left)
+    sortedBST.push(root.val)
+    dfsInOrder(root.right)
+  }
+  dfsInOrder(root)
+
+  for (let i = 1; i < sortedBST.length; i++) {
+    if (sortedBST[i] <= sortedBST[i - 1]) return false
   }
   return true
-}
-
-const depthFirstInOrder = (root) => {
-  const res = []
-  if (root.left) res.push(...depthFirstInOrder(root.left))
-  res.push(root.val)
-  if (root.right) res.push(...depthFirstInOrder(root.right))
-  return res
 }
 
 const isValidBST2 = (root, min = null, max = null) => {
@@ -57,5 +59,5 @@ const isValidBST2 = (root, min = null, max = null) => {
   if (min !== null && root.val <= min.val) return false
   if (max !== null && root.val >= max.val) return false
 
-  return isValidBST(root.left, min, root) && isValidBST(root.right, root, max)
+  return isValidBST2(root.left, min, root) && isValidBST2(root.right, root, max)
 }
