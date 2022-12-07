@@ -35,6 +35,7 @@
  * @return {boolean}
  */
 const isValidBST = (root) => {
+  // uses special tree property (dfs in order will produce sorted list for valid BSTs)
   if (!root) return true
 
   const sortedBST = []
@@ -53,11 +54,28 @@ const isValidBST = (root) => {
   return true
 }
 
-const isValidBST2 = (root, min = null, max = null) => {
+const isValidBSTDandC = (root, min = null, max = null) => {
+  // uses divide and conquer (validates each subtree recursively)
   if (!root) return true
 
   if (min !== null && root.val <= min.val) return false
   if (max !== null && root.val >= max.val) return false
 
-  return isValidBST2(root.left, min, root) && isValidBST2(root.right, root, max)
+  return (
+    isValidBSTDandC(root.left, min, root) &&
+    isValidBSTDandC(root.right, root, max)
+  )
+}
+const isValidBSTDandC2 = (root, min = -Infinity, max = Infinity) => {
+  // I absolutely don't trust the leetcode runner for JS, but it says this version is way slower than the one that passes nodes?
+  // it is simpler though
+  if (!root) return true
+
+  if (root.val <= min) return false
+  if (root.val >= max) return false
+
+  return (
+    isValidBSTDandC2(root.left, min, root.val) &&
+    isValidBSTDandC2(root.right, root.val, max)
+  )
 }
