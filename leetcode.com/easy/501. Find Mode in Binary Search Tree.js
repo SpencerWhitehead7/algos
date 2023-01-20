@@ -66,3 +66,37 @@ const findMode = (root) => {
 
   return modes
 }
+
+const findModeConstantSpace = (root) => {
+  let modes = []
+  let maxCount = 0
+  let prev = null
+  let currCount = 0
+
+  const dfs = (root) => {
+    if (!root) return
+
+    dfs(root.left)
+
+    if (root.val === prev) {
+      currCount++
+    } else {
+      currCount = 1
+    }
+    if (currCount === maxCount) {
+      modes.push(root.val)
+    }
+    if (currCount > maxCount) {
+      modes = [root.val]
+      maxCount = currCount
+    }
+
+    prev = root.val
+
+    dfs(root.right)
+  }
+
+  dfs(root)
+
+  return modes
+}
