@@ -23,36 +23,34 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-
-// Rec
 const inorderTraversalRec = (root) => {
   const res = []
-  if (!root) return res
+
   if (root.left) res.push(...inorderTraversalRec(root.left))
   res.push(root.val)
   if (root.right) res.push(...inorderTraversalRec(root.right))
+
   return res
 }
 
-// Iter
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
 const inorderTraversalIter = (root) => {
   const res = []
-  if (!root) return res
-  const stack = [root]
-  while (stack.length > 0) {
-    const curr = stack.pop()
-    if (curr.flag) {
-      res.push(curr.val)
-    } else {
-      curr.flag = 1
-      if (curr.right) {
-        stack.push(curr.right)
-      }
+
+  const stack = []
+  let curr = root
+  while (curr || stack.length > 0) {
+    while (curr) {
       stack.push(curr)
-      if (curr.left) {
-        stack.push(curr.left)
-      }
+      curr = curr.left
     }
+    curr = stack.pop()
+    res.push(curr.val)
+    curr = curr.right
   }
+
   return res
 }
