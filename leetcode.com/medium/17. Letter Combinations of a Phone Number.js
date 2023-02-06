@@ -1,47 +1,63 @@
-// Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+// Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
 
-// A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+// A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
 
-// leetcode had a image of a phone pad with the letter number mapping
+// Example 1:
 
-// Example:
+// Input: digits = "23"
+// Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+// Example 2:
 
-// Input: "23"
-// Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
-// Note:
+// Input: digits = ""
+// Output: []
+// Example 3:
 
-// Although the above answer is in lexicographical order, your answer could be in any order you want.
+// Input: digits = "2"
+// Output: ["a","b","c"]
+
+// Constraints:
+
+// 0 <= digits.length <= 4
+// digits[i] is a digit in the range ['2', '9'].
+
+const digitCharMap = [
+  [],
+  [],
+  ["a", "b", "c"],
+  ["d", "e", "f"],
+  ["g", "h", "i"],
+  ["j", "k", "l"],
+  ["m", "n", "o"],
+  ["p", "q", "r", "s"],
+  ["t", "u", "v"],
+  ["w", "x", "y", "z"],
+]
 
 /**
  * @param {string} digits
  * @return {string[]}
  */
 const letterCombinations = (digits) => {
-  const strings = []
-  if (!digits) return strings
+  if (digits === "") return []
 
-  const digitMapping = {
-    2: [`a`, `b`, `c`],
-    3: [`d`, `e`, `f`],
-    4: [`g`, `h`, `i`],
-    5: [`j`, `k`, `l`],
-    6: [`m`, `n`, `o`],
-    7: [`p`, `q`, `r`, `s`],
-    8: [`t`, `u`, `v`],
-    9: [`w`, `x`, `y`, `z`],
-  }
+  const res = []
+  const temp = []
 
-  const constructStrings = (baseString = ``, i = 0) => {
-    if (i === digits.length) {
-      strings.push(baseString)
-    } else {
-      for (const letter of digitMapping[digits[i]]) {
-        constructStrings(baseString + letter, i + 1)
-      }
+  const recurse = (idx) => {
+    if (idx === digits.length) {
+      res.push(temp.join(""))
+      return
+    }
+
+    const chars = digitCharMap[digits[idx]]
+    for (let i = 0; i < chars.length; i++) {
+      temp.push(chars[i])
+      recurse(idx + 1)
+      temp.pop()
     }
   }
 
-  constructStrings()
+  recurse(0)
 
-  return strings
+  return res
 }
