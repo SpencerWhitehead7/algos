@@ -42,4 +42,4 @@ const findKthLargest = (nums, k) => {
 
 // this algo actually has a formal name; quickselect https://en.wikipedia.org/wiki/Quickselect
 // there's a more optimized version where you partition the array in place instead of making all the copies
-// but the concept is the same and it's more compicated
+// but the concept is the same and it's more complicated
