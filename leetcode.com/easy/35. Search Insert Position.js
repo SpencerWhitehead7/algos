@@ -25,19 +25,19 @@
  * @return {number}
  */
 const searchInsert = (nums, target) => {
-  let start = 0
-  let end = nums.length - 1
-  while (start <= end) {
-    const middle = Math.floor((start + end) / 2)
-    if (nums[middle] > target) {
-      end = middle - 1
-    } else if (nums[middle] < target) {
-      start = middle + 1
+  let l = 0
+  let r = nums.length - 1
+  while (l <= r) {
+    const m = Math.floor((l + r) / 2)
+    if (nums[m] > target) {
+      r = m - 1
+    } else if (nums[m] < target) {
+      l = m + 1
     } else {
-      return middle
+      return m
     }
   }
-  return start
+  return l
 }
 
 // It's basically binary search
