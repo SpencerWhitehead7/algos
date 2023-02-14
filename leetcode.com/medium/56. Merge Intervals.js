@@ -1,49 +1,68 @@
-// Given a collection of intervals, merge all overlapping intervals.
+// Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
 
 // Example 1:
 
-// Input: [[1,3],[2,6],[8,10],[15,18]]
+// Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
 // Output: [[1,6],[8,10],[15,18]]
-// Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+// Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
 // Example 2:
 
-// Input: [[1,4],[4,5]]
+// Input: intervals = [[1,4],[4,5]]
 // Output: [[1,5]]
 // Explanation: Intervals [1,4] and [4,5] are considered overlapping.
-// NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
+
+// Constraints:
+
+// 1 <= intervals.length <= 104
+// intervals[i].length == 2
+// 0 <= starti <= endi <= 104
 
 /**
  * @param {number[][]} intervals
  * @return {number[][]}
  */
 const merge = (intervals) => {
-  if (!intervals.length) return []
-
   intervals.sort(([startTime1], [startTime2]) => startTime1 - startTime2)
 
-  const mergedIntervals = [intervals[0]]
+  const res = [intervals[0]]
 
   for (let i = 1; i < intervals.length; i++) {
-    const lastInterval = mergedIntervals[mergedIntervals.length - 1]
-    const currInterval = intervals[i]
-    if (lastInterval[1] >= currInterval[0]) {
-      mergedIntervals[mergedIntervals.length - 1] = [
-        lastInterval[0],
-        Math.max(lastInterval[1], currInterval[1]),
-      ]
+    const [currStart, currEnd] = intervals[i]
+    const [, prevEnd] = res[res.length - 1]
+    if (currStart <= prevEnd) {
+      res[res.length - 1][1] = Math.max(prevEnd, currEnd)
     } else {
-      mergedIntervals.push(currInterval)
+      res.push(intervals[i])
     }
   }
 
-  return mergedIntervals
+  return res
 }
+
+// I usually favor the built in functions, immutability, and one-liners, but
+// tbh this is way more confusing than the for loop version
+const mergeReduce = (intervals) =>
+  intervals
+    .sort(([startTime1], [startTime2]) => startTime1 - startTime2)
+    .reduce(
+      (acc, curr) => {
+        const [currStart, currEnd] = curr
+        const prev = acc.pop()
+        const [prevStart, prevEnd] = prev
+        if (currStart <= prevEnd) {
+          acc.push([prevStart, Math.max(prevEnd, currEnd)])
+        } else {
+          acc.push(prev)
+          acc.push(curr)
+        }
+        return acc
+      },
+      [intervals[0]]
+    )
 
 // no extra space for the result array, but is n^2 time because of the splices instead of nlogn time
 // also mutates the input, but then, so does sorting it
 const mergeInPlace = (intervals) => {
-  if (!intervals.length) return []
-
   intervals.sort(([startTime1], [startTime2]) => startTime1 - startTime2)
 
   for (let i = 1; i < intervals.length; i++) {
@@ -64,8 +83,6 @@ const mergeInPlace = (intervals) => {
 
 // alternate taking on merging in place; actually still uses same space as the non-inplace version because of the filter at the end, but it's the same idea
 const mergeInPlace2 = (intervals) => {
-  if (!intervals.length) return []
-
   intervals.sort(([startTime1], [startTime2]) => startTime1 - startTime2)
 
   let mergeBase = 0
