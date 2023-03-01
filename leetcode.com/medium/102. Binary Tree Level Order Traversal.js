@@ -32,18 +32,18 @@
 const levelOrder = (root) => {
   const res = []
 
-  let startIndex = 0
+  let startI = 0
   const currLevelNodes = root ? [root] : []
-  while (currLevelNodes.length !== startIndex) {
+  while (currLevelNodes.length !== startI) {
     const currLevelValues = []
-    const endIndex = currLevelNodes.length
-    for (let i = startIndex; i < endIndex; i++) {
+    const endI = currLevelNodes.length
+    for (let i = startI; i < endI; i++) {
       const node = currLevelNodes[i]
       currLevelValues.push(node.val)
       if (node.left) currLevelNodes.push(node.left)
       if (node.right) currLevelNodes.push(node.right)
     }
-    startIndex = endIndex
+    startI = endI
     res.push(currLevelValues)
   }
 
