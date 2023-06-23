@@ -24,7 +24,7 @@
  * @param {number} n
  * @return {number}
  */
-const climbStairs = (n) => {
+const climbStairsIter = (n) => {
   let stepCount = 0
   let waysToReachPrevStep = 0
   let waysToReachCurrStep = 1
@@ -37,4 +37,13 @@ const climbStairs = (n) => {
   }
 
   return waysToReachCurrStep
+}
+
+const climbStairsRec = (n, cache = [0, 1, 2]) => {
+  if (cache[n] !== undefined) return cache[n]
+
+  cache[n - 1] = climbStairsRec(n - 1, cache)
+  cache[n - 2] = climbStairsRec(n - 2, cache)
+
+  return cache[n - 1] + cache[n - 2]
 }
