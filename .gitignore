@@ -4,3 +4,5 @@ node_modules
 interviews/*
 # bit worried they'll get pissy if I spread all their algos over the web, although I'd say the explainers are the real value on that site
 interviewcake.com/*
+# ultra unmaintained old online google algo challenge screen
+foobar.withgoogle.com
