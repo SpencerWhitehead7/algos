@@ -99,3 +99,68 @@ func (this *Trie) StartsWith(prefix string) bool {
 * param_2 := obj.Search(word);
 * param_3 := obj.StartsWith(prefix);
  */
+
+type TrieCaseOptimized struct {
+	isLastChar bool
+	nextChars  [26]*TrieCaseOptimized
+}
+
+func ConstructorCaseOptimized() TrieCaseOptimized {
+	return TrieCaseOptimized{}
+}
+
+func (this *TrieCaseOptimized) Insert(word string) {
+	currTrie := this
+
+	for _, char := range word {
+		charIdx := char - 'a'
+
+		if currTrie.nextChars[charIdx] == nil {
+			currTrie.nextChars[charIdx] = &TrieCaseOptimized{}
+		}
+
+		currTrie = currTrie.nextChars[charIdx]
+	}
+
+	currTrie.isLastChar = true
+}
+
+func (this *TrieCaseOptimized) Search(word string) bool {
+	currTrie := this
+
+	for _, char := range word {
+		charIdx := char - 'a'
+
+		if currTrie.nextChars[charIdx] == nil {
+			return false
+		}
+
+		currTrie = currTrie.nextChars[charIdx]
+	}
+
+	return currTrie.isLastChar
+}
+
+func (this *TrieCaseOptimized) StartsWith(prefix string) bool {
+	currTrie := this
+
+	for _, char := range prefix {
+		charIdx := char - 'a'
+
+		if currTrie.nextChars[charIdx] == nil {
+			return false
+		}
+
+		currTrie = currTrie.nextChars[charIdx]
+	}
+
+	return true
+}
+
+/**
+* Your Trie object will be instantiated and called as such:
+* obj := Constructor();
+* obj.Insert(word);
+* param_2 := obj.Search(word);
+* param_3 := obj.StartsWith(prefix);
+ */
