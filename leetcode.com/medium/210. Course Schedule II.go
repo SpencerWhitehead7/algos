@@ -32,42 +32,30 @@ package algos
 
 func findOrder(numCourses int, prerequisites [][]int) []int {
 	prereqsToCourses := make([][]int, numCourses)
-	coursesToPrereqs := make([][]int, numCourses)
+	coursesToPrereqCounts := make([]int, numCourses)
 	for _, req := range prerequisites {
 		prereqsToCourses[req[1]] = append(prereqsToCourses[req[1]], req[0])
-		coursesToPrereqs[req[0]] = append(coursesToPrereqs[req[0]], req[1])
+		coursesToPrereqCounts[req[0]] += 1
 	}
 
-	isCourseTaken := make([]bool, numCourses)
 	stack := make([]int, 0, numCourses)
-	courseOrder := make([]int, 0, numCourses)
-	course := 0
 	for i := range numCourses {
-		if len(coursesToPrereqs[i]) == 0 {
-			isCourseTaken[i] = true
-			courseOrder = append(courseOrder, i)
+		if coursesToPrereqCounts[i] == 0 {
 			stack = append(stack, i)
 		}
 	}
 
+	courseOrder := make([]int, 0, numCourses)
+	course := 0
 	for len(stack) > 0 {
 		stack, course = stack[:len(stack)-1], stack[len(stack)-1]
-		if !isCourseTaken[course] {
-			isCourseTaken[course] = true
-			courseOrder = append(courseOrder, course)
-		}
+		courseOrder = append(courseOrder, course)
 
 		dependentCourses := prereqsToCourses[course]
 		for _, dependent := range dependentCourses {
-			isStillBlocked := false
-			for _, prereq := range coursesToPrereqs[dependent] {
-				if !isCourseTaken[prereq] {
-					isStillBlocked = true
-					break
-				}
-			}
+			coursesToPrereqCounts[dependent] -= 1
 
-			if !isStillBlocked {
+			if coursesToPrereqCounts[dependent] == 0 {
 				stack = append(stack, dependent)
 			}
 		}
