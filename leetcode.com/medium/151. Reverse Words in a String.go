@@ -31,7 +31,10 @@
 
 package algos
 
-import "strings"
+import (
+	"slices"
+	"strings"
+)
 
 func reverseWords(s string) string {
 	words := strings.Split(strings.Trim(s, " "), " ")
@@ -45,4 +48,45 @@ func reverseWords(s string) string {
 	}
 
 	return reversedWords
+}
+
+// this is pointless because go doesn't have mutable strings, mimic it with an array
+// really impressively ugly and edgecase-y
+func reverseWordsMutable(s string) string {
+	chars := strings.Split(s, "")
+	slices.Reverse(chars)
+
+	l := 0
+	r := 0
+	i := 0
+	for i < len(chars) {
+		for i < len(chars) && chars[i] == " " {
+			i += 1
+		}
+		if i == len(chars) {
+			break
+		}
+
+		for i < len(chars) && chars[i] != " " {
+			chars[r] = chars[i]
+			r += 1
+			i += 1
+		}
+
+		for lRev, rRev := l, r-1; lRev < rRev; lRev, rRev = lRev+1, rRev-1 {
+			chars[lRev], chars[rRev] = chars[rRev], chars[lRev]
+		}
+
+		if r < len(chars) {
+			chars[r] = " "
+			r += 1
+			l = r
+			i++
+		}
+	}
+
+	if chars[r-1] == " " {
+		return strings.Join(chars[:r-1], "")
+	}
+	return strings.Join(chars, "")
 }
