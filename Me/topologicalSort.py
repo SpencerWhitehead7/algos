@@ -1,4 +1,4 @@
-  def topological_sort(digraph):
+def topological_sort(digraph):
     # digraph is a dictionary:
     #   key: a node
     # value: a set of adjacent neighboring nodes

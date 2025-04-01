@@ -19,8 +19,11 @@
 
 # Follow-up: Could you solve the problem in linear time and in O(1) space?
 
+import collections
+
+
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
+    def majorityElement(self, nums: list[int]) -> int:
         counts = collections.Counter(nums)
         return max(counts.keys(), key=counts.get)
 

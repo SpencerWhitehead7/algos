@@ -1,4 +1,4 @@
-# Still need to configure Pylint and also, like, actually learn python
+# Still need to like, actually learn python
 
 msg = "hello world"
 

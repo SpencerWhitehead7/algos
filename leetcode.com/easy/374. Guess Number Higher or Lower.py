@@ -21,6 +21,9 @@
 # @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
 # def guess(num):
 
+import math
+
+
 class Solution(object):
     def guessNumber(self, n):
         """
@@ -32,7 +35,7 @@ class Solution(object):
         while(True):
           # leetcode preimported/defined math and guess
           middle = math.floor((start + end)/2)
-          api_res = guess(middle)
+          api_res = guess(middle) # type: ignore
           if(api_res == 0):
             return int(middle)
           if(api_res == 1):
