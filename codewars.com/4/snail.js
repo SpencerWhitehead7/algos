@@ -18,35 +18,43 @@
 // NOTE 2: The 0x0 (empty matrix) is represented as [[]]
 
 const snailRec = (array) => {
+  if (array.length === 0) {
+    return []
+  }
+
   if (array.length === 1) {
     return array[0]
-  } else if (array.length === 0) {
-    return []
-  } else {
-    const sorted = []
-    sorted.push(...array.shift())
-    for (let i = 0; i < array.length; i++) {
-      sorted.push(array[i].pop())
-    }
-    sorted.push(...array.pop().reverse())
-    for (let i = array.length - 1; i >= 0; i--) {
-      sorted.push(array[i].shift())
-    }
-    sorted.push(...snailRec(array))
-    return sorted
   }
+
+  if (array[0].length === 1) {
+    return array.flat()
+  }
+
+  const sorted = []
+  sorted.push(...array.shift())
+  for (let i = 0; i < array.length; i++) {
+    sorted.push(array[i].pop())
+  }
+  sorted.push(...array.pop().reverse())
+  for (let i = array.length - 1; i >= 0; i--) {
+    sorted.push(array[i].shift())
+  }
+  sorted.push(...snailRec(array))
+  return sorted
 }
 
 const snailIter = (array) => {
   const sorted = []
-  while (array.length) {
+  while (array.length && array[0].length) {
     sorted.push(...array.shift())
     for (let i = 0; i < array.length; i++) {
-      sorted.push(array[i].pop())
+      const v = array[i].pop()
+      sorted.push(v)
     }
     sorted.push(...(array.pop() || []).reverse())
     for (let i = array.length - 1; i >= 0; i--) {
-      sorted.push(array[i].shift())
+      const v = array[i].shift()
+      if (v !== undefined) sorted.push(v)
     }
   }
   return sorted

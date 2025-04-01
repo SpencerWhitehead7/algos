@@ -31,14 +31,12 @@
 // -104 <= Node.val <= 104
 // Node.random is null or is pointing to some node in the linked list.
 
-/**
- * // Definition for a Node.
- * function Node(val, next, random) {
- *    this.val = val;
- *    this.next = next;
- *    this.random = random;
- * };
- */
+// Definition for a Node.
+function Node(val, next, random) {
+  this.val = val
+  this.next = next
+  this.random = random
+}
 
 /**
  * @param {Node} head
