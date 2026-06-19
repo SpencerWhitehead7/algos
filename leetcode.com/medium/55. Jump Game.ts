@@ -18,7 +18,23 @@
 // 1 <= nums.length <= 104
 // 0 <= nums[i] <= 105
 
+// just unspeakably pretty and understandable compared to the other attempts
 const canJump = (nums: number[]): boolean => {
+  let range = 0
+
+  for (let i = 0; i < nums.length; i++) {
+    if (range < 0) return false
+
+    if (nums[i] > range) range = nums[i]
+    range -= 1
+  }
+
+  return true
+}
+
+// I still think this is probably easier to think of, but far less intuitive than the blessed solution
+// (once you see it)
+const canJumpSkipLoops = (nums: number[]): boolean => {
   for (let i = nums.length - 2; i >= 0; i--) {
     if (nums[i] === 0) {
       for (let j = i - 1; j >= 0; j--) {
