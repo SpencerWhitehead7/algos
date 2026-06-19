@@ -31,12 +31,7 @@
 // 1 <= m, n <= 100
 // It's guaranteed that the answer will be less than or equal to 2 * 109.
 
-/**
- * @param {number} h
- * @param {number} w
- * @return {number}
- */
-const uniquePathsIter = (w, h) => {
+const uniquePathsIter = (w: number, h: number): number => {
   const row = new Array(w).fill(1)
   for (let rowI = 1; rowI < h; rowI++) {
     for (let colI = 1; colI < w; colI++) {
@@ -46,7 +41,11 @@ const uniquePathsIter = (w, h) => {
   return row[row.length - 1]
 }
 
-const uniquePathsRec = (w, h, memo = {}) => {
+const uniquePathsRec = (
+  w: number,
+  h: number,
+  memo: Record<string, number> = {},
+): number => {
   const key = `${w}-${h}`
 
   if (memo[key]) return memo[key]
