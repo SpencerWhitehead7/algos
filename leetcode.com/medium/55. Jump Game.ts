@@ -34,3 +34,21 @@ const canJump = (nums: number[]): boolean => {
 
   return true
 }
+
+// the subarray trick for zero copy slicing is cool JS specific arcana but the worst case runtime is still disastrous
+// something like [0,100,99,98,97...,3,2,1,0] does many repeated passes for each ultimately unreachable prefix
+const canJumpRec = (nums: number[]): boolean =>
+  canJumpRecInner(Float32Array.from(nums))
+
+const canJumpRecInner = (nums: Float32Array): boolean => {
+  if (nums.length === 1) return true
+
+  const lastIdx = nums.length - 1
+
+  for (let i = 0; i < lastIdx; i++) {
+    if (i + nums[i] >= lastIdx && canJumpRecInner(nums.subarray(0, i + 1)))
+      return true
+  }
+
+  return false
+}
