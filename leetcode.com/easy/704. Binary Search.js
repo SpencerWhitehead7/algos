@@ -24,17 +24,22 @@
  * @return {number}
  */
 const search = (nums, target) => {
-  let start = 0
-  let end = nums.length - 1
-  while (start <= end) {
-    const middle = Math.floor(start + (end - start) / 2)
-    if (nums[middle] === target) {
-      return middle
-    } else if (nums[middle] < target) {
-      start = middle + 1
+  let l = 0
+  let r = nums.length - 1
+
+  while (l <= r) {
+    const m = Math.floor(l + (r - l) / 2)
+
+    if (nums[m] === target) {
+      return m
+    }
+
+    if (nums[m] < target) {
+      l = m + 1
     } else {
-      end = middle - 1
+      r = m - 1
     }
   }
+
   return -1
 }
