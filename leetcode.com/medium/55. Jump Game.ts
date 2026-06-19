@@ -16,11 +16,7 @@
 // Explanation: You will always arrive at index 3 no matter what. Its maximum
 //              jump length is 0, which makes it impossible to reach the last index.
 
-/**
- * @param {number[]} nums
- * @return {boolean}
- */
-const canJump = (nums) => {
+const canJump = (nums: number[]) => {
   if (nums[0] === 0 && nums.length > 1) return false
   for (let i = nums.length - 2; i >= 0; i--) {
     if (nums[i] === 0) {
