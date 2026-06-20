@@ -1,7 +1,5 @@
 // Given an integer array nums, return the length of the longest strictly increasing subsequence.
 
-// A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
-
 // Example 1:
 
 // Input: nums = [10,9,2,5,3,7,101,18]
@@ -21,23 +19,38 @@
 // 1 <= nums.length <= 2500
 // -104 <= nums[i] <= 104
 
-// Follow up:
+// Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
 
-// Could you come up with the O(n2) solution?
-// Could you improve it to O(n log(n)) time complexity?
+const lengthOfLISClassic = (nums: number[]): number => {
+  const dp = new Array(nums.length).fill(1)
 
-const lengthOfLIS = (nums: number[]): number => {
-  if (nums.length === 0) return 0
-
-  const lengthsSoFar = [1]
-  for (let i = 1; i < nums.length; i++) {
-    lengthsSoFar.push(
-      lengthsSoFar.reduce(
-        (acc, curr, j) => (nums[i] > nums[j] ? Math.max(acc, curr) : acc),
-        0,
-      ) + 1,
-    )
+  for (let i = nums.length - 1; i >= 0; i--) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] < nums[j]) dp[i] = Math.max(dp[j] + 1, dp[i])
+    }
   }
 
-  return Math.max(...lengthsSoFar)
+  return Math.max(...dp)
 }
+
+const lengthOfLISGreedy = (nums: number[]): number => {
+  const tails = [nums[0]]
+
+  for (const num of nums) {
+    if (num > tails.at(-1)!) {
+      tails.push(num)
+    } else {
+      const replacementIdx = tails.findIndex((t) => t >= num)
+      tails[replacementIdx] = num
+    }
+  }
+
+  return tails.length
+}
+
+// I believe they're technically both O(n^2) worst case
+// but typically tails is so much shorter than nums that this gives a huge speedup
+// 4ms for greedy vs 85ms for classic, as measured by leetcode
+// if you want to get crazy you could use a binary search instead of .findIndex
+// (which is linear) for the replacementIdx, since tails is guaranteed sorted
+// which would make it O(n * log(n))

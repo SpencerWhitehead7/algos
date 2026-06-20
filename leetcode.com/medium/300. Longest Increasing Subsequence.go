@@ -1,7 +1,5 @@
 // Given an integer array nums, return the length of the longest strictly increasing subsequence.
 
-// A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
-
 // Example 1:
 
 // Input: nums = [10,9,2,5,3,7,101,18]
@@ -21,39 +19,50 @@
 // 1 <= nums.length <= 2500
 // -104 <= nums[i] <= 104
 
-// Follow up:
-
-// Could you come up with the O(n2) solution?
-// Could you improve it to O(n log(n)) time complexity?
+// Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
 
 package algos
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
-func lengthOfLIS(nums []int) int {
-	if len(nums) == 0 {
-		return 0
+func lengthOfLISClassic(nums []int) int {
+	dp := make([]uint16, len(nums))
+	for i, _ := range dp {
+		dp[i] = 1
 	}
 
-	lengthsSoFar := []int{1}
-	longest := 1
-	for i := 1; i < len(nums); i++ {
-		var nextLength int
-		for j, length := range lengthsSoFar {
-			if nums[i] > nums[j] {
-				if length > nextLength {
-					nextLength = length
-				}
+	for i := len(nums) - 1; i >= 0; i-- {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i] < nums[j] && dp[j]+1 > dp[i] {
+				dp[i] = dp[j] + 1
 			}
 		}
-		nextLength++
-		if nextLength > longest {
-			longest = nextLength
-		}
-		lengthsSoFar = append(lengthsSoFar, nextLength)
 	}
 
-	return longest
+	longest := dp[0]
+	for _, length := range dp {
+		if length > longest {
+			longest = length
+		}
+	}
+	return int(longest)
+}
+
+func lengthOfLISGreedy(nums []int) int {
+	tails := []int{nums[0]}
+
+	for _, num := range nums {
+		if num > tails[len(tails)-1] {
+			tails = append(tails, num)
+		} else {
+			replacementIdx := len(tails) - 1
+			for i, t := range tails {
+				if t >= num {
+					replacementIdx = i
+					break
+				}
+			}
+			tails[replacementIdx] = num
+		}
+	}
+
+	return len(tails)
 }
