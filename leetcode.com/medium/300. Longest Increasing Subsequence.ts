@@ -26,11 +26,7 @@
 // Could you come up with the O(n2) solution?
 // Could you improve it to O(n log(n)) time complexity?
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
-const lengthOfLIS = (nums) => {
+const lengthOfLIS = (nums: number[]): number => {
   if (nums.length === 0) return 0
 
   const lengthsSoFar = [1]
@@ -38,12 +34,10 @@ const lengthOfLIS = (nums) => {
     lengthsSoFar.push(
       lengthsSoFar.reduce(
         (acc, curr, j) => (nums[i] > nums[j] ? Math.max(acc, curr) : acc),
-        0
-      ) + 1
+        0,
+      ) + 1,
     )
   }
 
   return Math.max(...lengthsSoFar)
 }
-
-console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
