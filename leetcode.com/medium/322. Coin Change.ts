@@ -24,23 +24,21 @@
 // 1 <= coins[i] <= 231 - 1
 // 0 <= amount <= 104
 
-/**
- * @param {number[]} coins
- * @param {number} amount
- * @return {number}
- */
-const coinChange = (coins, amount) => {
+const coinChange = (coins: number[], amount: number): number => {
+  coins = coins.filter((c) => c <= amount)
+
   const dp = new Array(amount + 1).fill(Infinity)
   dp[0] = 0
 
-  for (let dpi = 1; dpi <= amount; dpi++) {
-    for (let ci = 0; ci < coins.length; ci++) {
-      const coin = coins[ci]
-      if (dpi - coin >= 0) {
-        dp[dpi] = Math.min(dp[dpi], dp[dpi - coin] + 1)
-      }
+  for (let i = 0; i < dp.length; i++) {
+    if (dp[i] === Infinity) continue
+
+    for (const coin of coins) {
+      if (i + coin > amount) continue
+
+      dp[i + coin] = Math.min(dp[i + coin], dp[i] + 1)
     }
   }
 
-  return dp[amount] === Infinity ? -1 : dp[amount]
+  return dp.at(-1) === Infinity ? -1 : dp.at(-1)
 }
