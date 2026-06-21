@@ -22,10 +22,34 @@
 // 0 <= nums[i] <= 1000
 // It's guaranteed that you can reach nums[n - 1].
 
+// the same idea, but way prettier
+// somehow it's a little slower but they all run in 0-3 ms and it's
+// javascript, so I suspect it's basically random variance
+const jump = (nums: number[]): number => {
+  if (nums.length === 1) return 0
+
+  let jumps = 0
+
+  let maxNextRange = 0
+  let endOfCurrRange = 0
+
+  for (let i = 0; i < nums.length; i++) {
+    maxNextRange = Math.max(maxNextRange, i + nums[i])
+    if (maxNextRange >= nums.length - 1) return jumps + 1
+
+    if (i === endOfCurrRange) {
+      endOfCurrRange = maxNextRange
+      jumps++
+    }
+  }
+
+  return jumps
+}
+
 // more efficiently, skips calculating min steps for indices in nums you don't need to visit
 // and still more efficiently, skips rechecking indices you've already seen on previous jumps
 // although the leetcode tests don't have any inputs that exercise this edge so it comes out slightly slower
-const jump = (nums: number[]): number => {
+const jumpUgly = (nums: number[]): number => {
   let jumps = 0
 
   let deepestCheckedI = 0
