@@ -23,9 +23,12 @@
 // It's guaranteed that you can reach nums[n - 1].
 
 // more efficiently, skips calculating min steps for indices in nums you don't need to visit
+// and still more efficiently, skips rechecking indices you've already seen on previous jumps
+// although the leetcode tests don't have any inputs that exercise this edge so it comes out slightly slower
 const jump = (nums: number[]): number => {
   let jumps = 0
 
+  let deepestCheckedI = 0
   let i = 0
   while (i < nums.length - 1) {
     let maxNextRange = 0
@@ -34,12 +37,14 @@ const jump = (nums: number[]): number => {
     const currentRange = i + nums[i]
     if (currentRange >= nums.length - 1) return jumps + 1
 
-    for (let j = i; j <= currentRange; j++) {
+    for (let j = deepestCheckedI + 1; j <= currentRange; j++) {
       const candidateNextRange = j + nums[j]
       if (candidateNextRange > maxNextRange) {
         maxNextRange = candidateNextRange
         nextI = j
       }
+
+      deepestCheckedI = j
     }
 
     i = nextI
