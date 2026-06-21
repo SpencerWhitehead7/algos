@@ -22,7 +22,35 @@
 // 0 <= nums[i] <= 1000
 // It's guaranteed that you can reach nums[n - 1].
 
+// more efficiently, skips calculating min steps for indices in nums you don't need to visit
 const jump = (nums: number[]): number => {
+  let jumps = 0
+
+  let i = 0
+  while (i < nums.length - 1) {
+    let maxNextRange = 0
+    let nextI = 0
+
+    const currentRange = i + nums[i]
+    if (currentRange >= nums.length - 1) return jumps + 1
+
+    for (let j = i; j <= currentRange; j++) {
+      const candidateNextRange = j + nums[j]
+      if (candidateNextRange > maxNextRange) {
+        maxNextRange = candidateNextRange
+        nextI = j
+      }
+    }
+
+    i = nextI
+    jumps++
+  }
+
+  return jumps
+}
+
+// calculating min steps for every index in nums
+const jumpClassicDp = (nums: number[]): number => {
   const dp = Array(nums.length).fill(Infinity)
   dp[0] = 0
 
