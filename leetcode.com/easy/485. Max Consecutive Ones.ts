@@ -16,17 +16,15 @@
 // nums[i] is either 0 or 1.
 
 const findMaxConsecutiveOnes = (nums: number[]) => {
-  let maxOnes = 0
-  let currentOnesCount = 0
-  nums.forEach((num) => {
-    if (num === 1) {
-      currentOnesCount++
-    } else {
-      if (currentOnesCount > maxOnes) maxOnes = currentOnesCount
-      currentOnesCount = 0
+  let maxConsecOnes = 0
+  for (let i = 0; i < nums.length; i++) {
+    let currentConsecOnes = 0
+    while (nums[i] === 1) {
+      currentConsecOnes++
+      i++
     }
-  })
-  if (currentOnesCount > maxOnes) maxOnes = currentOnesCount
+    maxConsecOnes = Math.max(maxConsecOnes, currentConsecOnes)
+  }
 
-  return maxOnes
+  return maxConsecOnes
 }
