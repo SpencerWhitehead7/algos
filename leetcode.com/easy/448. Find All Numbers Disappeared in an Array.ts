@@ -20,7 +20,7 @@
 const findDisappearedNumbers = (nums: number[]) => {
   for (let i = 0; i < nums.length; i++) {
     const ptr = Math.abs(nums[i]) - 1
-    if (nums[ptr] > 0) nums[ptr] *= -1
+    nums[ptr] = -Math.abs(nums[ptr])
   }
 
   const missingNums = []
@@ -31,15 +31,15 @@ const findDisappearedNumbers = (nums: number[]) => {
   return missingNums
 }
 
-const findDisappearedNumbersHash = (nums: number[]) => {
-  const hash = nums.reduce<Record<number, boolean>>((acc, curr) => {
-    acc[curr] = true
-    return acc
-  }, {})
+const findDisappearedNumbersBucketSort = (nums: number[]) => {
+  const buckets = Array(nums.length + 1).fill(0)
+  for (const n of nums) {
+    buckets[n]++
+  }
 
   const missingNums = []
-  for (let i = 1; i <= nums.length; i++) {
-    if (!hash[i]) missingNums.push(i)
+  for (let i = 1; i < buckets.length; i++) {
+    if (buckets[i] === 0) missingNums.push(i)
   }
 
   return missingNums
