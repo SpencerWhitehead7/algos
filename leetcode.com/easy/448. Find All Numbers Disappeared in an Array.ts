@@ -17,11 +17,7 @@
 
 // Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
 
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
-const findDisappearedNumbers = (nums) => {
+const findDisappearedNumbers = (nums: number[]) => {
   for (let i = 0; i < nums.length; i++) {
     const ptr = Math.abs(nums[i]) - 1
     if (nums[ptr] > 0) nums[ptr] *= -1
@@ -35,8 +31,8 @@ const findDisappearedNumbers = (nums) => {
   return missingNums
 }
 
-const findDisappearedNumbersHash = (nums) => {
-  const hash = nums.reduce((acc, curr) => {
+const findDisappearedNumbersHash = (nums: number[]) => {
+  const hash = nums.reduce<Record<number, boolean>>((acc, curr) => {
     acc[curr] = true
     return acc
   }, {})
