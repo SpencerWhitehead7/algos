@@ -19,6 +19,27 @@
 // 1 <= nums[i] <= 104
 
 const findErrorNums = (nums: number[]): number[] => {
+  let i = 0
+  while (i < nums.length) {
+    const num = nums[i]
+    const idxForNum = num - 1
+    const actualAtIdxForNum = nums[idxForNum]
+    if (num !== actualAtIdxForNum) {
+      nums[i] = actualAtIdxForNum
+      nums[idxForNum] = num
+    } else {
+      i++
+    }
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i + 1) return [nums[i], i + 1]
+  }
+
+  return []
+}
+
+const findErrorNumsBucketSort = (nums: number[]): number[] => {
   const buckets = new Array(nums.length + 1).fill(0)
   for (let i = 0; i < nums.length; i++) {
     buckets[nums[i]]++
