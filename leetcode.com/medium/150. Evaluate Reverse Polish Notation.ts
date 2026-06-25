@@ -29,29 +29,26 @@
 // = 17 + 5
 // = 22
 
-/**
- * @param {string[]} tokens
- * @return {number}
- */
-const evalRPN = (tokens) => {
-  const stack = []
+const evalRPN = (tokens: string[]): number => {
+  const stack: number[] = []
   for (let i = 0; i < tokens.length; i++) {
     if (tokens[i] === `+`) {
-      stack.push(stack.pop() + stack.pop())
+      stack.push(stack.pop()! + stack.pop()!)
     } else if (tokens[i] === `-`) {
-      const subtracter = stack.pop()
-      const subtracted = stack.pop()
+      const subtracter = stack.pop()!
+      const subtracted = stack.pop()!
       stack.push(subtracted - subtracter)
     } else if (tokens[i] === `*`) {
-      stack.push(stack.pop() * stack.pop())
+      stack.push(stack.pop()! * stack.pop()!)
     } else if (tokens[i] === `/`) {
-      const divider = stack.pop()
-      const divided = stack.pop()
+      const divider = stack.pop()!
+      const divided = stack.pop()!
       const res = divided / divider
       stack.push(res > 0 ? Math.floor(res) : Math.ceil(res))
     } else {
       stack.push(Number(tokens[i]))
     }
   }
+
   return stack[0]
 }
