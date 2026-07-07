@@ -16,17 +16,13 @@
 // 1 <= heights.length <= 105
 // 0 <= heights[i] <= 104
 
-/**
- * @param {number[]} heights
- * @return {number}
- */
-const largestRectangleAreaDnC = (heights) => {
-  const recurse = (l, r) => {
+const largestRectangleAreaDnC = (heights: number[]): number => {
+  const recurse = (l: number, r: number): number => {
     if (l >= r) {
       return heights[l] ?? 0
     }
 
-    let smallesti = null
+    let smallesti = l
     let smallest = Infinity
     for (let i = l; i <= r; i++) {
       if (heights[i] < smallest) {
@@ -38,7 +34,7 @@ const largestRectangleAreaDnC = (heights) => {
     return Math.max(
       recurse(l, smallesti - 1),
       (1 + r - l) * smallest,
-      recurse(smallesti + 1, r)
+      recurse(smallesti + 1, r),
     )
   }
 
@@ -47,19 +43,15 @@ const largestRectangleAreaDnC = (heights) => {
 // I'm pretty confident this recursive divide and conquer algo works
 // but it times out on their biggest examples
 
-/**
- * @param {number[]} heights
- * @return {number}
- */
-const largestRectangleArea = (heights) => {
+const largestRectangleArea = (heights: number[]): number => {
   let res = 0
 
   heights.push(0)
   const maxHeightIdxs = [-1]
   for (let i = 0; i < heights.length; i++) {
-    while (heights.at(i) < heights.at(maxHeightIdxs.at(-1))) {
-      const height = heights.at(maxHeightIdxs.pop())
-      const l = maxHeightIdxs.at(-1)
+    while (heights.at(i)! < heights.at(maxHeightIdxs.at(-1)!)!) {
+      const height = heights.at(maxHeightIdxs.pop()!)!
+      const l = maxHeightIdxs.at(-1)!
       const r = i
       const width = r - l - 1
       const area = height * width
