@@ -46,21 +46,19 @@ const largestRectangleAreaDnC = (heights: number[]): number => {
 const largestRectangleArea = (heights: number[]): number => {
   let res = 0
 
-  heights.push(0)
-  const maxHeightIdxs = [-1]
-  for (let i = 0; i < heights.length; i++) {
-    while (heights.at(i)! < heights.at(maxHeightIdxs.at(-1)!)!) {
-      const height = heights.at(maxHeightIdxs.pop()!)!
-      const l = maxHeightIdxs.at(-1)!
+  const stack: number[] = []
+  for (let i = 0; i <= heights.length; i++) {
+    const currHeight = i === heights.length ? 0 : heights[i]
+    while (stack.length && currHeight < heights[stack[stack.length - 1]]) {
+      const height = heights[stack.pop()!]
+      const l = stack.length ? stack[stack.length - 1] + 1 : 0
       const r = i
-      const width = r - l - 1
-      const area = height * width
-      if (area > res) res = area
+      const width = r - l
+      res = Math.max(res, height * width)
     }
 
-    maxHeightIdxs.push(i)
+    stack.push(i)
   }
-  heights.pop()
 
   return res
 }
