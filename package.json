@@ -4,26 +4,27 @@
   "keywords": [
     "algorithms"
   ],
-  "author": "Spencer Whitehead",
-  "license": "Unlicense",
   "homepage": "https://github.com/SpencerWhitehead7/algos#readme",
   "bugs": {
     "url": "https://github.com/SpencerWhitehead7/algos/issues"
   },
+  "license": "Unlicense",
+  "author": "Spencer Whitehead",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SpencerWhitehead7/algos.git"
   },
+  "type": "module",
   "scripts": {
     "test": "node --test",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prettier": "prettier .",
-    "prettier:fix": "prettier . -w"
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt --check",
+    "fmt:fix": "oxfmt"
   },
   "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^10.1.1",
-    "prettier": "^3.5.3"
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
+    "oxlint-tsgolint": "^7.0.2003"
   }
 }
