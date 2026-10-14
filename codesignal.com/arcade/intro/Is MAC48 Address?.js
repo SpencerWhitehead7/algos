@@ -49,7 +49,7 @@ const isMAC48Address = (str) => {
     pieces.length !== 6 ||
     pieces.some((piece) => piece.length !== 2) ||
     !pieces.every((piece) =>
-      piece.split(``).every((subPiece) => set.has(subPiece))
+      piece.split(``).every((subPiece) => set.has(subPiece)),
     )
   ) {
     return false

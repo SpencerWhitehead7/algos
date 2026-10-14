@@ -57,7 +57,7 @@ const mergeReduce = (intervals) =>
         }
         return acc
       },
-      [intervals[0]]
+      [intervals[0]],
     )
 
 // no extra space for the result array, but is n^2 time because of the splices instead of nlogn time

@@ -73,5 +73,5 @@ const titleToNumberOneLiner = (columnTitle) =>
     .reduce(
       (res, curr, i) =>
         res + Math.pow(26, columnTitle.length - 1 - i) * mapper[curr],
-      0
+      0,
     )

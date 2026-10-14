@@ -48,7 +48,7 @@ const createHashTable = () => {
     delete: (key) => {
       const hash = hashFn(key)
       const removeIdx = (table[hash] ?? []).findIndex(
-        ([tableKey, _]) => key === tableKey
+        ([tableKey, _]) => key === tableKey,
       )
       if (removeIdx !== -1) {
         table[hash].splice(removeIdx, 1)

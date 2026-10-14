@@ -30,7 +30,7 @@ console.log(
     [9, 6, 1, 5, 3, 7, 2, 8, 4],
     [2, 8, 7, 4, 1, 9, 6, 3, 5],
     [3, 4, 5, 2, 8, 6, 1, 7, 9],
-  ])
+  ]),
 ) // true
 console.log(
   sudokuValidator([
@@ -43,7 +43,7 @@ console.log(
     [7, 8, 9, 1, 2, 3, 4, 5, 6],
     [8, 9, 7, 2, 3, 1, 5, 6, 4],
     [9, 7, 8, 3, 1, 2, 6, 4, 5],
-  ])
+  ]),
 ) // false
 
 // Used across my solutions
@@ -125,7 +125,7 @@ const sudokuValidator = (solution) => {
       square.push(
         solution[Math.floor(j / 3) + (i % 3) * 3][
           (j % 3) + Math.floor(i / 3) * 3
-        ]
+        ],
       )
     }
 

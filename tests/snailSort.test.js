@@ -2,10 +2,9 @@ const assert = require("node:assert/strict")
 const { describe, it } = require("node:test")
 
 const { snailRec, snailIter } = require(`../codewars.com/4/snail`)
-const {
-  spiralOrderMut,
-  spiralOrder,
-} = require(`../leetcode.com/medium/54. Spiral Matrix`)
+const { spiralOrderMut, spiralOrder } = require(
+  `../leetcode.com/medium/54. Spiral Matrix`,
+)
 
 // prettier-ignore
 const testCases = {

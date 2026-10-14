@@ -42,7 +42,7 @@ const traverse = (node, map) => {
   if (!map[node.label]) {
     map[node.label] = new UndirectedGraphNode(node.label)
     map[node.label].neighbors = node.neighbors.map((neighbor) =>
-      traverse(neighbor, map)
+      traverse(neighbor, map),
     )
   }
   return map[node.label]

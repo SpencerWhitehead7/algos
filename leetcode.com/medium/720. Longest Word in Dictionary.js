@@ -90,7 +90,7 @@ const longestWord = (words) => {
   }
 
   return [...longestWords].reduce((shortestLexographically, word) =>
-    word < shortestLexographically ? word : shortestLexographically
+    word < shortestLexographically ? word : shortestLexographically,
   )
 }
 

@@ -52,7 +52,7 @@ const exist = (board, word) => {
           col < colsCount &&
           word[i] === letter &&
           search(row, col, i + 1)),
-      false
+      false,
     )
 
     board[row][col] = letter

@@ -84,5 +84,5 @@ const groupAnagrams = (strs) =>
       hashesToStrs[hash].push(str)
 
       return hashesToStrs
-    }, {})
+    }, {}),
   )

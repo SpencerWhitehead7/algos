@@ -59,7 +59,7 @@ function boxBlur(image) {
           image[row + 1][col - 1] +
           image[row + 1][col] +
           image[row + 1][col + 1]) /
-          9
+          9,
       )
       newRow.push(newVal)
     }

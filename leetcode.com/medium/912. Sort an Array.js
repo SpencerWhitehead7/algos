@@ -28,7 +28,7 @@ const sortArray = (nums) => {
   const midpoint = Math.floor(nums.length / 2)
   return mergeArrays(
     sortArray(nums.slice(0, midpoint)),
-    sortArray(nums.slice(midpoint))
+    sortArray(nums.slice(midpoint)),
   )
 }
 

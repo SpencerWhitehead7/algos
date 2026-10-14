@@ -29,6 +29,6 @@
 
 function arrayReplace(inputArray, elemToReplace, substitutionElem) {
   return inputArray.map((ele) =>
-    ele === elemToReplace ? substitutionElem : ele
+    ele === elemToReplace ? substitutionElem : ele,
   )
 }

@@ -37,5 +37,5 @@
  */
 const maximumWealth = (accounts) =>
   Math.max(
-    ...accounts.map((account) => account.reduce((acc, curr) => acc + curr))
+    ...accounts.map((account) => account.reduce((acc, curr) => acc + curr)),
   )

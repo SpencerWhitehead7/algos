@@ -43,7 +43,7 @@ const findAnagrams = (s, p) => {
   const isAnagram = (letterCountObj1, letterCountObj2) =>
     Object.keys(letterCountObj1).reduce(
       (acc, key) => acc && letterCountObj1[key] === letterCountObj2[key],
-      true
+      true,
     )
 
   const res = []

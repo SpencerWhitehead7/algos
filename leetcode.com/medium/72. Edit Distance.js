@@ -55,7 +55,7 @@ const minDistance = (word1, word2) => {
         mat[v][h] = Math.min(
           mat[v - 1][h - 1] + 1,
           mat[v - 1][h] + 1,
-          mat[v][h - 1] + 1
+          mat[v][h - 1] + 1,
         )
       }
     }

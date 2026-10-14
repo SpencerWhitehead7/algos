@@ -40,7 +40,6 @@ const kthSmallestUnopt = (root, k) => {
 const kthSmallest = (root, k) => {
   const stack = []
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     while (root) {
       stack.push(root)

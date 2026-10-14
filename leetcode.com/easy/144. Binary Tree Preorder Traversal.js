@@ -43,7 +43,6 @@ const preorderTraversal = (root) => {
 const preorderTraversalIter = (root) => {
   const stack = []
   const res = []
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     while (root) {
       stack.push(root)

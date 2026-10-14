@@ -17,7 +17,7 @@
       guessesRemaining = 12
       $(`#guessedWord`).text(`Guessed Word: ${wordAttempt.join(` `)}`)
       $(`#incorrectGuesses`).text(
-        `Incorrect Guesses: ${incorrectGuesses.join(`, `)}`
+        `Incorrect Guesses: ${incorrectGuesses.join(`, `)}`,
       )
       $(`#guessesRemaining`).text(`Guesses Remaining: ${guessesRemaining}`)
       $(`#wins`).text(`Wins: ${wins}`)
@@ -42,7 +42,7 @@
         incorrectGuesses.push(guess)
         guessesRemaining--
         $(`#incorrectGuesses`).text(
-          `Incorrect Guesses: ${incorrectGuesses.join(`, `)}`
+          `Incorrect Guesses: ${incorrectGuesses.join(`, `)}`,
         )
         $(`#guessesRemaining`).text(`Guesses Remaining: ${guessesRemaining}`)
         if (guessesRemaining <= 0) {

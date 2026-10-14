@@ -27,7 +27,7 @@ function sortByHeight(a) {
     .filter((ele) => ele !== -1)
     .sort((a, b) => a - b)
   a.forEach((ele) =>
-    finalArr.push(ele === -1 ? ele : filteredAndSorted.shift())
+    finalArr.push(ele === -1 ? ele : filteredAndSorted.shift()),
   )
   return finalArr
 }

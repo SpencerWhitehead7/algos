@@ -40,7 +40,7 @@ FakePQ.prototype.popSmallest = function () {
   const smallest = this.queue.reduce(
     (smallestSoFar, curr) =>
       curr.cost <= smallestSoFar.cost ? curr : smallestSoFar,
-    { cost: Infinity }
+    { cost: Infinity },
   )
 
   this.length--
@@ -63,7 +63,7 @@ const dijkstra = (graph, start, end) => {
     const current = queue.popSmallest()
 
     for (const [neighborVertex, neighborCost] of Object.entries(
-      graph[current.vertex]
+      graph[current.vertex],
     )) {
       if (!resultTable[neighborVertex].visited) {
         if (resultTable[neighborVertex].cost > neighborCost + current.cost) {

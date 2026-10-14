@@ -43,7 +43,7 @@ const maxAreaOfIsland = (grid) => {
           ]
             .filter(
               ({ row, col }) =>
-                row >= 0 && row < rowsLength && col >= 0 && col < colsLength
+                row >= 0 && row < rowsLength && col >= 0 && col < colsLength,
             )
             .filter(({ row, col }) => grid[row][col] === 1)
 

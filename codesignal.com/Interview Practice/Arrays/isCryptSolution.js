@@ -71,7 +71,7 @@ const isCryptSolution = (crypt, solution) => {
     word
       .split(``)
       .map((letter) => hash[letter])
-      .join(``)
+      .join(``),
   )
   if (
     nums.some((num) => num[0] === `0` && num.length !== 1) ||

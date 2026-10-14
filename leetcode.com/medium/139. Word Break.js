@@ -54,7 +54,7 @@ const wordBreakRec = (s, wordDict) =>
   // I firmly believe this SHOULD work, but it runs out of time on the "all 'a'"s test
   s === "" ||
   wordDict.some(
-    (w) => s.startsWith(w) && wordBreakRec(s.slice(w.length), wordDict)
+    (w) => s.startsWith(w) && wordBreakRec(s.slice(w.length), wordDict),
   )
 
 const wordBreakRecMemo = (s, wordDict) => {

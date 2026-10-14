@@ -44,7 +44,7 @@ const findLongest = (dict, chars) => {
   const charMap = getFreqMap(chars)
 
   const possibleWords = dict.filter((word) =>
-    Object.entries(getFreqMap(word)).every(([k, v]) => v <= charMap[k])
+    Object.entries(getFreqMap(word)).every(([k, v]) => v <= charMap[k]),
   )
 
   let longestWord = ``

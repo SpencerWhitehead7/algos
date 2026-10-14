@@ -81,7 +81,7 @@ const judgeCircle3 = (moves) => {
       L: 0,
       U: 0,
       D: 0,
-    }
+    },
   )
 
   return moveCounts.R === moveCounts.L && moveCounts.U === moveCounts.D

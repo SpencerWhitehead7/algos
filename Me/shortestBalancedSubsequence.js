@@ -19,7 +19,7 @@ const shortestBalancedSubsequenceBruteForce = (str) => {
           .split(``)
           .every(
             (char) =>
-              chars.has(char.toLowerCase()) && chars.has(char.toUpperCase())
+              chars.has(char.toLowerCase()) && chars.has(char.toUpperCase()),
           )
       ) {
         return subseq
@@ -91,8 +91,8 @@ const shortestBalancedSubsequence = (str) => {
         (k) =>
           (charsInStr.has(k.toUpperCase()) &&
             !charsInStr.has(k.toLowerCase())) ||
-          (charsInStr.has(k.toLowerCase()) && !charsInStr.has(k.toUpperCase()))
-      )
+          (charsInStr.has(k.toLowerCase()) && !charsInStr.has(k.toUpperCase())),
+      ),
   )
 
   const charCounter = new CharCounter()

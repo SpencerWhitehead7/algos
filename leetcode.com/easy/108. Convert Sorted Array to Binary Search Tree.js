@@ -34,7 +34,7 @@ const sortedArrayToBST = (nums) => {
   const root = new TreeNode(
     nums[centerI],
     sortedArrayToBST(nums.slice(0, centerI)),
-    sortedArrayToBST(nums.slice(centerI + 1))
+    sortedArrayToBST(nums.slice(centerI + 1)),
   )
 
   return root

@@ -49,7 +49,7 @@ const buildTree = (preorder, inorder) => {
     return new TreeNode(
       val,
       buildSubTree(l, inorderSplitI - 1),
-      buildSubTree(inorderSplitI + 1, r)
+      buildSubTree(inorderSplitI + 1, r),
     )
   }
 

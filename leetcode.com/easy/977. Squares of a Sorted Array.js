@@ -25,7 +25,7 @@ const sortedSquaresMerge = (A) => {
       arrs[num >= 0 ? 1 : 0].push(num * num)
       return arrs
     },
-    [[], []]
+    [[], []],
   )
 
   const res = []

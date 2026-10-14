@@ -104,7 +104,7 @@ const knightDialerMatrix = (N) => {
   return (
     baseMatrix.reduce(
       (acc, curr) => acc + (curr.reduce((acc, curr) => acc + curr) % MOD),
-      0
+      0,
     ) % MOD
   )
 }

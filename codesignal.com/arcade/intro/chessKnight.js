@@ -47,6 +47,6 @@ const chessKnight = (cell) => {
   ]
 
   return coords.filter((coordPair) =>
-    coordPair.every((coord) => coord > 0 && coord <= 8)
+    coordPair.every((coord) => coord > 0 && coord <= 8),
   ).length
 }

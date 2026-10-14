@@ -47,7 +47,7 @@ const lowestCommonAncestor = (root, p, q) => {
 
   return root === p || root === q || (leftRes && rightRes)
     ? root
-    : leftRes ?? rightRes
+    : (leftRes ?? rightRes)
 }
 
 const lowestCommonAncestorOfficial = (root, p, q) => {

@@ -104,12 +104,12 @@ const pathSumRec2 = (root, sum) => {
       explore(
         root.left,
         amountLeft,
-        arr.map((a) => a)
+        arr.map((a) => a),
       )
       explore(
         root.right,
         amountLeft,
-        arr.map((a) => a)
+        arr.map((a) => a),
       )
     }
   }
